@@ -7,6 +7,8 @@ module Mutations
     type Types::PostType
     def resolve(title: nil, content: nil, published: false)
       Post.create!(title: title, content: content, published: published)
+    rescue ActiveRecord::RecordInvalid => e
+      GraphQL::ExecutionError.new("Invalid input: #{e.record.errors.full_messages.join(", ")}")
     end
   end
 end
