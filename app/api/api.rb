@@ -7,6 +7,7 @@ class API < Grape::API
 
   format :json
   mount Auth
+  mount Uploads
 
   rescue_from Grape::Exceptions::ValidationErrors  do |e|
     rack_response({

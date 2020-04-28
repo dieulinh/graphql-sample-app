@@ -1,11 +1,20 @@
 import Vue from 'vue'
-import App from './components/App'
-import store from './store'
+import Vuex from 'vuex'
+import VueRouter from 'vue-router'
 
+import App from './components/App'
+
+import store from './store'
+import router from './routes';
+
+Vue.use(Vuex);
+
+Vue.use(VueRouter);
 document.addEventListener('DOMContentLoaded', () => {
   const app = new Vue({
     el: '#app',
     store: store,
+    router,
     render: h => h(App)
   }).$mount()
   document.body.appendChild(app.$el)

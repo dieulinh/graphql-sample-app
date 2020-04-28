@@ -90,16 +90,16 @@
       </div>
     </div>
     <div class="main">
-      <lesson-component />
+      <router-view />
     </div>
   </div>
 </template>
 
 <script>
-import LessonComponent from './Lesson'
+
 export default {
-  components: {LessonComponent},
-  data: function() {
+  
+  data() {
     return {
       message: "Hello Vue!"
     };

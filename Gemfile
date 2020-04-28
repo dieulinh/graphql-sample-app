@@ -34,6 +34,9 @@ gem 'bcrypt', '~> 3.1.7'
 # Grape API with swagger
 gem 'grape'
 gem 'grape-swagger'
+# gem 'rack-cors'
+gem 'aws-sdk', '~> 3'
+gem 'dotenv-rails', groups: [:development, :test]
 
 gem 'devise'
 gem 'graphql', '1.9.17'
