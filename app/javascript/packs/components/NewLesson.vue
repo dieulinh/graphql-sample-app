@@ -1,11 +1,18 @@
 <template>
   <div class="new-lesson">
-    <input ref="files" type="file" @change="onFilesChange"
-        data-direct-upload-url="/rails/active_storage/direct_uploads"
-        direct_upload="true" multiple />
+    <div>
+      <label class="switch">
+        <input type="checkbox" v-model="published">
+        <span class="slider round"></span>
+      </label>
+      Publish
+    </div>
+    
+
     <input v-model="title"/>
-    <vue-editor v-model="content" useCustomImageHandler @image-added="handleUploadImage" />
-    <button @click="save" type="button" class="button button-secondary">Save changes</button>
+    <vue-editor class="wht-bg" v-model="content" useCustomImageHandler @image-added="handleUploadImage" />
+
+    <button @click="save" type="button" class="btn btn-primary">Save changes</button>
   </div>
 </template>
 
@@ -44,6 +51,7 @@ export default {
       
       this.form.append("lesson[title]", this.title)
       this.form.append("lesson[content]", this.content)
+      this.form.append("lesson[published]", this.published)
 
       axios.post(postApiUrl, this.form, {
           headers: {

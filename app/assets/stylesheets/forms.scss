@@ -1,0 +1,30 @@
+$btn_color: #212529;
+$input_height: 40px;
+$base_line_height: 20px;
+$background_primary: #007c89;
+$base_font_size: 14px;
+input {
+  height: $input_height;
+  line-height: $base_line_height;
+  padding: 4px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  font-size: $base_font_size;
+}
+
+.btn {
+  box-shadow: inset 0 0 0 0.0625rem rgba(36,28,21,0.4);
+  color: #241c15;
+  min-width: 7.5rem;
+  padding: .8125rem;
+  background-color: #ffffff;
+  color: $btn_color;
+  border-radius: 4px;
+  line-height: $base_line_height;
+  font-size: $base_font_size;
+}
+.btn-primary {
+  background-color: $background_primary;
+  color: white;
+  font-weight: 700;
+}
