@@ -70,7 +70,7 @@ const actions = {
     localStorage.removeItem('auth_token');
     commit('logout');
   },
-  async createUser({commit}, user) {
+  async register({commit}, user) {
     try {
       let response = await axios.post(`${process.env.ROOT_API}/login/register`, user );
       if (response.status === 201)

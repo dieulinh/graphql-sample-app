@@ -4,19 +4,9 @@
       <div class="sc-eAKXzc fsQCvb">
         <div class="sc-cqpYsc fyGxwu">
           <div class="sc-hBbWxd jrHWGb">
-            <button
-              aria-hidden="true"
-              color="rgba(0,0,0,0.5)"
-              sizevalue="24px"
-              role="button"
-              tabindex="0"
-              data-mdc-ripple-is-unbounded="true"
-              class="rmwc-icon google-material-icons sc-fMiknA fmEAoH mdc-ripple-upgraded--unbounded mdc-ripple-upgraded sc-fMiknA fmEAoH mdc-icon-button"
-              style="--mdc-ripple-fg-size:28px; --mdc-ripple-fg-scale:1.71429; --mdc-ripple-left:10px; --mdc-ripple-top:10px;"
-            >menu</button>
           </div>
-          <div class="sc-dyGzUR brLPVL">
-            <a href="/">Classr0Om</a>
+          <div>
+            <a class="brand" href="/">Classr0Om</a>
           </div>
         </div>
       </div>
@@ -98,7 +88,7 @@
 <script>
 
 export default {
-  
+
   data() {
     return {
       message: "Hello Vue!"
