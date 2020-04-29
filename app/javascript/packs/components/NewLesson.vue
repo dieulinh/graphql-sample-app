@@ -3,9 +3,9 @@
     <input ref="files" type="file" @change="onFilesChange"
         data-direct-upload-url="/rails/active_storage/direct_uploads"
         direct_upload="true" multiple />
-      
+    <input v-model="title"/>
     <vue-editor v-model="content" useCustomImageHandler @image-added="handleUploadImage" />
-    <button @click="handleUploadImage" type="button" class="button button-secondary">Save changes</button>
+    <button @click="save" type="button" class="button button-secondary">Save changes</button>
   </div>
 </template>
 
@@ -16,7 +16,7 @@ import axios from 'axios';
 import { VueEditor } from 'vue2-editor';
 import * as ActiveStorage from 'activestorage';
 
-const postApiUrl = `${process.env.ROOT_API}/posts`;
+const postApiUrl = `${process.env.ROOT_API}/lessons`;
 const imageUploadUrl = `${process.env.ROOT_API}/uploads`;
 export default {
    components: {
@@ -24,21 +24,40 @@ export default {
   },
   data() {
     return {
-      title: '',
-      content: '',
-      content: '',
-      published: false
+      title: 'add',
+      content: 'ddd',
+      published: false,
+      form: new FormData()
     }
   },
   mounted() {
     ActiveStorage.start()
   },
   methods: {
-    save() {
-      console.log('save')
+    onFilesChange: function() {
+      let files = this.$refs.files.files
+      for(let file of files) {
+        this.form.append('lesson[files][]', file)
+      }
     },
-    onFilesChange() {
-      console.log('Button clicked');
+    save: function() {
+      
+      this.form.append("lesson[title]", this.title)
+      this.form.append("lesson[content]", this.content)
+
+      axios.post(postApiUrl, this.form, {
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          }
+      })
+      .then((result) => {
+        let url = result.data // Get url from response
+        Editor.insertEmbed(cursorLocation, 'image', url);
+        resetUploader();  
+      })
+      .catch((err) => {
+        console.log(err);
+      })
     },
     handleUploadImage(file, Editor, cursorLocation, resetUploader) {
       var formData = new FormData();
