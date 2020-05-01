@@ -2,8 +2,8 @@
   <div class="panel">
     <div class="login-container">
       <div class="panel login-wrapper wht-bg">
-        <input type="text" v-model="email" />
-        <input type="password" v-model="password" />
+        <input type="text" v-model="email" placeholder="Email"/>
+        <input type="password" v-model="password" placeholder="Password"/>
         <button @click="loginUser()" class="btn btn-primary">Login</button>
       </div>
     </div>
