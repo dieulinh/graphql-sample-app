@@ -2,6 +2,7 @@
   <div class="panel">
     <div class="login-container">
       <div class="panel register-wrapper wht-bg">
+        <label class="form-title">Register new account</label>
         <input type="text" v-model="email" placeholder="Email"/>
         <input type="password" v-model="password" placeholder="Password"/>
         <input type="password" v-model="password_confirmation" placeholder="Re-enter password"/>
@@ -11,6 +12,7 @@
   </div>
 </template>
 <script>
+import {mapState} from 'vuex';
 export default {
   data(){
     return {
@@ -18,6 +20,9 @@ export default {
       password: '',
       password_confirmation: ''
     }
+  },
+  computed() {
+
   },
   methods: {
     registerUser() {

@@ -9,6 +9,7 @@ class API < Grape::API
   mount Auth
   mount Uploads
   mount Lessons
+  mount Courses
 
   rescue_from Grape::Exceptions::ValidationErrors  do |e|
     rack_response({

@@ -12,5 +12,10 @@ module Types
     def posts_connection(**_args)
       Post.all
     end
+
+    field :courses_connection, Types::CourseType.connection_type, null: false
+    def courses_connection(**_args)
+      Course.all
+    end
   end
 end

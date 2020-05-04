@@ -30,11 +30,11 @@ const mutations = {
   getErrors(state, value) {
     state.errors = value
   },
-  showLogin(state, value) {
-    state.showLogin = value;
-  },
   registerUser(state, user) {
     state.user = user
+  },
+  getCourse(state, course) {
+    state.course = course
   }
 };
 
@@ -76,10 +76,8 @@ const actions = {
       if (response.status === 201)
       {
         commit('registerUser', response.data)
-      } else {
-        console.log(response);
-        commit('getErrors', response.data);
       }
+      commit('getErrors', response.status === 201 || response.status === 200 ? null : response.data);
     } catch(error) {
       console.log(error);
       commit('getErrors', error);
@@ -88,14 +86,28 @@ const actions = {
   async login({commit}, user) {
     try {
       let response = await axios.post(`${API_URL}/login`, user);
-      if (response.status === 201)
+      if (response.status === 201 || response.status === 200)
       {
         commit('login', response.data);
         commit('auth_token', response.data);
+        
         localStorage.setItem('auth_token', response.data);
-      } else {
-        commit('getErrors', response.data);
-      }
+      } 
+      commit('getErrors', response.status === 201 || response.status === 200 ? null : response.data);
+    } catch(error)
+    {
+      console.log(error.response);
+      commit('getErrors', error.response.data);
+    }
+  },
+  async createCourse({commit}, courseParams) {
+    try {
+      let response = await axios.post(`${API_URL}/courses`, courseParams);
+      if (response.status === 201 || response.status === 200)
+      {
+        commit('getCourse', response.data);
+      } 
+      commit('getErrors', response.status === 201 || response.status === 200 ? null : response.data);
     } catch(error)
     {
       console.log(error.response);
@@ -109,12 +121,16 @@ const getters = {
   auth_token: state => state.auth_token,
   authenticated: state => state.authenticated,
   errors: state => state.errors,
-  searchTerm: state => state.searchTerm
+  searchTerm: state => state.searchTerm,
+  course: state => state.course
+
 };
 
 const state = {
   searchTerm: null,
+  course: null,
   user: null,
+
   errors: null,
   auth_token: null,
   authenticated: !!localStorage.getItem('auth_token'),
