@@ -1,6 +1,6 @@
 process.env.NODE_ENV = process.env.NODE_ENV || 'production'
-
+process.env.ROOT_API = 'http://www.i-class.info/api'
 const environment = require('./environment')
-process.env.ROOT_API = process.env.ROOT_API || 'https://myclassr00m.herokuapp.com/api'
+
 
 module.exports = environment.toWebpackConfig()

@@ -13,6 +13,7 @@
 </template>
 <script>
 import axios from 'axios';
+const coursesApiUrl = `${process.env.ROOT_API}/courses`;
 export default {
   data() {
     return {
@@ -20,7 +21,7 @@ export default {
     }
   },
   mounted() {
-    const coursesApiUrl = `${process.env.ROOT_API}/courses`;
+    
     axios.get(coursesApiUrl 
       )
       .then((result) => {
