@@ -11,11 +11,13 @@
       </div>
       <div class="menu-right">
         <div>
-          <a href="javascript:void(0)" @click="login()">
-          Login</a>
-          <a href="javascript:void(0)" @click="register()" class="btn btn-primary">
+          <a href="javascript:void(0)" @click="register()" class="btn btn-secondary" v-if="!authenticated">
           Register</a>
-          </div>
+          <a href="javascript:void(0)" @click="login()" class="btn btn-primary" v-if="!authenticated">
+          Login</a>
+          <a href="javascript:void(0)" @click="logout()" class="btn btn-primary" v-if="authenticated">
+          Logout</a>
+        </div>
 
       </div>
     </div>
@@ -26,18 +28,25 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
 export default {
   data() {
     return {
       message: "Hello Vue!"
     };
   },
+  computed: mapState({
+    authenticated: 'authenticated'
+  }),
   methods: {
     login() {
       this.$router.push('/user/login')
     },
     register() {
       this.$router.push('/user/register')
+    },
+    logout() {
+      this.$store.dispatch('logout')
     }
   }
 };

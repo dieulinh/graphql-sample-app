@@ -7,6 +7,7 @@ import LoginPage from './components/Login.vue';
 import RegisterPage from './components/Register.vue';
 import CoursesPage from './components/Courses.vue';
 import NewCoursePage from './components/NewCourse.vue';
+import CoursePage from './components/Course.vue';
 
 const routes = [
   {
@@ -32,6 +33,12 @@ const routes = [
   {
     path: '/courses',
     component: CoursesPage
+  },
+  {
+    path: '/courses/:courseId',
+    component: CoursePage,
+    props: true,
+    name: 'CoursePage'
   },
   // otherwise redirect to home
   { path: '*', redirect: '/' }

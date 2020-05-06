@@ -22,6 +22,7 @@ export default {
   computed: mapState({
     // arrow functions can make the code very succinct!
     errors: state => state.errors,
+    authenticated: state => state.authenticated,
 
     // passing the string value 'count' is same as `state => state.count`
     countAlias: 'count',

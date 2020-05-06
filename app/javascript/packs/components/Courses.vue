@@ -1,18 +1,22 @@
 <template>
   <div class="course-wrapper">
     <div v-for="course in courses" :key="course.id" class="course-card">
-      <a class="course-link">
-        <h3>{{course["node"]&&course["node"].courseName}}</h3>
+      <router-link class="course-link"
+                    :to='{name: "CoursePage", params: {courseId: course["node"]&&course["node"].id}}'
+                  >
+
+        <h3>{{course["node"]&&course["node"].courseName}} </h3>
         <div class="course-desc" v-html="course.node&&course.node.description">
           
         </div>
         <img :src="course.node&&course.node.courseCoverUrl" class="course-cover"/>
-      </a>
+      </router-link>
     </div>
   </div>
 </template>
 <script>
 import axios from 'axios';
+
 const coursesApiUrl = `${process.env.ROOT_API}/courses`;
 export default {
   data() {

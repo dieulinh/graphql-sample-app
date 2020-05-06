@@ -90,7 +90,6 @@ const actions = {
       {
         commit('login', response.data);
         commit('auth_token', response.data);
-        
         localStorage.setItem('auth_token', response.data);
       } 
       commit('getErrors', response.status === 201 || response.status === 200 ? null : response.data);
