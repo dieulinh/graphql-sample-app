@@ -5,7 +5,7 @@
         <div class="sc-cqpYsc fyGxwu">
           <div class="sc-hBbWxd jrHWGb"></div>
           <div>
-            <a class="brand" href="#/">i-Class</a>
+            <a class="brand" href="javascript:void(0)" @click="goHome()">i-Class</a>
           </div>
         </div>
       </div>
@@ -56,12 +56,17 @@ export default {
     logout() {
       this.$store.dispatch('logout')
     },
+    goHome() {
+      if (this.$router.currentRoute.name != 'Home') {
+        this.$router.push('/');
+      }
+    },
     addCourse() {
       
       if (this.$router.currentRoute.name != 'NewCourse') {
         this.$router.push('/courses/new');
       }
-      
+
     }
   }
 };

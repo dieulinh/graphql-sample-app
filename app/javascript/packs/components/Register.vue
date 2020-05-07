@@ -26,12 +26,10 @@ export default {
     registerUser() {
       this.$store.dispatch('register', {email: this.email, password: this.password, password_confirmation: this.password_confirmation})
       .then((rs) => {
-        console.log(rs)
-        console.log(this.$store.state.errors)
         if(!this.errors) {
           this.$router.push('/user/login');
         } else {
-          this.$router.push('/user/register');
+          console.log(this.errors)
         }
         
       }).catch((error) => {

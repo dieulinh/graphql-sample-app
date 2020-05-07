@@ -20,6 +20,14 @@ export default {
    components: {
     VueEditor
   },
+  watch: {
+    authenticated(newValue, oldValue) {
+      console.log(`Updating from ${oldValue} to ${newValue}`);
+      if (newValue === false) {
+        this.$router.push('/user/login')
+      }
+    }
+  },
   data() {
     return {
       title: 'course name',
@@ -31,6 +39,16 @@ export default {
   },
   mounted() {
     ActiveStorage.start()
+  },
+  created() {
+    if (!this.authenticated) {
+      this.$router.push('/user/login')
+    }
+  },
+  computed: {
+    authenticated() {
+      return this.$store.state.authenticated
+    }
   },
   methods: {
     onFilesChange: function() {

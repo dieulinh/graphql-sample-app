@@ -33,7 +33,6 @@ export default {
       )
       .then((result) => {
         this.courses = result.data.data.coursesConnection.edges
-        console.log(this.courses)
       })
       .catch((err) => {
         console.log(err);

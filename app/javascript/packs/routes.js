@@ -16,7 +16,8 @@ const routes = [
   },
   {
     path: '/',
-    component: CoursesPage
+    component: CoursesPage,
+    name: 'Home'
   },
   {
     path: '/user/login',

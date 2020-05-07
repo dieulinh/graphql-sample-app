@@ -36,14 +36,9 @@ export default {
     loginUser() {
       this.$store.dispatch('login', {email: this.email, password: this.password})
       .then((rs) => {
-        console.log(rs)
-        console.log(this.$store.state.errors)
         if(!this.errors) {
           this.$router.push('/');
-        } else {
-          this.$router.push('/user/login');
         }
-        
       }).catch((error) => {
         console.log(error);
       });
