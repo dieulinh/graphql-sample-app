@@ -36,8 +36,8 @@ class Courses < Grape::API
     end
 
     post '/' do
-      course = Course.new(course_name: params[:course_name], description: params[:description])
-      course.course_cover.attach(io: File.open(params[:course_cover][:tempfile]), filename: params[:course_cover][:filename], content_type: params[:course_cover][:type])
+      course = Course.new(course_name: params[:course_name], description: params[:description], author_id: current_user.id)
+      course.course_cover.attach(io: File.open(params[:course_cover][:tempfile]), filename: params[:course_cover][:filename], content_type: params[:course_cover][:type]) if params[:course_cover]
       course.save
       present course
     end

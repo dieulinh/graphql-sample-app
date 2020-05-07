@@ -49,5 +49,12 @@ module Shared
     def render_api_error!(message, code)
       error!({ message: message }, code)
     end
+
+    def current_user
+      return unless (request.headers["Authorization"] || request.headers["Authorization"].split(" ").length < 2)
+      decoded_token = JsonWebToken.decode(request.headers["Authorization"].split(" ")[1]).to_h
+      return nil unless JsonWebToken.valid_payload?(decoded_token)
+      Student.find(decoded_token['user_id'])
+    end
   end
 end

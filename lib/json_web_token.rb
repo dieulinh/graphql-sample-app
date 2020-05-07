@@ -14,8 +14,8 @@ class JsonWebToken
   end
 
   # Validates the payload hash for expiration and meta claims
-  def self.valid_payload(payload)
-    return false if expired(payload) || payload['iss'] != meta[:iss] || payload['aud'] != meta[:aud]
+  def self.valid_payload?(payload)
+    return false if expired?(payload) || payload['iss'] != meta[:iss] || payload['aud'] != meta[:aud]
     true
   end
 
@@ -29,7 +29,7 @@ class JsonWebToken
   end
 
   # Validates if the token is expired by exp parameter
-  def self.expired(payload)
+  def self.expired?(payload)
     Time.at(payload['exp']) < Time.now
   end
 end

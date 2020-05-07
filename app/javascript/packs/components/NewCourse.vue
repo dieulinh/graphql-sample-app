@@ -3,7 +3,9 @@
     <input v-model="course_name" placeholder="Course name"/>
     <div><input name="files" ref="files" @change="onFilesChange" type="file" data-direct-upload-url="/rails/active_storage/direct_uploads" direct_upload="true" /><label>Choose an image as cover image for the course </label></div>
     <vue-editor class="wht-bg" v-model="description" useCustomImageHandler @image-added="handleUploadImage" aria-placeholder="Input overview of the course" />
-    <button @click="save" type="button" class="btn btn-primary">Save changes</button>
+    
+    <div class="flex-row half content-center">
+      <button @click="save" type="button" class="half btn btn-primary">Create course</button></div>
   </div>
 </template>
 
@@ -58,7 +60,6 @@ export default {
     },
     save: function() {
       this.form.append("course_name", this.course_name)
-      // this.form.append("course[course_cover]", this.course_cover)
       this.form.append("description", this.description)
       axios.post(postApiUrl, this.form, {
           headers: {
@@ -66,7 +67,6 @@ export default {
           }
       })
       .then((result) => {
-        console.log(result)
         this.$router.push('/courses')
       })
       .catch((err) => {
