@@ -41,5 +41,10 @@ class Courses < Grape::API
       course.save
       present course
     end
+
+    get '/:course_id' do
+      course = Course.find(params[:course_id])
+      present course.attributes.merge("course_cover" => course.course_cover_url)
+    end
   end
 end

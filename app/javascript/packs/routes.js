@@ -20,20 +20,20 @@ const routes = [
   },
   {
     path: '/user/login',
-    component: LoginPage
+    component: LoginPage,
+    name: 'Login'
   },
   {
     path: '/user/register',
-    component: RegisterPage
+    component: RegisterPage,
+    name: 'RegisterUser'
   },
   {
     path: '/courses/new',
+    name: 'NewCourse',
     component: NewCoursePage
   },
-  {
-    path: '/courses',
-    component: CoursesPage
-  },
+  
   {
     path: '/courses/:courseId',
     component: CoursePage,

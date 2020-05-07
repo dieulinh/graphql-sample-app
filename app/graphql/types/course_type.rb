@@ -6,8 +6,7 @@ module Types
     field :course_cover, String, null: true
     field :course_cover_url, String, null: true
     def course_cover_url
-      return nil unless object.course_cover.attached?
-      object.course_cover.service_url
+      object.course_cover_url
     end
 
   end

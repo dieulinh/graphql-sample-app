@@ -1,22 +1,30 @@
 <template>
   <div class="course-view-wrapper">
-    something to test
-    <h3>test title</h3>
-    <div ></div>
-
+    <img :src="course.course_cover" v-if="course" class="course-cover"/>
+    <h1 v-cloak>{{course.course_name}}</h1>
+    <div v-cloak v-html="course.description" ></div>
   </div>
 </template>
 <script>
 import axios from 'axios';
+const coursesApiUrl = `${process.env.ROOT_API}/courses`;
 export default {
   props: ['courseId'],
   data() {
     return {
-
+      course: {}
     }
   },
   mounted() {
-    
-  }
+    axios.get(`${coursesApiUrl}/${this.courseId}` 
+      )
+      .then((result) => {
+        this.course = result.data
+        console.log(this.course)
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+  },
 }
 </script>

@@ -5,7 +5,7 @@
         <div class="sc-cqpYsc fyGxwu">
           <div class="sc-hBbWxd jrHWGb"></div>
           <div>
-            <a class="brand" href="/">Classr0Om</a>
+            <a class="brand" href="#/">i-Class</a>
           </div>
         </div>
       </div>
@@ -15,6 +15,8 @@
           Register</a>
           <a href="javascript:void(0)" @click="login()" class="btn btn-primary" v-if="!authenticated">
           Login</a>
+          <a href="javascript:void(0)" @click="addCourse()" class="btn btn-primary" v-if="authenticated">
+          +Course</a>
           <a href="javascript:void(0)" @click="logout()" class="btn btn-primary" v-if="authenticated">
           Logout</a>
         </div>
@@ -40,13 +42,26 @@ export default {
   }),
   methods: {
     login() {
-      this.$router.push('/user/login')
+      if (this.$router.currentRoute.name != 'Login') {
+        this.$router.push('/user/login')
+      }
+      
     },
     register() {
-      this.$router.push('/user/register')
+      if (this.$router.currentRoute.name != 'RegisterUser') {
+        this.$router.push('/user/register')
+      }
+      
     },
     logout() {
       this.$store.dispatch('logout')
+    },
+    addCourse() {
+      
+      if (this.$router.currentRoute.name != 'NewCourse') {
+        this.$router.push('/courses/new');
+      }
+      
     }
   }
 };

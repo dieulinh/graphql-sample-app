@@ -1,9 +1,8 @@
 <template>
   <div class="new-lesson">
-    <input name="files" ref="files" @change="onFilesChange" type="file" data-direct-upload-url="/rails/active_storage/direct_uploads" direct_upload="true" />
-    <input v-model="course_name"/>
-    <vue-editor class="wht-bg" v-model="description" useCustomImageHandler @image-added="handleUploadImage" />
-
+    <input v-model="course_name" placeholder="Course name"/>
+    <div><input name="files" ref="files" @change="onFilesChange" type="file" data-direct-upload-url="/rails/active_storage/direct_uploads" direct_upload="true" /><label>Choose an image as cover image for the course </label></div>
+    <vue-editor class="wht-bg" v-model="description" useCustomImageHandler @image-added="handleUploadImage" aria-placeholder="Input overview of the course" />
     <button @click="save" type="button" class="btn btn-primary">Save changes</button>
   </div>
 </template>
