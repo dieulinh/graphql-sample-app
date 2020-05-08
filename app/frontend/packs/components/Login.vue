@@ -32,6 +32,12 @@ export default {
       return state.count + this.localCount
     }
   }),
+  created() {
+    if (this.authenticated) {
+      this.$router.push('/');
+    }
+  },
+
   methods: {
     loginUser() {
       this.$store.dispatch('login', {email: this.email, password: this.password})
