@@ -9,7 +9,7 @@
           </div>
         </div>
       </div>
-      <div class="menu-right">
+      <div class="menu-right mr-5">
         <div>
           <a href="javascript:void(0)" @click="register()" class="btn btn-secondary" v-if="!authenticated">
           Register</a>

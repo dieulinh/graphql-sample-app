@@ -1,18 +1,11 @@
 <template>
   <div class="new-lesson">
-    <div>
-      <label class="switch">
-        <input type="checkbox" v-model="published">
-        <span class="slider round"></span>
-      </label>
-      Publish
-    </div>
+    <input v-model="course_name" placeholder="Course name"/>
+    <div><input name="files" ref="files" @change="onFilesChange" type="file" data-direct-upload-url="/rails/active_storage/direct_uploads" direct_upload="true" /><label>Choose an image as cover image for the course </label></div>
+    <vue-editor class="wht-bg" v-model="description" useCustomImageHandler @image-added="handleUploadImage" aria-placeholder="Input overview of the course" />
     
-
-    <input v-model="title"/>
-    <vue-editor class="wht-bg" v-model="content" useCustomImageHandler @image-added="handleUploadImage" />
-
-    <button @click="save" type="button" class="btn btn-primary">Save changes</button>
+    <div class="flex-row half content-center pt-10">
+      <button @click="save" type="button" class="half btn btn-primary">Create course</button></div>
   </div>
 </template>
 
@@ -23,45 +16,58 @@ import axios from 'axios';
 import { VueEditor } from 'vue2-editor';
 import * as ActiveStorage from 'activestorage';
 
-const postApiUrl = `${process.env.ROOT_API}/lessons`;
+const postApiUrl = `${process.env.ROOT_API}/courses`;
 const imageUploadUrl = `${process.env.ROOT_API}/uploads`;
 export default {
    components: {
     VueEditor
   },
+  watch: {
+    authenticated(newValue, oldValue) {
+      console.log(`Updating from ${oldValue} to ${newValue}`);
+      if (newValue === false) {
+        this.$router.push('/user/login')
+      }
+    }
+  },
   data() {
     return {
-      title: 'add',
-      content: 'ddd',
-      published: false,
+      title: 'course name',
+      course_name: null,
+      course_cover: null,
+      description: '',
       form: new FormData()
     }
   },
   mounted() {
     ActiveStorage.start()
   },
+  created() {
+    if (!this.authenticated) {
+      this.$router.push('/user/login')
+    }
+  },
+  computed: {
+    authenticated() {
+      return this.$store.state.authenticated
+    }
+  },
   methods: {
     onFilesChange: function() {
-      let files = this.$refs.files.files
-      for(let file of files) {
-        this.form.append('lesson[files][]', file)
-      }
+      console.log(this.$refs.files.files);
+      let files = this.$refs.files.files;
+      this.form.append('course_cover', files[0])
     },
     save: function() {
-      
-      this.form.append("lesson[title]", this.title)
-      this.form.append("lesson[content]", this.content)
-      this.form.append("lesson[published]", this.published)
-
+      this.form.append("course_name", this.course_name)
+      this.form.append("description", this.description)
       axios.post(postApiUrl, this.form, {
           headers: {
             'Content-Type': 'multipart/form-data'
           }
       })
       .then((result) => {
-        let url = result.data // Get url from response
-        Editor.insertEmbed(cursorLocation, 'image', url);
-        resetUploader();  
+        this.$router.push('/courses')
       })
       .catch((err) => {
         console.log(err);

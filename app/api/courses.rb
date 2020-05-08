@@ -1,4 +1,5 @@
 class Courses < Grape::API
+  include Shared::AuthorizationKit
   namespace :courses do
     params do
       optional :item_per_page, type: Integer
@@ -36,6 +37,7 @@ class Courses < Grape::API
     end
 
     post '/' do
+      authenticate_user!
       course = Course.new(course_name: params[:course_name], description: params[:description], author_id: current_user.id)
       course.course_cover.attach(io: File.open(params[:course_cover][:tempfile]), filename: params[:course_cover][:filename], content_type: params[:course_cover][:type]) if params[:course_cover]
       course.save
@@ -45,6 +47,19 @@ class Courses < Grape::API
     get '/:course_id' do
       course = Course.find(params[:course_id])
       present course.attributes.merge("course_cover" => course.course_cover_url)
+    end
+
+    params do
+      requires :course_name, type: String
+      optional :course_cover, type: File
+      optional :description, type: String
+    end
+    put '/:id' do
+      authenticate_user!
+      course = Course.find(params[:id])
+      authorize course, :update?
+      course.update(params)
+      present course
     end
   end
 end

@@ -36,6 +36,8 @@ gem 'grape'
 gem 'grape-swagger'
 # gem 'rack-cors'
 gem 'aws-sdk', '~> 3'
+# Mailchimp
+gem 'mailchimp-api', require: 'mailchimp'
 gem 'dotenv-rails', groups: [:development, :test]
 
 gem 'devise'
@@ -50,6 +52,7 @@ gem 'webpacker', '~> 5.x'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
+gem 'pundit'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
