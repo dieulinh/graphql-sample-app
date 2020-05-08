@@ -18,7 +18,6 @@
   display: flex;
   -webkit-box-align: center;
   align-items: center;
-  width: 256px;
   box-sizing: border-box;
   padding-right: 24px;
 }
@@ -33,8 +32,8 @@
 }
 .menu-right {
   display: flex;
-  justify-content: flex-end;
-  width: 17%;
+  justify-content: center;
+  align-items: center;
 }
 .main {
   display: flex;

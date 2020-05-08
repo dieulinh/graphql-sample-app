@@ -1,15 +1,10 @@
 <template>
   <div>
     <div class="top-menu">
-      <div class="sc-eAKXzc fsQCvb">
-        <div class="sc-cqpYsc fyGxwu">
-          <div class="sc-hBbWxd jrHWGb"></div>
-          <div>
-            <a class="brand" href="javascript:void(0)" @click="goHome()">i-Class</a>
-          </div>
-        </div>
+      <div>
+        <a href="javascript:void(0)" class="brand ml-10" @click="goHome()">i-Class</a>
       </div>
-      <div class="menu-right mr-5">
+      <div class="menu-right mg-5">
         <div>
           <a href="javascript:void(0)" @click="register()" class="btn btn-secondary" v-if="!authenticated">
           Register</a>
