@@ -26,5 +26,20 @@ class Auth < Grape::API
       user = Student.create(email: email, password: params[:password], password_confirmation: params[:password_confirmation])
       present user, status: 201
     end
+
+    desc 'Reset password'
+    params do
+      requires :email, type: String
+    end
+    post '/reset_password' do
+
+      email = params[:email].downcase
+      user = Student.find_by(email: email)
+      if user
+        UserMailer.with(user: user).reset_password.deliver_later
+      end
+
+      present user, status: 201
+    end
   end
 end

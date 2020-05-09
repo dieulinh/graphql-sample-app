@@ -71,6 +71,7 @@ const actions = {
     commit('logout');
   },
   async register({commit}, user) {
+    commit('getErrors', null)
     try {
       let response = await axios.post(`${process.env.ROOT_API}/login/register`, user );
       if (response.status === 201)
@@ -78,9 +79,22 @@ const actions = {
         commit('registerUser', response.data)
       }
       commit('getErrors', response.status === 201 || response.status === 200 ? null : response.data);
-    } catch(error) {
-      console.log(error);
-      commit('getErrors', error);
+    } catch(err) {
+      console.log(err);
+      commit('getErrors', err);
+    }
+  },
+  async reset_password({commit}, email) {
+    try {
+      let response = await axios.post(`${process.env.ROOT_API}/login/reset_password`, email );
+      if (response.status === 201 || response.status === 200)
+      {
+        commit('reset_password', response.data)
+      }
+      
+    } catch(err) {
+      console.log(err);
+      commit('getErrors', err);
     }
   },
   async login({commit}, user) {
@@ -93,10 +107,10 @@ const actions = {
         localStorage.setItem('auth_token', response.data);
       } 
       commit('getErrors', response.status === 201 || response.status === 200 ? null : response.data);
-    } catch(error)
+    } catch(err)
     {
-      console.log(error.response);
-      commit('getErrors', error.response.data);
+      console.log(err.response);
+      commit('getErrors', err.response.data);
     }
   },
   async createCourse({commit}, courseParams) {

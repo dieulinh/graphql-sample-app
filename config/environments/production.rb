@@ -64,6 +64,11 @@ Rails.application.configure do
   # config.active_job.queue_name_prefix = "rails-web-template_#{Rails.env}"
 
   config.action_mailer.perform_caching = false
+  config.action_mailer.delivery_method = :smtp
+  config.mailer_sender = "hello@i-class.info"
+  config.action_mailer.default_url_options = { host: 'heroku.com'}
+  config.action_mailer.perform_deliveries = true
+
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
