@@ -36,7 +36,7 @@ class Auth < Grape::API
       email = params[:email].downcase
       user = Student.find_by(email: email)
       if user
-        UserMailer.with(user: user).reset_password.deliver_later
+        SendgridWrapper.new.send_mail(send_from: 'hello.iclass.info@gmail.com', send_to: user.email, subject: 'hello', sending_content: 'great')
       end
 
       present user, status: 201
