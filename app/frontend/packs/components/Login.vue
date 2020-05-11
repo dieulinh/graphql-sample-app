@@ -1,12 +1,19 @@
 <template>
-  <div class="panel">
+  <div class="panel center-container">
     <div class="login-container">
-      <div class="panel login-wrapper wht-bg">
-        <label class="form-title">Log in to your account</label>
-        <input type="text" v-model="email" placeholder="Email"/>
-        <input type="password" v-model="password" placeholder="Password"/>
-        <button @click="loginUser()" class="btn btn-primary">Login</button>
+      <div></div>
+      <div class="pd-30 wht-bg round-corner">
+        <div class="panel login-wrapper wht-bg">
+          <label class="form-title">Log in to your account</label>
+          <input type="text" v-model="email" placeholder="Email"/>
+          <input type="password" v-model="password" placeholder="Password"/>
+          <div class="flex-row align-end space-between">
+            <button @click="loginUser()" class="btn btn-primary">Login</button>
+            <router-link :to='{name: "ResetPassword"}'>Forgot password</router-link>
+          </div>
+        </div>
       </div>
+      <div></div>
     </div>
   </div>
 </template>
@@ -15,22 +22,14 @@ import {mapState} from 'vuex';
 export default {
   data(){
     return {
-      email: '',
-      password: ''
+      email: null,
+      password: null
     }
   },
   computed: mapState({
     // arrow functions can make the code very succinct!
     errors: state => state.errors,
-    authenticated: state => state.authenticated,
-
-    // passing the string value 'count' is same as `state => state.count`
-    countAlias: 'count',
-
-    // to access local state with `this`, a normal function must be used
-    countPlusLocalState (state) {
-      return state.count + this.localCount
-    }
+    authenticated: state => state.authenticated
   }),
   created() {
     if (this.authenticated) {
@@ -45,8 +44,8 @@ export default {
         if(!this.errors) {
           this.$router.push('/');
         }
-      }).catch((error) => {
-        console.log(error);
+      }).catch((err) => {
+        console.log(err);
       });
     }
   }

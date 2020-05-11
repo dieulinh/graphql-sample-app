@@ -1,13 +1,17 @@
 <template>
-  <div class="panel">
+  <div class="panel center-container">
     <div class="login-container">
-      <div class="panel register-wrapper wht-bg">
-        <label class="form-title">Register new account</label>
-        <input type="text" v-model="email" placeholder="Email" :class="{'field-error': invalidEmail}"/>
-        <input type="password" v-model="password" placeholder="Password" :class="{'field-error': invalidPassword}"/>
-        <input type="password" v-model="password_confirmation" placeholder="Re-enter password" :class="{'field-error': invalidConfirmPassword}"/>
-        <button @click="registerUser()" class="btn btn-primary">Register</button>
+      <div></div>
+      <div class="pd-30 wht-bg round-corner">
+       <div class="panel register-wrapper wht-bg">
+          <label class="form-title">Register new account</label>
+          <input type="text" v-model="email" placeholder="Email" :class="{'field-error': invalidEmail}"/>
+          <input type="password" v-model="password" placeholder="Password" :class="{'field-error': invalidPassword}"/>
+          <input type="password" v-model="password_confirmation" placeholder="Re-enter password" :class="{'field-error': invalidConfirmPassword}"/>
+          <button @click="registerUser()" class="btn btn-primary">Register</button>
+        </div>
       </div>
+      <div></div>
     </div>
   </div>
 </template>

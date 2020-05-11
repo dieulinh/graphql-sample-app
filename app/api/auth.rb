@@ -32,14 +32,37 @@ class Auth < Grape::API
       requires :email, type: String
     end
     post '/reset_password' do
-
       email = params[:email].downcase
       user = Student.find_by(email: email)
       if user
-        SendgridWrapper.new.send_mail(send_from: 'hello.iclass.info@gmail.com', send_to: user.email, subject: 'hello', sending_content: 'great')
+        user.generate_password_token!
+        SendmailWorker.perform_async(user.id)
+        present status: 200
+      else
+        present not_found!
       end
-
-      present user, status: 201
+    end
+    params do
+      requires :reset_password_token, type: String, desc: 'Reset password token'
+    end
+    get '/validates/:reset_password_token' do
+      present not_found! unless Student.find_by_reset_password_token params[:reset_password_token]
+      present status: 200
+    end
+    params do
+      requires :reset_password_token, type: String, desc: 'Reset password token'
+      requires :password, type: String, desc: 'new password'
+      requires :password_confirmation, type: String, desc: 'new password confirmation'
+    end
+    post '/update_password' do
+      user = Student.find_by_reset_password_token params[:reset_password_token]
+      present not_found! unless user
+      if params[:password] == params[:password_confirmation] && params[:password].length>=6
+        user.password = params[:password]
+        user.reset_password_token = nil
+        user.save
+      end
+      present status: 200
     end
   end
 end

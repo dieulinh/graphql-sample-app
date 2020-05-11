@@ -6,6 +6,7 @@ import LessonPage from './components/Lesson.vue';
 import LoginPage from './components/Login.vue';
 import RegisterPage from './components/Register.vue';
 import ResetPasswordPage from './components/ResetPassword.vue';
+import ChangePasswordPage from './components/ChangePassword.vue';
 import CoursesPage from './components/Courses.vue';
 import NewCoursePage from './components/NewCourse.vue';
 import CoursePage from './components/Course.vue';
@@ -29,6 +30,11 @@ const routes = [
     path: '/user/reset_password',
     component: ResetPasswordPage,
     name: 'ResetPassword'
+  },
+  {
+    path: '/user/change_password',
+    component: ChangePasswordPage,
+    name: 'ChangePassword'
   },
   {
     path: '/user/register',

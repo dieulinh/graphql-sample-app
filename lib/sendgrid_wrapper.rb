@@ -3,20 +3,28 @@
 require 'sendgrid-ruby'
 # include SendGrid
 class SendgridWrapper
-  # require 'sendgrid-ruby'
   include SendGrid
-  def send_mail(send_from:, send_to:, subject:, sending_content:)
-    from = Email.new(email: send_from)
+  def send_mail(send_from:, send_to:, subject:, template_id: , substitution_data:)
     to = Email.new(email: send_to)
-    # subject = 'Sending with SendGrid is Fun'
-    content = Content.new(type: 'text/plain', value: sending_content)
-    mail = Mail.new(from, subject, to, content)
+    mail = SendGrid::Mail.new
+    mail.from = Email.new(email: send_from)
+    mail.subject = subject
+    personalization = Personalization.new
+    personalization.add_to(to)
+    personalization.add_substitution(Substitution.new(substitution_data))
+    mail.add_personalization(personalization)
+    mail.template_id = template_id
 
     sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
-    response = sg.client.mail._('send').post(request_body: mail.to_json)
+    begin
+      response = sg.client.mail._("send").post(request_body: mail.to_json)
+    rescue Exception => e
+      puts e.message
+    end
     puts response.status_code
     puts response.body
-    puts response.headers
+    puts response.parsed_body
+    response.status_code
   end
 end
 

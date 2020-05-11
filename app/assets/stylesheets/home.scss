@@ -136,23 +136,22 @@ input:checked + .slider:before {
 }
 .login-container {
   display: grid;
-  grid-template-columns: minmax(300px, 500px);
+  grid-template-columns: 1fr minmax(300px, 500px) 1fr;
   justify-content: center;
   padding: 20px;
+  background-color: #efeff4;
 }
 .login-wrapper {
   display: grid;
   grid-gap: 5px;
   grid-template-rows: 1fr 1fr 1fr 1fr;
   grid-template-columns: minmax(300px, 1fr);
-  padding: 20px;
 }
 .register-wrapper {
   display: grid;
   grid-gap: 5px;
   grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
   grid-template-columns: minmax(300px, 1fr);
-  padding: 20px;
 }
 .form-title {
   font-size: 20px;
@@ -163,6 +162,9 @@ input:checked + .slider:before {
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
+}
+.round-corner {
+  border-radius: 5px;
 }
 .course-card {
   display: flex;
@@ -207,4 +209,9 @@ input:checked + .slider:before {
   width: 100%;
   padding: 20px;
   background: #fff;
+}
+.center-container {
+  display: flex;
+  justify-content: center;
+  background-color: #efeff4;
 }
