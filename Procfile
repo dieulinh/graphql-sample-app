@@ -1,1 +1,1 @@
-bundle exec sidekiq -c 3
+worker: bundle exec sidekiq -C config/sidekiq.yml

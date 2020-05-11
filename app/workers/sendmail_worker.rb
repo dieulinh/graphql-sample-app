@@ -1,6 +1,6 @@
 class SendmailWorker
   include Sidekiq::Worker
-
+  sidekiq_options retry: false, queue: :default
   def perform(user_id, *args)
     user = Student.find(user_id)
     begin
