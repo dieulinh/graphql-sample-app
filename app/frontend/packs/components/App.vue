@@ -12,7 +12,7 @@
           Login</a>
           <a href="javascript:void(0)" @click="addCourse()" class="btn btn-primary" v-if="authenticated">
           +Course</a>
-          <a href="javascript:void(0)" @click="logout()" class="btn btn-primary" v-if="authenticated">
+          <a href="javascript:void(0)" @click="logout()" class="btn btn-secondary" v-if="authenticated">
           Logout</a>
         </div>
 

@@ -27,3 +27,29 @@
     padding-left: #{$i}px;
   }
 }
+.flash-message {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: var(--zindex-fixed-element);
+
+  background-color: var(--color-bg);
+  padding: var(--space-sm);
+  box-shadow: var(--shadow-sm);
+  border-radius: var(--radius-md);
+  color: var(--color-contrast-high);
+  font-size: var(--text-sm);
+
+  transition: .2s;
+  transform: translateY(16px);
+  transform-origin: bottom left;
+  // hide element
+  opacity: 0;
+  visibility: hidden;
+}
+
+.flash-message--is-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}

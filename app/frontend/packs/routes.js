@@ -9,6 +9,7 @@ import ResetPasswordPage from './components/ResetPassword.vue';
 import ChangePasswordPage from './components/ChangePassword.vue';
 import CoursesPage from './components/Courses.vue';
 import NewCoursePage from './components/NewCourse.vue';
+import EditCoursePage from './components/NewCourse.vue';
 import CoursePage from './components/Course.vue';
 
 const routes = [
@@ -44,9 +45,15 @@ const routes = [
   {
     path: '/courses/new',
     name: 'NewCourse',
-    component: NewCoursePage
+    component: NewCoursePage,
+    props: { default: true, CourseId: null }
   },
-  
+  {
+    path: '/courses/edit/:CourseId',
+    name: 'EditCourse',
+    component: EditCoursePage,
+    props: true,
+  },
   {
     path: '/courses/:courseId',
     component: CoursePage,

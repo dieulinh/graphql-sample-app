@@ -15,7 +15,7 @@ module Types
 
     field :courses_connection, Types::CourseType.connection_type, null: false
     def courses_connection(**_args)
-      Course.all
+      Course.includes(course_cover_attachment: :blob).all
     end
   end
 end
