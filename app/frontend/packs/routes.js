@@ -14,8 +14,10 @@ import CoursePage from './components/Course.vue';
 
 const routes = [
   {
-    path: '/newlesson',
-    component: NewLessonPage
+    path: '/:CourseId/newlesson',
+    component: NewLessonPage,
+    name: 'NewLesson',
+    props: true
   },
   {
     path: '/',

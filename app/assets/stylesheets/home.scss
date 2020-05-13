@@ -38,6 +38,7 @@
 .main {
   display: flex;
   margin-top: 100px;
+  flex-flow: column;
 }
 a {
   text-decoration: none;

@@ -28,6 +28,7 @@ export default {
    components: {
     VueEditor
   },
+  props: ['CourseId'],
   data() {
     return {
       title: 'add',
