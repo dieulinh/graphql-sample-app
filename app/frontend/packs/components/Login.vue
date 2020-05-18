@@ -42,7 +42,11 @@ export default {
       this.$store.dispatch('login', {email: this.email, password: this.password})
       .then((rs) => {
         if(!this.errors) {
+          this.$store.dispatch('setFlashMessage', {text: 'Login successfully'});
           this.$router.push('/');
+        }
+        else {
+          this.$store.dispatch('setErrors', 'Failed to login')
         }
       }).catch((err) => {
         console.log(err);

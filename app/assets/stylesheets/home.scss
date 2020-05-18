@@ -218,3 +218,17 @@ input:checked + .slider:before {
   justify-content: center;
   background-color: #efeff4;
 }
+@keyframes hide-message {
+  from { visibility: visible; }
+  to { visibility: hidden; }
+}
+
+.hidden-block {
+  display: none;
+}
+.my-flash {
+  position: fixed;
+  top: 20px;
+  left: 20vw;
+  animation: hide-message 3s linear forwards;
+}

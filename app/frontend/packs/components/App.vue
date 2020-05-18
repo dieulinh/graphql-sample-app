@@ -1,6 +1,7 @@
 <template>
   <div>
     <div class="top-menu">
+      <flash-message :message="fMessage"></flash-message>
       <div>
         <a href="javascript:void(0)" class="brand ml-10" @click="goHome()">i-Class</a>
       </div>
@@ -15,7 +16,6 @@
           <a href="javascript:void(0)" @click="logout()" class="btn btn-secondary" v-if="authenticated">
           Logout</a>
         </div>
-
       </div>
     </div>
     <div class="main">
@@ -25,22 +25,26 @@
 </template>
 
 <script>
+import FlashMessage from './FlashMessage';
 import { mapState } from 'vuex';
 export default {
+  components: {FlashMessage},
   data() {
     return {
-      message: "Hello Vue!"
+      
     };
   },
-  computed: mapState({
-    authenticated: 'authenticated'
-  }),
+  computed: {
+    authenticated() { return  this.$store.state.authenticated },
+    fMessage() { 
+      return { text: (this.$store.state.flashMessage &&this.$store.state.flashMessage.text)||'' , type: this.$store.state.flashMessage.type||'success' } 
+    }
+  },
   methods: {
     login() {
       if (this.$router.currentRoute.name != 'Login') {
         this.$router.push('/user/login')
       }
-      
     },
     register() {
       if (this.$router.currentRoute.name != 'RegisterUser') {

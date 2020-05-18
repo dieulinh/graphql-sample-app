@@ -1,5 +1,6 @@
 <template>
   <div class="new-lesson">
+    <div class="flash-message"></div>
     <div>
       <label class="switch">
         <input type="checkbox" v-model="published">
@@ -32,7 +33,7 @@ export default {
   data() {
     return {
       title: 'add',
-      content: 'ddd',
+      content: '',
       published: false,
       form: new FormData()
     }

@@ -57,12 +57,11 @@ class Auth < Grape::API
     post '/update_password' do
       user = Student.find_by_reset_password_token params[:reset_password_token]
       present not_found! unless user
-      if params[:password] == params[:password_confirmation] && params[:password].length>=6
-        user.password = params[:password]
-        user.reset_password_token = nil
-        user.save
+      if params[:password] == params[:password_confirmation] && params[:password].length>=6 && user.reset_password!(params[:password])
+        present success_message: 'your password updated successfully'
+      else
+        present unprocessable_entity!
       end
-      present status: 200
     end
   end
 end

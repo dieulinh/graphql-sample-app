@@ -30,7 +30,7 @@
 .flash-message {
   position: fixed;
   top: 20px;
-  left: 20px;
+  left: 15vw;
   z-index: var(--zindex-fixed-element);
 
   background-color: var(--color-bg);
@@ -52,4 +52,21 @@
   opacity: 1;
   visibility: visible;
   transform: translateY(0);
+}
+.text-green {
+  color: green;
+  background-color: #c6f6d5;
+}
+.text-failed {
+  color: red;
+  background-color: #efaf83;
+}
+.notification {
+  position: fixed;
+  right: 10px;
+  top: 10px;
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 10px 20px;
+  animation: hide-message 3s linear forwards;
 }

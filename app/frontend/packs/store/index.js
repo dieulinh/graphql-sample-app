@@ -35,6 +35,9 @@ const mutations = {
   },
   getCourse(state, course) {
     state.course = course
+  },
+  setFlashMessage(state, message) {
+    state.flashMessage = message;
   }
 };
 
@@ -63,12 +66,16 @@ const actions = {
       commit('setPosts', []);
     }
   },
+  setFlashMessage({commit}, message) {
+    commit('setFlashMessage', message)
+  },
   setError({commit}, errors) {
     commit('getErrors', errors);
   },
   logout({commit}) {
     localStorage.removeItem('auth_token');
     commit('logout');
+    commit('setFlashMessage', {text: 'you have been logout successfully'})
   },
   async register({commit}, user) {
     commit('getErrors', null)
@@ -91,7 +98,6 @@ const actions = {
       {
         commit('reset_password', response.data)
       }
-      
     } catch(err) {
       console.log(err);
       commit('getErrors', err);
@@ -105,7 +111,7 @@ const actions = {
         commit('login', response.data);
         commit('auth_token', response.data);
         localStorage.setItem('auth_token', response.data);
-      } 
+      }
       commit('getErrors', response.status === 201 || response.status === 200 ? null : response.data);
     } catch(err)
     {
@@ -119,7 +125,7 @@ const actions = {
       if (response.status === 201 || response.status === 200)
       {
         commit('getCourse', response.data);
-      } 
+      }
       commit('getErrors', response.status === 201 || response.status === 200 ? null : response.data);
     } catch(error)
     {
@@ -135,15 +141,15 @@ const getters = {
   authenticated: state => state.authenticated,
   errors: state => state.errors,
   searchTerm: state => state.searchTerm,
-  course: state => state.course
-
+  course: state => state.course,
+  flashMessage: state => state.flashMessage
 };
 
 const state = {
   searchTerm: null,
   course: null,
   user: null,
-
+  flashMessage: {},
   errors: null,
   auth_token: null,
   authenticated: !!localStorage.getItem('auth_token'),

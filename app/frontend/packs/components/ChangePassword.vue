@@ -32,6 +32,8 @@ export default {
         console.log(res)
         if (res.data.status == 200) {
           this.reset_password_token = this.$router.currentRoute.query.token;
+        } else {
+          
         }
       }).catch((err) => {
         console.log('Invalid token')
@@ -47,6 +49,7 @@ export default {
         console.log(response);
         this.$router.push('/')
       }).catch((err) => {
+        this.$store.dispatch('setFlashMessage', {text: 'Failed to reset password', type: 'error'})
         console.log(err);
       });
     }
