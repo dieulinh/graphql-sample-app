@@ -61,5 +61,20 @@ class Courses < Grape::API
       course.update(params)
       present course
     end
+    params do
+      requires :lesson, type: Hash do
+        requires :title, type: String
+        requires :content, type: String
+        optional :file, type: File
+        optional :published, type: Boolean
+      end
+    end
+
+    post '/:course_id/lessons' do
+      authenticate_user!
+      course = Course.find(params[:course_id])
+      post = course.posts.create(title: params[:lesson][:title], content: params[:lesson][:content].html_safe, published: params[:lesson][:published])
+      present post
+    end
   end
 end

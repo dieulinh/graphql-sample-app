@@ -1,6 +1,5 @@
 class Lessons < Grape::API
   namespace :lessons do
-
     params do
       requires :lesson, type: Hash do
         requires :title, type: String

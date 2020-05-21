@@ -110,7 +110,6 @@ export default {
     handleUploadImage(file, Editor, cursorLocation, resetUploader) {
       var formData = new FormData();
       formData.append("file", file);
-      // axios.post(`${process.env.ROOT_API}/login`,{email: 'user1@example.com', password: '123123'})
       axios.post(imageUploadUrl, formData, {
           headers: {
             'Content-Type': 'multipart/form-data'

@@ -1,10 +1,10 @@
 <template>
   <div>
     <div class="top-menu">
-      <flash-message :message="fMessage"></flash-message>
       <div>
         <a href="javascript:void(0)" class="brand ml-10" @click="goHome()">i-Class</a>
       </div>
+      <flash-message :message="fMessage"></flash-message>
       <div class="menu-right mg-5">
         <div>
           <a href="javascript:void(0)" @click="register()" class="btn btn-secondary" v-if="!authenticated">
