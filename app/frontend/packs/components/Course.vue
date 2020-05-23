@@ -13,8 +13,10 @@
       <h1 v-cloak>{{course.course_name}}</h1>
       <div v-cloak v-html="course.description" ></div>
       <div>
-        <div class="section-container" v-for="section in course.sections" :key="section.id">
-          {{section.title}}
+        <div class="section-container" v-for="(section, idx) in course.sections" :key="section.id">
+          <div class="blt">{{idx+1}}</div> <div> {{section.title}}</div>
+          
+
         </div>
       </div>
     </div>

@@ -50,14 +50,12 @@ export default {
       this.form.append("lesson[title]", this.title)
       this.form.append("lesson[content]", this.content)
       this.form.append("lesson[published]", this.published)
-
       axios.post(`${process.env.ROOT_API}/courses/${this.CourseId}/lessons`, this.form, {
           headers: {
             'Content-Type': 'multipart/form-data'
           }
       })
       .then((result) => {
-        let url = result.data // Get url from response
         this.$store.dispatch('setFlashMessage', {text: 'Lesson added successfully', type: 'success'})
         this.$router.push(`/courses/${this.CourseId}`)
       })

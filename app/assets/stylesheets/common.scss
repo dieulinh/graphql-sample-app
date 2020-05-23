@@ -70,3 +70,10 @@
   padding: 10px 20px;
   animation: hide-message 3s linear forwards;
 }
+.blt {
+  width: 20px;
+  
+}
+.blt::after {
+  content: '. ';
+}
