@@ -12,6 +12,11 @@
       <img :src="course.course_cover" v-if="course" class="course-cover"/>
       <h1 v-cloak>{{course.course_name}}</h1>
       <div v-cloak v-html="course.description" ></div>
+      <div>
+        <div class="section-container" v-for="section in course.sections" :key="section.id">
+          {{section.title}}
+        </div>
+      </div>
     </div>
   </div>
 </template>

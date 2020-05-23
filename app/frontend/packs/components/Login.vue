@@ -46,7 +46,7 @@ export default {
           this.$router.push('/');
         }
         else {
-          this.$store.dispatch('setErrors', 'Failed to login')
+          this.$store.dispatch('setFlashMessage', {text: 'Email or password incorrect', type: 'error'});
         }
       }).catch((err) => {
         console.log(err);

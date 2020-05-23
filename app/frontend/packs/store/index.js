@@ -117,6 +117,7 @@ const actions = {
     {
       console.log(err.response);
       commit('getErrors', err.response.data);
+      commit('setFlashMessage', {text: err.response.data, type: 'error'});
     }
   },
   async createCourse({commit}, courseParams) {
