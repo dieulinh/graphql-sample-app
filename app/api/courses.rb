@@ -83,5 +83,17 @@ class Courses < Grape::API
       lesson = course.posts.find(params[:lesson_id])
       present lesson
     end
+    desc 'update lesson content'
+    params do
+      requires :title, type: String
+      requires :content, type: String
+      optional :published, type: Boolean
+    end
+    put '/:course_id/lessons/:lesson_id' do
+      course = Course.find(params[:course_id])
+      lesson = course.posts.find(params[:lesson_id])
+      lesson.update declared(params)
+      present lesson
+    end
   end
 end

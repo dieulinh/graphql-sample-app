@@ -3,6 +3,7 @@ $input_height: 40px;
 $base_line_height: 20px;
 $background_primary: #007c89;
 $base_font_size: 14px;
+$active_bg_primary: #6c7a7b;
 input {
   height: $input_height;
   line-height: $base_line_height;
@@ -33,6 +34,10 @@ input {
   border: 1px solid #dedddc;
   color: #10100f;
   background-color: transparent;
+}
+.btn-active-primary {
+  @extend .btn-primary;
+  background-color: $active_bg_primary;
 }
 .field-error {
   border: 1px solid red;

@@ -1,15 +1,16 @@
 <template>
   <div class="flex-column">
-    <button class="btn btn-secondary mb-10" @click="goBack()">Back</button>
+    <div class="flex-between">
+      <button class="btn btn-secondary mb-10" @click="goBack()">Back</button>
+      <router-link :to="{name: 'EditLesson', params: {CourseId: course_id, lesson_id: lesson_id}}" class="btn btn-active-primary mb-10">Edit lesson</router-link>
+    </div>
     <div class="course-view-wrapper">
-    
       <h3>{{lesson.title}} </h3>
       <div v-html="lesson.content">
         
       </div>
     </div>
   </div>
-  
 
 </template>
 <script>
