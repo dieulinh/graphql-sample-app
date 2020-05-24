@@ -73,6 +73,7 @@ class Courses < Grape::API
     post '/:course_id/lessons' do
       authenticate_user!
       course = Course.find(params[:course_id])
+      authorize course, :update?
       post = course.posts.create(title: params[:lesson][:title], content: params[:lesson][:content].html_safe, published: params[:lesson][:published])
       present post
     end
@@ -91,6 +92,7 @@ class Courses < Grape::API
     end
     put '/:course_id/lessons/:lesson_id' do
       course = Course.find(params[:course_id])
+      authorize course, :update?
       lesson = course.posts.find(params[:lesson_id])
       lesson.update declared(params)
       present lesson
