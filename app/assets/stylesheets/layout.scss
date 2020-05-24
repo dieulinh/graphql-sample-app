@@ -28,6 +28,15 @@
 .half {
   width: 50%;
 }
+.full {
+  width: 100%;
+}
 .pt-10 {
   padding-top: 10px;
+}
+.left-nav {
+  display: flex;
+  flex-flow: column;
+  min-width: 100px;
+  max-width: 20%;
 }

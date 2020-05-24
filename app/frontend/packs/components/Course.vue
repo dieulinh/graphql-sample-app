@@ -18,7 +18,7 @@
       <div>
         <div class="section-container" v-for="(section, idx) in course.sections" :key="section.id">
           <div class="blt">{{idx+1}}</div> 
-          <router-link :to="{name: 'Lesson', params: {course_id: courseId, lesson_id: section.id}}"> {{section.title}}</router-link>
+          <router-link :to="{name: 'Lesson', params: {course_id: courseId, lesson_id: section.id, lessons: sections}}"> {{section.title}}</router-link>
         </div>
       </div>
     </div>
@@ -31,7 +31,8 @@ export default {
   props: ['courseId'],
   data() {
     return {
-      course: {}
+      course: {},
+      sections: []
     }
   },
   computed: {
@@ -39,11 +40,24 @@ export default {
       return this.$store.state.authenticated;
     }
   },
+  methods: {
+    getSections(sectionData) {
+      console.log(sectionData)
+      let sections = sectionData.reduce((rs, section) => {
+        rs.push({id: section.id, title: section.title});
+        return rs;
+      }, []);
+      console.log(sections);
+      return sections;
+    }
+  },
   mounted() {
     axios.get(`${coursesApiUrl}/${this.courseId}`)
       .then((result) => {
-        this.course = result.data
+        this.course = result.data;
+        this.sections = this.getSections(result.data.sections);
         console.log(this.course)
+
       })
       .catch((err) => {
         console.log(err);
