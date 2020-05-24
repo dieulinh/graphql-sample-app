@@ -76,5 +76,12 @@ class Courses < Grape::API
       post = course.posts.create(title: params[:lesson][:title], content: params[:lesson][:content].html_safe, published: params[:lesson][:published])
       present post
     end
+
+    desc 'lesson content'
+    get '/:course_id/lessons/:lesson_id' do
+      course = Course.find(params[:course_id])
+      lesson = course.posts.find(params[:lesson_id])
+      present lesson
+    end
   end
 end

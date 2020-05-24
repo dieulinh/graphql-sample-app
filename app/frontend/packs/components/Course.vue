@@ -12,9 +12,13 @@
       <img :src="course.course_cover" v-if="course" class="course-cover"/>
       <h1 v-cloak>{{course.course_name}}</h1>
       <div v-cloak v-html="course.description" ></div>
+      <br>
+      <h2> Course content </h2>
+      <br>
       <div>
         <div class="section-container" v-for="(section, idx) in course.sections" :key="section.id">
-          <div class="blt">{{idx+1}}</div> <div> {{section.title}}</div>
+          <div class="blt">{{idx+1}}</div> 
+          <router-link :to="{name: 'Lesson', params: {course_id: courseId, lesson_id: section.id}}"> {{section.title}}</router-link>
           
 
         </div>

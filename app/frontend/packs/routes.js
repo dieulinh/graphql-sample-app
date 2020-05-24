@@ -11,12 +11,19 @@ import CoursesPage from './components/Courses.vue';
 import NewCoursePage from './components/NewCourse.vue';
 import EditCoursePage from './components/NewCourse.vue';
 import CoursePage from './components/Course.vue';
+import LessonViewPage from './components/LessonView.vue';
 
 const routes = [
   {
     path: '/:CourseId/newlesson',
     component: NewLessonPage,
     name: 'NewLesson',
+    props: true
+  },
+  {
+    path: '/:course_id/lessons/:lesson_id',
+    component: LessonViewPage,
+    name: 'Lesson',
     props: true
   },
   {
