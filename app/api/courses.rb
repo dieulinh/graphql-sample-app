@@ -58,7 +58,9 @@ class Courses < Grape::API
       authenticate_user!
       course = Course.find(params[:id])
       authorize course, :update?
-      course.update(params)
+      course.course_cover.attach(io: File.open(params[:course_cover][:tempfile]), filename: params[:course_cover][:filename], content_type: params[:course_cover][:type]) if params[:course_cover]
+      course.assign_attributes(params.except(:course_cover))
+      course.save
       present course
     end
     params do
