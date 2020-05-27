@@ -93,6 +93,7 @@ class Courses < Grape::API
       optional :published, type: Boolean
     end
     put '/:course_id/lessons/:lesson_id' do
+      authenticate_user!
       course = Course.find(params[:course_id])
       authorize course, :update?
       lesson = course.posts.find(params[:lesson_id])

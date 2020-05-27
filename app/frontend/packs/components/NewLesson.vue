@@ -1,6 +1,9 @@
 <template>
   <div class="new-lesson">
     <div class="flex-center"><h1 class="flex-center">Add lesson to course</h1></div>
+    <div class="flex-row full pt-10">
+      <a @click="save" href="javascript:void(0);" class="flex-row flex-right full"><i class="fa fa-save"></i></a>
+    </div>
     <div>
       <label>
         Publish your lesson

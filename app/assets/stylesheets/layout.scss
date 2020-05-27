@@ -25,6 +25,10 @@
   display: flex;
   justify-content: center;
 }
+.flex-right {
+  display: flex;
+  justify-content: flex-end;
+}
 .half {
   width: 50%;
 }
