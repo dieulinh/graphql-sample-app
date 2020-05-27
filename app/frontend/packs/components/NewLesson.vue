@@ -41,7 +41,6 @@ export default {
     }
   },
   created() {
-    console.log(this.lesson_id)
     if (this.CourseId && this.lesson_id) {
       axios.get(`${rootUrl}/courses/${this.CourseId}/lessons/${this.lesson_id}`)
       .then((result) => {

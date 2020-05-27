@@ -7,8 +7,9 @@
     </div>
     <div class="flex-column full">
       <div class="flex-between">
-        <i class="fa fa-arrow-left mb-10" @click="goBack()"></i>
-        <router-link v-if="authenticated" :to="{name: 'EditLesson', params: {CourseId: course_id, lesson_id: lesson_id}}" class="mb-10"><i class="fa fa-pencil"></i></router-link>
+        <a @click="goBack()" href="javascript:void(0)">
+          <i class="fa fa-arrow-left mb-10"></i> Back </a> 
+        <router-link v-if="authenticated" :to="{name: 'EditLesson', params: {CourseId: course_id, lesson_id: lesson_id}}" class="mb-10"><i class="fa fa-pencil"></i>Edit lesson</router-link>
       </div>
       <div class="course-view-wrapper">
         <h3>{{lesson.title}} </h3>

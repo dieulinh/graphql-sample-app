@@ -1,11 +1,11 @@
 <template>
   <div class="flex flex-column">
     <div class="flex-between">
-      <router-link class="btn btn-secondary mb-15" v-if="authenticated" :to='{name: "EditCourse", params: {CourseId: courseId}}'>
-        Edit
+      <router-link class="mb-15" v-if="authenticated" :to='{name: "EditCourse", params: {CourseId: courseId}}'>
+        <i class="fa fa-pencil"></i> Edit
       </router-link>
-      <router-link class="btn btn-primary mb-15" v-if="authenticated" :to='{name: "NewLesson", params: {CourseId: courseId}}'>
-        New lesson
+      <router-link class="mb-15" v-if="authenticated" :to='{name: "NewLesson", params: {CourseId: courseId}}'>
+        <i class="fa fa-plus"> </i> New lesson
       </router-link>
     </div>
     <div class="course-view-wrapper">
