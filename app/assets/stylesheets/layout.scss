@@ -40,3 +40,8 @@
   min-width: 100px;
   max-width: 20%;
 }
+@media (max-width: 320px) {
+  .small-hidden {
+    display: none;
+  }
+}

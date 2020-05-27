@@ -1,14 +1,14 @@
 <template>
   <div class="flex-row">
-    <div class="left-nav mr-10">
+    <div class="left-nav mr-10 small-hidden">
       <div v-for="lesson_item in lessons" :key="lesson_item.id" class="section-container">
         <router-link :to="{name: 'Lesson', params: {course_id: course_id, lesson_id: lesson_item.id, lessons: lessons }}"> {{lesson_item.title}} </router-link>
       </div>
     </div>
     <div class="flex-column full">
       <div class="flex-between">
-        <button class="btn btn-secondary mb-10" @click="goBack()">Back</button>
-        <router-link v-if="authenticated" :to="{name: 'EditLesson', params: {CourseId: course_id, lesson_id: lesson_id}}" class="btn btn-active-primary mb-10">Edit lesson</router-link>
+        <i class="fa fa-arrow-left mb-10" @click="goBack()"></i>
+        <router-link v-if="authenticated" :to="{name: 'EditLesson', params: {CourseId: course_id, lesson_id: lesson_id}}" class="mb-10"><i class="fa fa-pencil"></i></router-link>
       </div>
       <div class="course-view-wrapper">
         <h3>{{lesson.title}} </h3>
@@ -17,7 +17,7 @@
       </div>
     </div>
   </div>
-  
+
 </template>
 <script>
 import axios from 'axios';
@@ -44,9 +44,8 @@ export default {
       let self = this
       self.$nextTick(() => {
         self.$router.push(`/courses/${this.course_id}/lessons/${item.id}`, {name: 'Lesson', params: {course_id: this.course_id, lesson_id: item.id, lessons: this.lessons }})
-
       })
-      
+
     },
     goBack() {
       history.back();
@@ -61,16 +60,13 @@ export default {
     }
   },
   mounted() {
-    console.log(this.lessons);
-    
     axios.get(`${coursesApiUrl}/${this.course_id}/lessons/${this.lesson_id}`)
-      .then((result) => {
-        this.lesson = result.data
-        console.log(this.course)
-      })
-      .catch((err) => {
-        console.log(err);
-      })
+    .then((result) => {
+      this.lesson = result.data
+    })
+    .catch((err) => {
+      console.log(err);
+    })
   }
 }
 </script>

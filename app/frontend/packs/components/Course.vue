@@ -56,8 +56,6 @@ export default {
       .then((result) => {
         this.course = result.data;
         this.sections = this.getSections(result.data.sections);
-        console.log(this.course)
-
       })
       .catch((err) => {
         console.log(err);

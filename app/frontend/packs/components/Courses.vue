@@ -9,7 +9,6 @@
 
           <h3>{{course["node"]&&course["node"].courseName}} </h3>
           <div class="course-desc" v-html="course.node&&course.node.description">
-            
           </div>
           <img :src="course.node&&course.node.courseCoverUrl" class="course-cover"/>
         </router-link>
