@@ -2,7 +2,7 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import * as types from './mutation-types';
 import axios from 'axios';
-
+import DatetimeFunction from '../services/datetime_services';
 Vue.use(Vuex);
 const debug = process.env.NODE_ENV !== 'production';
 const API_URL = process.env.ROOT_API;
@@ -20,6 +20,9 @@ const mutations = {
   login(state, value) {
     state.auth_token = value;
     state.authenticated = true;
+  },
+  auth_token_expiry(state, value) {
+    state.auth_token_expiry = value;
   },
   auth_token(state, value) {
     state.auth_token = value;
@@ -108,9 +111,16 @@ const actions = {
       let response = await axios.post(`${API_URL}/login`, user);
       if (response.status === 201 || response.status === 200)
       {
-        commit('login', response.data);
-        commit('auth_token', response.data);
-        localStorage.setItem('auth_token', response.data);
+        commit('login', response.data.token);
+        commit('auth_token', response.data.token);
+        commit('auth_token_expiry', response.data.expiry);
+        localStorage.setItem('auth_token', response.data.token);
+        let date = new Date(response.data.auth_token_expiry*1000)
+        if (date > new Date) {
+          localStorage.setItem('auth_token_expiry', response.data.auth_token_expiry);
+        }
+        console.log(DatetimeFunction.getDatetime(response.data.auth_token_expiry));
+
       }
       commit('getErrors', response.status === 201 || response.status === 200 ? null : response.data);
     } catch(err)
@@ -143,10 +153,12 @@ const getters = {
   errors: state => state.errors,
   searchTerm: state => state.searchTerm,
   course: state => state.course,
-  flashMessage: state => state.flashMessage
+  flashMessage: state => state.flashMessage,
+  auth_token_expiry: state => state.auth_token_expiry
 };
 
 const state = {
+  auth_token_expiry: 0,
   searchTerm: null,
   course: null,
   user: null,

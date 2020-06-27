@@ -43,7 +43,18 @@ export default {
       form: new FormData()
     }
   },
+  watch: {
+    authenticated(newValue, oldValue) {
+      console.log(`Updating from ${oldValue} to ${newValue}`);
+      if (newValue === false) {
+        this.$router.push('/user/login')
+      }
+    }
+  },
   created() {
+    if (!this.authenticated) {
+      this.$router.push('/user/login')
+    }
     if (this.CourseId && this.lesson_id) {
       axios.get(`${rootUrl}/courses/${this.CourseId}/lessons/${this.lesson_id}`)
       .then((result) => {
@@ -57,6 +68,11 @@ export default {
       })
     }
   },
+  computed: {
+    authenticated() {
+      return this.$store.state.authenticated
+    }
+  },
   methods: {
     onFilesChange: function() {
       let files = this.$refs.files.files
@@ -66,7 +82,7 @@ export default {
         } else {
           this.form.append('lesson[files][]', file)
         }
-        
+
       }
     },
     handleCreate() {
@@ -84,6 +100,7 @@ export default {
         this.$router.push(`/courses/${this.CourseId}`)
       })
       .catch((err) => {
+        this.$store.dispatch('setFlashMessage', {text: 'Lesson added failed', type: 'error'})
         console.log(err);
       })
     },
@@ -106,14 +123,14 @@ export default {
       })
     },
     save: function() {
-      
+
       console.log()
       if(this.lesson_id) {
         this.handleUpdate();
       } else {
         this.handleCreate();
       }
-      
+
     },
     handleUploadImage(file, Editor, cursorLocation, resetUploader) {
       var formData = new FormData();
@@ -126,7 +143,7 @@ export default {
       .then((result) => {
         let url = result.data // Get url from response
         Editor.insertEmbed(cursorLocation, 'image', url);
-        resetUploader();  
+        resetUploader();
       })
       .catch((err) => {
         console.log(err);

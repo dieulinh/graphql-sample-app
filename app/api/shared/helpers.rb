@@ -55,7 +55,8 @@ module Shared
     end
 
     def authenticate_user!
-      return unauthorized! unless (request.headers['Authorization'] || request.headers["Authorization"].split(" ").length < 2)
+      return unauthorized! unless request.headers['Authorization']
+      return unauthorized! if request.headers["Authorization"].split(" ").length < 2
 
       decoded_token = JsonWebToken.decode(request.headers["Authorization"].split(" ")[1]).to_h
       return unauthorized! unless JsonWebToken.valid_payload?(decoded_token)

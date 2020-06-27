@@ -12,8 +12,12 @@ import router from './routes';
 Vue.use(Vuex);
 Vue.prototype.$http = Axios;
 let authToken = localStorage.getItem('auth_token');
-if(authToken) {
+let expiry = (new Date(localStorage.getItem('auth_token_expiry')*1000)) < (new Date());
+
+if(authToken && !expiry) {
   Vue.prototype.$http.defaults.headers.common['Authorization'] = `Bearer ${authToken}`;
+} else {
+  localStorage.removeItem('auth_token');
 }
 Vue.use(VueRouter);
 document.addEventListener('DOMContentLoaded', () => {
