@@ -22,7 +22,7 @@ class JsonWebToken
   # Default options to be encoded in the token
   def self.meta
     {
-      exp: 2.day.from_now.to_i,
+      exp: 2.days.from_now.to_i,
       iss: ENV['APP_JWT_ISSUER'],
       aud: ENV['APP_JWT_AUD'],
     }
