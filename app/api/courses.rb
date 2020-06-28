@@ -59,7 +59,9 @@ class Courses < Grape::API
       course = Course.find(params[:id])
       authorize course, :update?
       course.course_cover.attach(io: File.open(params[:course_cover][:tempfile]), filename: params[:course_cover][:filename], content_type: params[:course_cover][:type]) if params[:course_cover]
-      course.assign_attributes(params.except(:course_cover))
+      course_params = params.except(:course_cover)
+      course_params = course_params.merge(description: params[:description].html_safe) if params[:description]
+      course.assign_attributes(course_params)
       course.save
       present course
     end
@@ -97,7 +99,9 @@ class Courses < Grape::API
       course = Course.find(params[:course_id])
       authorize course, :update?
       lesson = course.posts.find(params[:lesson_id])
-      lesson.update declared(params)
+      lesson_params = declared(params)
+      lesson_params = lesson_params.merge(content: params[:content].html_safe) if params[:content].html_safe
+      lesson.update lesson_params
       present lesson
     end
   end

@@ -13,11 +13,11 @@
       <h1 v-cloak>{{course.course_name}}</h1>
       <div v-cloak v-html="course.description" ></div>
       <br>
-      <h2> Course content </h2>
+      <h2 v-if="course.sections && course.sections.length>0"> Course content </h2>
       <br>
       <div>
         <div class="section-container" v-for="(section, idx) in course.sections" :key="section.id">
-          <div class="blt">{{idx+1}}</div> 
+          <div class="blt">{{idx+1}}</div>
           <span v-if="!authenticated"> {{section.title}}</span>
           <router-link v-if="authenticated" :to="{name: 'Lesson', params: {course_id: courseId, lesson_id: section.id, lessons: sections}}"> {{section.title}}</router-link>
         </div>

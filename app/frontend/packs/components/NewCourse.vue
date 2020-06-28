@@ -79,7 +79,6 @@ export default {
       } else {
         this.handleCreate();
       }
-      
     },
     handleUpdate() {
       axios.put(`${rootUrl}/${this.CourseId}`, this.form, {
@@ -88,7 +87,8 @@ export default {
           }
       })
       .then((result) => {
-        this.$router.push('/courses')
+        this.$store.dispatch('setFlashMessage', {text: 'Course updated successfully', type: 'success'});
+        this.$router.push('/courses');
       })
       .catch((err) => {
         console.log(err);
@@ -101,6 +101,7 @@ export default {
           }
       })
       .then((result) => {
+        this.$store.dispatch('setFlashMessage', {text: 'Coure added successfully', type: 'success'})
         this.$router.push('/courses')
       })
       .catch((err) => {
@@ -118,7 +119,7 @@ export default {
       .then((result) => {
         let url = result.data // Get url from response
         Editor.insertEmbed(cursorLocation, 'image', url);
-        resetUploader();  
+        resetUploader();
       })
       .catch((err) => {
         console.log(err);
