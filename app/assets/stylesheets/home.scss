@@ -41,6 +41,7 @@
   flex-flow: column;
 }
 a {
+  color: #000;
   text-decoration: none;
 }
 .mdc-list {
@@ -107,10 +108,7 @@ input:checked + .slider:before {
   -ms-transform: translateX(26px);
   transform: translateX(26px);
 }
-a {
-  color: #0366d6;
-  text-decoration: none;
-}
+
 /* Rounded sliders */
 .slider.round {
   border-radius: 34px;
@@ -186,6 +184,9 @@ a {
   border-radius: 4px;
   overflow: hidden;
 }
+.course-title:hover {
+  color: $background_primary;
+}
 .course-link::before {
   box-shadow: 0 0 1px 1px rgba(20,23,28,.1), 0 3px 1px 0 rgba(20,23,28,.1);
   opacity: 1;
@@ -197,7 +198,6 @@ a {
   height: 100%;
   transition: .2s ease;
   pointer-events: none;
-
 }
 .course-cover {
   // height: 100px;
