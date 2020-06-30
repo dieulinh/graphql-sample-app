@@ -54,6 +54,14 @@ a {
   width: 100%;
   display: flex;
   flex-flow: column nowrap;
+  img {
+    max-width: 70%;
+  }
+}
+.ql-editor {
+  img {
+    max-width: 70%;
+  }
 }
 .wht-bg {
   background-color: #fff;
