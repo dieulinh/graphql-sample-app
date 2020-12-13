@@ -1,4 +1,5 @@
 class Course < ApplicationRecord
+  default_scope { order('updated_at desc')}
   has_many :posts, dependent: :destroy
   has_one_attached :course_cover, dependent: :destroy
   def course_cover_url
