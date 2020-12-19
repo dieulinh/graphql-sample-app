@@ -17,7 +17,7 @@ import * as ActiveStorage from 'activestorage';
 
 const postApiUrl = `${process.env.ROOT_API}/courses`;
 const rootUrl = `${process.env.ROOT_API}/courses`;
-const imageUploadUrl = `${process.env.ROOT_API}/uploads`;
+const imageUploadUrl = `${process.env.ROOT_API}/course_attachments`;
 export default {
    components: {
     VueEditor
@@ -117,7 +117,8 @@ export default {
           }
       })
       .then((result) => {
-        let url = result.data // Get url from response
+        console.log(result)
+        let url = result.data.avatar.url // Get url from response
         Editor.insertEmbed(cursorLocation, 'image', url);
         resetUploader();
       })

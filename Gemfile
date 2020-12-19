@@ -20,6 +20,9 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.2'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem 'turbolinks', '~> 5'
+gem 'carrierwave'
+gem 'aws-sdk-s3'
+gem 'fog-aws'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
 gem 'font-awesome-rails'
@@ -39,6 +42,7 @@ gem 'grape-swagger'
 gem 'aws-sdk', '~> 3'
 # Mailchimp
 gem 'sendgrid-ruby'
+# gem 'rmagick'
 gem 'dotenv-rails', groups: [:development, :test]
 
 gem 'devise'
@@ -47,7 +51,7 @@ gem 'graphiql-rails', '1.7.0', group: :development
 gem 'webpacker', '~> 5.x'
 gem 'sidekiq', '~> 5.x'
 # Use ActiveStorage variant
-# gem 'mini_magick', '~> 4.8'
+gem 'mini_magick', '~> 4.8'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
