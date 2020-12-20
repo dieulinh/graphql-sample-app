@@ -16,7 +16,9 @@ class BaseImageUploader < CarrierWave::Uploader::Base
   version :cover do
     process resize_to_fill: [816, 612]
   end
-
+  version :web do
+    process resize_to_fill: [800, 600]
+  end
   version :icon do
     process resize_to_fill: [32, 32]
   end
