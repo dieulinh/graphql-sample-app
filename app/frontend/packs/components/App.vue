@@ -2,7 +2,7 @@
   <div>
     <div class="top-menu">
       <div>
-        <a href="javascript:void(0)" class="brand ml-10" @click="goHome()">i-News</a>
+        <a href="javascript:void(0)" class="brand ml-10" @click="goHome()">i-Class</a>
       </div>
       <flash-message :message="fMessage"></flash-message>
       <div class="menu-right mg-5">
