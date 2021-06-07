@@ -196,7 +196,7 @@ input:checked + .slider:before {
   overflow: hidden;
 }
 .course-desc {
-  overflow-y: auto;
+  overflow-y: hidden;
   line-height: 25px;
   min-height: 250px;
   max-height: 300px;
