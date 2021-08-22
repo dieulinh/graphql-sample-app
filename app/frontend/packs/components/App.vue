@@ -7,6 +7,7 @@
       <flash-message :message="fMessage"></flash-message>
       <div class="menu-right mg-5">
         <div>
+          <router-link :to="{name: 'Posts'}" class="btn-link blog-btn">Blog</router-link>
           <a href="javascript:void(0)" @click="register()" class="btn btn-secondary" v-if="!authenticated">
           Register</a>
           <a href="javascript:void(0)" @click="login()" class="btn btn-primary" v-if="!authenticated">
@@ -75,5 +76,10 @@ export default {
 p {
   font-size: 2em;
   text-align: center;
+}
+.blog-btn {
+  color: #5a3424;
+  text-decoration: underline;
+  padding: 10px;
 }
 </style>
