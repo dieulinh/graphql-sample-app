@@ -8,7 +8,7 @@ class Auth < Grape::API
     post '/' do
       user = Student.find_by(email: params[:email].downcase)
       return unauthorized! unless user && user.authenticate(params[:password])
-      encoded_user = ::JsonWebToken.encode(user_id: user.id) if user
+      encoded_user = ::JsonWebToken.encode(user_id: user.id, email: user.email) if user
       encoded_expiry = ::JsonWebToken.meta[:exp]
       { token: encoded_user, auth_token_expiry: encoded_expiry }
     end
