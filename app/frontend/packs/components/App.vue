@@ -1,13 +1,25 @@
 <template>
   <div>
-    <div class="top-menu">
-      <div>
+    <div class="top-menu flex-left">
+      <div class="brand-logo flex-left">
         <a href="javascript:void(0)" class="brand ml-10" @click="goHome()">i-Class</a>
+        <nav class="submenu flex-left">
+          <div>
+            <span class="marginlr"></span>
+                        «
+            <span class="marginlr"></span>
+            <router-link :to="{name: 'Posts'}" class="btn-link">Blog</router-link>
+            <span class="marginlr"></span>
+            »
+
+          </div>
+        </nav>
       </div>
+
       <flash-message :message="fMessage"></flash-message>
       <div class="menu-right mg-5">
         <div>
-          <router-link :to="{name: 'Posts'}" class="btn-link blog-btn">Blog</router-link>
+
           <a href="javascript:void(0)" @click="register()" class="btn btn-secondary" v-if="!authenticated">
           Register</a>
           <a href="javascript:void(0)" @click="login()" class="btn btn-primary" v-if="!authenticated">
@@ -81,5 +93,17 @@ p {
   color: #5a3424;
   text-decoration: underline;
   padding: 10px;
+}
+.marginlr {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+.submenu {
+  display: flex;
+  justify-items: center;
+  margin: 10px;
+  color: #222;
+  text-transform: uppercase;
+  font-weight: 600;
 }
 </style>

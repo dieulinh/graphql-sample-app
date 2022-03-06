@@ -72,8 +72,12 @@
 }
 .blt {
   width: 20px;
-  
+
 }
 .blt::after {
   content: '. ';
+}
+.flex-left {
+  display: flex;
+  justify-content: left;
 }

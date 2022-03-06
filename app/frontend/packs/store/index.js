@@ -2,6 +2,7 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import * as types from './mutation-types';
 import axios from 'axios';
+import User from '../services/User';
 import DatetimeFunction from '../services/datetime_services';
 Vue.use(Vuex);
 const debug = process.env.NODE_ENV !== 'production';
