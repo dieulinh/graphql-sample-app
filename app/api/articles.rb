@@ -10,7 +10,6 @@ class Articles < Grape::API
 
     post '/' do
       authenticate_user!
-      byebug
       post = Article.create(params)
       present post
     end
