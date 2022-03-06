@@ -2,6 +2,8 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 
 import NewLessonPage from './components/NewLesson.vue';
+import NewArticlePage from './components/NewArticle.vue';
+import ArticlesPage from './components/Articles.vue';
 import EditLessonPage from './components/NewLesson.vue';
 import LessonPage from './components/Lesson.vue';
 import LoginPage from './components/Login.vue';
@@ -35,14 +37,19 @@ const routes = [
     props: true
   },
   {
-    path: '/blog',
-    component: PostsPage,
-    name: 'Posts'
+    path: '/new-post',
+    component: NewArticlePage,
+    name: 'NewPost'
   },
   {
     path: '/',
     component: CoursesPage,
     name: 'Home'
+  },
+  {
+    path: '/blog',
+    component: ArticlesPage,
+    name: 'Blog'
   },
   {
     path: '/user/login',
@@ -86,4 +93,4 @@ const routes = [
   { path: '*', redirect: '/' }
 ];
 
-export default new VueRouter({mode: "history", routes});
+export default new VueRouter({routes});

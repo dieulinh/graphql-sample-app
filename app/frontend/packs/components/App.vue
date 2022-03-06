@@ -8,7 +8,7 @@
             <span class="marginlr"></span>
                         «
             <span class="marginlr"></span>
-            <router-link :to="{name: 'Posts'}" class="btn-link">Blog</router-link>
+            <router-link :to="{name: 'NewPost'}" class="btn-link">Blog</router-link>
             <span class="marginlr"></span>
             »
 
