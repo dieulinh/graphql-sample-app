@@ -245,10 +245,7 @@ input:checked + .slider:before {
   justify-content: center;
   background-color: #efeff4;
 }
-p {
-  font-size: 2em;
-  text-align: center;
-}
+
 .blog-btn {
   color: #5a3424;
   text-decoration: underline;
@@ -279,4 +276,23 @@ p {
   top: 20px;
   left: 20vw;
   animation: hide-message 3s linear forwards;
+}
+.article-wrapper {
+  display: flex;
+  flex-direction: column;
+  .article-card {
+    display: flex;
+    flex-flow: column nowrap;
+    position: relative;
+    text-align: left;
+    vertical-align: top;
+    height: 290px;
+    margin-right: 2px;
+    margin-left: 2px;
+    margin-bottom: 10px;
+    padding: 15px 38px;
+    background: #fff;
+    border-radius: 4px;
+    overflow: hidden;
+  }
 }

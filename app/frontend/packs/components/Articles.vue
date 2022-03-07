@@ -1,6 +1,6 @@
 <template>
-  <div class="course-wrapper">
-    <div v-for="course in courses" :key="course.node&&course.node.id" class="course-card">
+  <div class="article-wrapper">
+    <div v-for="course in articles" :key="course.node&&course.node.id" class="article-card">
       <div v-if="course">
         <router-link class="course-link"
                     :to='{name: "CoursePage", params: {courseId: course["node"]&&course["node"].id}}'
@@ -22,14 +22,14 @@ const coursesApiUrl = `${process.env.ROOT_API}/articles`;
 export default {
   data() {
     return {
-      courses: []
+      articles: []
     }
   },
   created() {
     axios.get(coursesApiUrl
       )
       .then((result) => {
-        this.courses = result.data
+        this.articles = result.data
       })
       .catch((err) => {
         console.log(err);
