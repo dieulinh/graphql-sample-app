@@ -14,11 +14,11 @@ input {
 }
 
 .btn {
-  box-shadow: inset 0 0 0 0.0625rem rgba(36,28,21,0.4);
   color: #241c15;
   min-width: 7.5rem;
-  padding: .8125rem;
   background-color: #ffffff;
+  padding: 10px;
+  margin: 2px;
   color: $btn_color;
   border-radius: 4px;
   line-height: $base_line_height;

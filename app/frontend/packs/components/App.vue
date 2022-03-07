@@ -2,24 +2,21 @@
   <div>
     <div class="top-menu flex-left">
       <div class="brand-logo flex-left">
-        <a href="javascript:void(0)" class="brand ml-10" @click="goHome()">i-Class</a>
+        <a href="javascript:void(0)" class="brand" @click="goHome()">i-Class</a>
         <nav class="submenu flex-left">
-          <div>
-            <span class="marginlr"></span>
-                        «
+          <span class="marginlr"></span>
+            «
             <span class="marginlr"></span>
             <router-link :to="{name: 'Blog'}" class="btn-link">Blog</router-link>
             <span class="marginlr"></span>
             »
 
-          </div>
         </nav>
       </div>
 
       <flash-message :message="fMessage"></flash-message>
       <div class="menu-right mg-5">
-        <div>
-
+        <div class="btn-group-menu">
           <a href="javascript:void(0)" @click="register()" class="btn btn-secondary" v-if="!authenticated">
           Register</a>
           <a href="javascript:void(0)" @click="login()" class="btn btn-primary" v-if="!authenticated">
@@ -34,6 +31,11 @@
     <div class="main">
       <router-view :key="$route.fullPath" />
     </div>
+    <footer>
+      <section class="copy-right">
+        © 2020 Linh Nguyen. All rights reserved.
+      </section>
+    </footer>
   </div>
 </template>
 
