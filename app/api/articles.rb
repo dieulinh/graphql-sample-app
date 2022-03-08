@@ -15,7 +15,6 @@ class Articles < Grape::API
     end
 
     get '/' do
-      authenticate_user!
       articles = Article.all
       present articles
     end
