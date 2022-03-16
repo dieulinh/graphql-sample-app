@@ -3,6 +3,8 @@ import VueRouter from 'vue-router';
 
 import NewLessonPage from './components/NewLesson.vue';
 import NewArticlePage from './components/NewArticle.vue';
+import Article from './components/Article.vue';
+import NewCustomArticle from './components/NewCustomArticle.vue';
 import ArticlesPage from './components/Articles.vue';
 import EditLessonPage from './components/NewLesson.vue';
 import LessonPage from './components/Lesson.vue';
@@ -35,6 +37,17 @@ const routes = [
     component: LessonViewPage,
     name: 'Lesson',
     props: true
+  },
+  {
+    path: '/new-custom-post',
+    component: NewCustomArticle,
+    name: 'NewCustomArticle'
+  },
+  {
+    path: '/blog/:post_id',
+    component: Article,
+    props: true,
+    name: 'Article'
   },
   {
     path: '/new-post',

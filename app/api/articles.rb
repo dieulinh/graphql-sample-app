@@ -13,9 +13,26 @@ class Articles < Grape::API
       present post
     end
 
+    params do
+      requires :article_url, type: String
+
+    end
+
+    post '/add_custom' do
+      authenticate_user!
+      post_params = WebScraper.parse_article(params[:article_url])
+      post = Article.create(post_params)
+      present post
+    end
+
     get '/' do
       articles = Article.order('created_at desc')
       present articles
+    end
+
+    get '/:post_id' do
+      article = Article.find(params[:post_id])
+      present article
     end
   end
 end

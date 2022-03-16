@@ -1329,6 +1329,7 @@ GEM
     erubi (1.10.0)
     excon (0.91.0)
     execjs (2.8.1)
+    fastimage (2.2.6)
     ffi (1.15.5)
     fog-aws (3.13.0)
       fog-core (~> 2.1)
@@ -1363,6 +1364,7 @@ GEM
       railties
       sprockets-rails
     graphql (1.9.17)
+    guess_html_encoding (0.0.11)
     i18n (1.10.0)
       concurrent-ruby (~> 1.0)
     image_processing (1.12.2)
@@ -1457,6 +1459,9 @@ GEM
       actionpack (>= 5.0)
       railties (>= 5.0)
     rexml (3.2.5)
+    ruby-readability (0.7.0)
+      guess_html_encoding (>= 0.0.4)
+      nokogiri (>= 1.6.0)
     ruby-vips (2.1.4)
       ffi (~> 1.12)
     ruby2_keywords (0.0.5)
@@ -1541,6 +1546,7 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   devise
   dotenv-rails
+  fastimage
   fog-aws
   font-awesome-rails
   grape
@@ -1556,6 +1562,7 @@ DEPENDENCIES
   puma (~> 3.11)
   pundit
   rails (~> 5.2.4, >= 5.2.4.1)
+  ruby-readability
   sass-rails (~> 5.0)
   selenium-webdriver
   sendgrid-ruby

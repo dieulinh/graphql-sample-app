@@ -3,7 +3,7 @@
     <div v-for="course in articles" :key="course.node&&course.node.id" class="article-card">
       <div v-if="course">
         <router-link class="course-link"
-                    :to='{name: "CoursePage", params: {courseId: course["node"]&&course["node"].id}}'
+                    :to='{name: "Article", params: {post_id: course.id}}'
                   >
 
           <h3 class="course-title">{{course.title}} </h3>

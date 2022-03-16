@@ -35,6 +35,9 @@ gem 'jwt'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
+gem 'fastimage'
+gem "ruby-readability", :require => 'readability'
+
 # Grape API with swagger
 gem 'grape'
 gem 'grape-swagger'
