@@ -49,20 +49,20 @@ module Shared
     def render_api_error!(message, code)
       error!({ message: message }, code)
     end
+    def decoded_token
+      JsonWebToken.decode(request.headers["Authorization"].split(" ")[1]).to_h
+    end
 
     def current_user
-      @user
+      return unless request.headers["Authorization"]
+      @current_user||= Student.find decoded_token['user_id']
     end
 
     def authenticate_user!
-      return unauthorized! unless request.headers['Authorization']
+      return unauthorized! unless current_user
       return unauthorized! if request.headers["Authorization"].split(" ").length < 2
-
-      decoded_token = JsonWebToken.decode(request.headers["Authorization"].split(" ")[1]).to_h
       return unauthorized! unless JsonWebToken.valid_payload?(decoded_token)
       return unauthorized! unless decoded_token.key?('user_id')
-      @user = Student.find decoded_token['user_id']
-      return unauthorized! unless @user
       true
     end
   end

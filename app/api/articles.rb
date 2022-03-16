@@ -14,7 +14,7 @@ class Articles < Grape::API
     end
 
     get '/' do
-      articles = Article.all
+      articles = Article.order('created_at desc')
       present articles
     end
   end

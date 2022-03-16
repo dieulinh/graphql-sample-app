@@ -35,7 +35,7 @@ export default {
       title: null,
       course_name: null,
       course_cover: null,
-      description: '',
+      content: '',
       form: new FormData()
     }
   },
