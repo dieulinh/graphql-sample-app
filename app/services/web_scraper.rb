@@ -17,17 +17,12 @@ class WebScraper
   def self.parse_article(url)
     begin
       source = open(url).read
-      rbody = Readability::Document.new(source, tags: %w[figure article section div p img a code span pre h1 h2 h3 h4 h5 h6 br style], attributes: %w[src href], remove_empty_nodes: true)
+      rbody = Readability::Document.new(source, tags: %w[main figure article section div p img a code span pre h1 h2 h3 h4 h5 h6 br style], attributes: %w[data-src src href], remove_empty_nodes: true)
       images = rbody.images
-      images.each do |img_url|
-        photo = AttachedPhoto.new
-        photo.photo = File.open(img_url)
-        photo.save
-        rbody.content = rbody.content.replace(img_url, photo.photo.web.url)
-      end
       {
         title: rbody.title,
-        content: rbody.content
+        content: rbody.content,
+        images: images
       }
     rescue
       Article.new
