@@ -5,7 +5,6 @@ class Articles < Grape::API
       requires :title, type: String
       requires :content, type: String
       optional :file, type: File
-      optional :published, type: Boolean
     end
 
     post '/' do

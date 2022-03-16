@@ -16,7 +16,7 @@ import { VueEditor } from 'vue2-editor';
 
 const postApiUrl = `${process.env.ROOT_API}/articles`;
 const rootUrl = `${process.env.ROOT_API}/articles`;
-const imageUploadUrl = `${process.env.ROOT_API}/course_attachments`;
+const imageUploadUrl = `${process.env.ROOT_API}/photos`;
 export default {
    components: {
     VueEditor
@@ -97,7 +97,7 @@ export default {
       })
       .then((result) => {
         console.log(result)
-        let url = result.data.avatar.web.url // Get url from response
+        let url = result.data.photo.web.url // Get url from response
         Editor.insertEmbed(cursorLocation, 'image', url);
         resetUploader();
       })

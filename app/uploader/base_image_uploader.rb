@@ -29,13 +29,12 @@ class BaseImageUploader < CarrierWave::Uploader::Base
   end
 
   def extension_whitelist
-     %w(jpg jpeg gif png)
+    %w(jpg jpeg gif png heic)
   end
 
   def filename
-   "#{secure_token}.#{file.extension}" if original_filename
+    "#{secure_token}.#{file.extension}" if original_filename
   end
-
 
   private
 

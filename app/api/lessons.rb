@@ -1,4 +1,5 @@
 class Lessons < Grape::API
+  include Shared::AuthorizationKit
   namespace :lessons do
     params do
       requires :lesson, type: Hash do

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_20_022136) do
+ActiveRecord::Schema.define(version: 2022_03_15_033736) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,13 +37,17 @@ ActiveRecord::Schema.define(version: 2021_08_20_022136) do
   end
 
   create_table "articles", force: :cascade do |t|
-    t.bigint "user_id"
     t.string "title"
     t.text "content"
     t.boolean "published"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_articles_on_user_id"
+  end
+
+  create_table "attached_photos", force: :cascade do |t|
+    t.string "photo"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "course_attachments", force: :cascade do |t|
@@ -82,6 +86,13 @@ ActiveRecord::Schema.define(version: 2021_08_20_022136) do
     t.datetime "last_login"
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
+  end
+
+  create_table "teachers", force: :cascade do |t|
+    t.string "email"
+    t.string "username"
+    t.string "title"
+    t.text "teaching_experience"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"

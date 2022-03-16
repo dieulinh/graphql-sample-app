@@ -1,12 +1,12 @@
-class CourseAttachments < Grape::API
+class Photos < Grape::API
   include Shared::AuthorizationKit
-  namespace :course_attachments do
+  namespace :photos do
     params do
       requires :file, type: File
     end
     post '/' do
-      attachment = CourseAttachment.new
-      attachment.avatar = params[:file]
+      attachment = AttachedPhoto.new
+      attachment.photo = params[:file]
       attachment.save
       present attachment
     end
