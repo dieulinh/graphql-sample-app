@@ -2,34 +2,34 @@ class BaseImageUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
 
   # if Rails.env.production? || Rails.env.staging?
-  storage :fog
+  #   storage :fog
   # else
-  # storage :file
+  #   storage :file
   # end
+  storage :fog
 
   # Process files as they are uploaded:
 
 
-  version :small do
-    process resize_to_fill: [400, 200]
-  end
+  # version :small do
+  #   process resize_to_fill: [400, 200]
+  # end
   version :cover do
     process resize_to_fill: [816, 612]
   end
   version :web do
     process resize_to_fill: [800, 600]
   end
-  version :icon do
-    process resize_to_fill: [32, 32]
-  end
-
+  # version :icon do
+  #   process resize_to_fill: [32, 32]
+  # end
 
   def store_dir
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
 
-  def extension_whitelist
-    %w(jpg jpeg gif png heic)
+  def extension_allowlist
+    %w(jpg jpeg gif png)
   end
 
   def filename
