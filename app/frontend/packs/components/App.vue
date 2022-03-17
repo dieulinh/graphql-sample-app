@@ -6,11 +6,16 @@
         <nav class="submenu flex-left">
           <span class="marginlr"></span>
             «
-            <span class="marginlr"></span>
-            <router-link :to="{name: 'Blog'}" class="btn-link">Blog</router-link>
-            <span class="marginlr"></span>
+          <span class="marginlr"></span>
+          <router-link :to="{name: 'Blog'}" class="btn-link">Blog</router-link>
+          <span class="marginlr"></span>
             »
-
+          <span class="marginlr"></span>
+            «
+          <span class="marginlr"></span>
+          <a href="javascript:void(0)" @click="showContactForm">Contact</a>
+          <span class="marginlr"></span>
+            »
         </nav>
       </div>
 
@@ -33,7 +38,7 @@
     </div>
     <footer>
       <section class="copy-right">
-        © 2020 Linh Nguyen. All rights reserved.
+        Copyright © 2020 Linh Nguyen. All rights reserved.
       </section>
     </footer>
   </div>
@@ -56,6 +61,9 @@ export default {
     }
   },
   methods: {
+    showContactForm() {
+      console.log('Contact us')
+    },
     login() {
       if (this.$router.currentRoute.name != 'Login') {
         this.$router.push('/user/login')

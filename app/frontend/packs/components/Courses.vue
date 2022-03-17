@@ -9,7 +9,7 @@
           </router-link>
 
           <img :src="course.node&&course.node.courseCoverUrl" class="course-cover"/>
-          <div class="course-desc" v-html="course.node&&course.node.description">
+          <div v-html="course.node&&course.node.description">
           </div>
 
         </div>

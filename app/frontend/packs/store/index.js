@@ -77,7 +77,7 @@ const actions = {
     commit('getErrors', errors);
   },
   logout({commit}) {
-    localStorage.removeItem('auth_token');
+    User.logOut();
     commit('logout');
     commit('setFlashMessage', {text: 'you have been logout successfully'})
   },
@@ -107,26 +107,12 @@ const actions = {
       commit('getErrors', err);
     }
   },
-  async login({commit}, user) {
+  async login({commit}, {email, password}) {
     try {
-      let response = await axios.post(`${API_URL}/login`, user);
-      if (response.status === 201 || response.status === 200)
-      {
-        commit('login', response.data.token);
-        commit('auth_token', response.data.token);
-        commit('auth_token_expiry', response.data.expiry);
-        localStorage.setItem('auth_token', response.data.token);
-        let date = new Date(response.data.auth_token_expiry*1000)
-        if (date > new Date) {
-          localStorage.setItem('auth_token_expiry', response.data.auth_token_expiry);
-        }
-        console.log(DatetimeFunction.getDatetime(response.data.auth_token_expiry));
-
-      }
-      commit('getErrors', response.status === 201 || response.status === 200 ? null : response.data);
-    } catch(err)
-    {
-      console.log(err.response);
+      let userData = User.signIn(email, password);
+      commit('login', userData.token)
+      commit('auth_token', userData.token);
+    } catch(err) {
       commit('getErrors', err.response.data);
       commit('setFlashMessage', {text: err.response.data, type: 'error'});
     }
