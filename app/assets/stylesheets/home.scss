@@ -199,6 +199,12 @@ input:checked + .slider:before {
   min-height: 250px;
   max-height: 300px;
 }
+.summary-content {
+  height: 260px !important;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 5px 10px;
+}
 .course-title
 {
   line-height: 1.8;

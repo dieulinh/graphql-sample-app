@@ -2,15 +2,17 @@
   <div class="course-wrapper">
     <div v-for="course in courses" :key="course.node&&course.node.id" class="course-card">
       <div v-if="course.node">
-        <router-link class="course-link"
-                    :to='{name: "CoursePage", params: {courseId: course["node"]&&course["node"].id}}'
-                  >
+        <div class="course-thumbnail summary-content">
+          <router-link class="course-link"
+                    :to='{name: "CoursePage", params: {courseId: course["node"]&&course["node"].id}}'>
+            <h3 class="course-title">{{course["node"]&&course["node"].courseName}} </h3>
+          </router-link>
 
-          <h3 class="course-title">{{course["node"]&&course["node"].courseName}} </h3>
+          <img :src="course.node&&course.node.courseCoverUrl" class="course-cover"/>
           <div class="course-desc" v-html="course.node&&course.node.description">
           </div>
-          <img :src="course.node&&course.node.courseCoverUrl" class="course-cover"/>
-        </router-link>
+
+        </div>
       </div>
     </div>
   </div>
