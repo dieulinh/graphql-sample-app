@@ -25,11 +25,11 @@
 <script>
 
 import Vue from 'vue';
-import axios from 'axios';
+import Server from '../services/Server';
 import { VueEditor } from 'vue2-editor';
 
 const rootUrl = `${process.env.ROOT_API}`;
-const imageUploadUrl = `${process.env.ROOT_API}/uploads`;
+const imageUploadUrl = `${process.env.API_SERVER_URL}/api/photos`;
 export default {
    components: {
     VueEditor
@@ -56,7 +56,7 @@ export default {
       this.$router.push('/user/login')
     }
     if (this.CourseId && this.lesson_id) {
-      axios.get(`${rootUrl}/courses/${this.CourseId}/lessons/${this.lesson_id}`)
+      Server.get(`/api/courses/${this.CourseId}/lessons/${this.lesson_id}`)
       .then((result) => {
         let lesson = result.data;
         this.title = lesson.title;
@@ -86,11 +86,10 @@ export default {
       }
     },
     handleCreate() {
-      console.log('you gonna create new lesson');
       this.form.append("lesson[title]", this.title)
       this.form.append("lesson[content]", this.content)
       this.form.append("lesson[published]", this.published)
-      axios.post(`${process.env.ROOT_API}/courses/${this.CourseId}/lessons`, this.form, {
+      Server.post(`/api/courses/${this.CourseId}/lessons`, this.form, {
           headers: {
             'Content-Type': 'multipart/form-data'
           }
@@ -105,11 +104,10 @@ export default {
       })
     },
     handleUpdate() {
-      console.log('You gonna update lesson');
       this.form.append("title", this.title)
       this.form.append("content", this.content)
       this.form.append("published", this.published)
-      axios.put(`${process.env.ROOT_API}/courses/${this.CourseId}/lessons/${this.lesson_id}`, this.form, {
+      Server.put(`/api/courses/${this.CourseId}/lessons/${this.lesson_id}`, this.form, {
           headers: {
             'Content-Type': 'multipart/form-data'
           }
@@ -123,25 +121,22 @@ export default {
       })
     },
     save: function() {
-
-      console.log()
       if(this.lesson_id) {
         this.handleUpdate();
       } else {
         this.handleCreate();
       }
-
     },
     handleUploadImage(file, Editor, cursorLocation, resetUploader) {
       var formData = new FormData();
       formData.append("file", file);
-      axios.post(imageUploadUrl, formData, {
+      Server.post(imageUploadUrl, formData, {
           headers: {
             'Content-Type': 'multipart/form-data'
           }
       })
       .then((result) => {
-        let url = result.data // Get url from response
+        let url = result.data.photo.web.url // Get url from response
         Editor.insertEmbed(cursorLocation, 'image', url);
         resetUploader();
       })

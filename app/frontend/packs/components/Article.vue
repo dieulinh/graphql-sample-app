@@ -1,10 +1,10 @@
 <template>
-  <div class="flex flex-column">
-    <div>
+  <article class="article">
+    <div class="article-content">
       <h3 class="course-title">{{course.title}} </h3>
       <div v-html="course.content"></div>
     </div>
-  </div>
+  </article>
 </template>
 <script>
 import axios from 'axios';

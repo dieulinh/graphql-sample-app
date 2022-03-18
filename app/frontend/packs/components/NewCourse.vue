@@ -11,13 +11,11 @@
 <script>
 
 import Vue from 'vue';
-import axios from 'axios';
+import Server from '../services/Server';
 import { VueEditor } from 'vue2-editor';
 import * as ActiveStorage from 'activestorage';
 
-const postApiUrl = `${process.env.ROOT_API}/courses`;
-const rootUrl = `${process.env.ROOT_API}/courses`;
-const imageUploadUrl = `${process.env.ROOT_API}/course_attachments`;
+const imageUploadUrl = `/api/course_attachments`;
 export default {
    components: {
     VueEditor
@@ -48,7 +46,7 @@ export default {
       this.$router.push('/user/login')
     }
     if (this.CourseId) {
-      axios.get(`${rootUrl}/${this.CourseId}`)
+      Server.get(`/api/courses/${this.CourseId}`)
       .then((result) => {
         let course = result.data;
         this.course_name = course.course_name;
@@ -81,7 +79,7 @@ export default {
       }
     },
     handleUpdate() {
-      axios.put(`${rootUrl}/${this.CourseId}`, this.form, {
+      Server.put(`/api/courses/${this.CourseId}`, this.form, {
           headers: {
             'Content-Type': 'multipart/form-data'
           }
@@ -95,13 +93,13 @@ export default {
       })
     },
     handleCreate() {
-      axios.post(postApiUrl, this.form, {
+      Server.post('/api/courses', this.form, {
           headers: {
             'Content-Type': 'multipart/form-data'
           }
       })
       .then((result) => {
-        this.$store.dispatch('setFlashMessage', {text: 'Coure added successfully', type: 'success'})
+        this.$store.dispatch('setFlashMessage', {text: 'Course added successfully', type: 'success'})
         this.$router.push('/courses')
       })
       .catch((err) => {
@@ -111,7 +109,7 @@ export default {
     handleUploadImage(file, Editor, cursorLocation, resetUploader) {
       var formData = new FormData();
       formData.append("file", file);
-      axios.post(imageUploadUrl, formData, {
+      Server.post(imageUploadUrl, formData, {
           headers: {
             'Content-Type': 'multipart/form-data'
           }
@@ -127,7 +125,7 @@ export default {
       })
     },
     handlePost() {
-      axios.post(postApiUrl, { title: this.title, content: this.content }).then((response) => {
+      Server.post(`/api/courses`, { title: this.title, content: this.content }).then((response) => {
         this.$router.push(`/`);
       }).catch((err) => {
         console.log(`Error: ${err}`);

@@ -5,13 +5,11 @@
         <a href="javascript:void(0)" class="brand" @click="goHome()">i-Class</a>
         <nav class="submenu flex-left">
           <span class="marginlr"></span>
-            «
+
           <span class="marginlr"></span>
           <router-link :to="{name: 'Blog'}" class="btn-link">Blog</router-link>
           <span class="marginlr"></span>
             »
-          <span class="marginlr"></span>
-            «
           <span class="marginlr"></span>
           <a href="javascript:void(0)" @click="showContactForm">Contact</a>
           <span class="marginlr"></span>

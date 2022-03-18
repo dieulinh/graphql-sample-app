@@ -152,7 +152,7 @@ const state = {
   flashMessage: {},
   errors: null,
   auth_token: null,
-  authenticated: !!localStorage.getItem('auth_token'),
+  authenticated: !!localStorage.getItem('user'),
   postsApiUrl: `${process.env.ROOT_API}/api/v1/posts`
 };
 

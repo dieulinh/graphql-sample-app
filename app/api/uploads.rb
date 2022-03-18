@@ -5,6 +5,7 @@ class Uploads < Grape::API
     end
     post '/' do
       # Create a S3 client
+      authenticate_user!
       region = ENV['AWS_REGION']
       client = Aws::S3::Client.new(region: region, credentials: Aws::Credentials.new(ENV['AWS_ACCESS_KEY_ID'], ENV['AWS_SECRET_KEY']))
 

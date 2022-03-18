@@ -10,7 +10,7 @@
 <script>
 
 import Vue from 'vue';
-import axios from 'axios';
+import Server from '../services/Server';
 import { VueEditor } from 'vue2-editor';
 
 const postApiUrl = `${process.env.ROOT_API}/articles/add_custom`;
@@ -43,7 +43,7 @@ export default {
       this.$router.push('/user/login')
     }
     if (this.CourseId) {
-      axios.get(`${rootUrl}/${this.CourseId}`)
+      Server.get(`${rootUrl}/${this.CourseId}`)
       .then((result) => {
         let course = result.data;
         this.course_name = course.course_name;
@@ -66,7 +66,7 @@ export default {
 
     handleCreate() {
       this.form.append("article_url", this.article_url)
-      axios.post(postApiUrl, this.form, {
+      Server.post(postApiUrl, this.form, {
           headers: {
             'Content-Type': 'multipart/form-data'
           }

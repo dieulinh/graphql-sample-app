@@ -11,12 +11,12 @@
 <script>
 
 import Vue from 'vue';
-import axios from 'axios';
+import server from '../services/Server';
 import { VueEditor } from 'vue2-editor';
 
-const postApiUrl = `${process.env.ROOT_API}/articles`;
-const rootUrl = `${process.env.ROOT_API}/articles`;
-const imageUploadUrl = `${process.env.ROOT_API}/photos`;
+const postApiUrl = `/api/articles`;
+const rootUrl = `/api/articles`;
+const imageUploadUrl = `/api/photos`;
 export default {
    components: {
     VueEditor
@@ -44,7 +44,7 @@ export default {
       this.$router.push('/user/login')
     }
     if (this.CourseId) {
-      axios.get(`${rootUrl}/${this.CourseId}`)
+      server.get(`${rootUrl}/${this.CourseId}`)
       .then((result) => {
         let course = result.data;
         this.course_name = course.course_name;
@@ -74,7 +74,7 @@ export default {
     handleCreate() {
       this.form.append("title", this.title)
       this.form.append("content", this.content)
-      axios.post(postApiUrl, this.form, {
+      server.post(postApiUrl, this.form, {
           headers: {
             'Content-Type': 'multipart/form-data'
           }
@@ -90,7 +90,7 @@ export default {
     handleUploadImage(file, Editor, cursorLocation, resetUploader) {
       var formData = new FormData();
       formData.append("file", file);
-      axios.post(imageUploadUrl, formData, {
+      server.post(imageUploadUrl, formData, {
           headers: {
             'Content-Type': 'multipart/form-data'
           }
@@ -106,7 +106,7 @@ export default {
       })
     },
     handlePost() {
-      axios.post(postApiUrl, { title: this.title, content: this.content }).then((response) => {
+      server.post(postApiUrl, { title: this.title, content: this.content }).then((response) => {
         this.$router.push(`/`);
       }).catch((err) => {
         console.log(`Error: ${err}`);

@@ -50,19 +50,18 @@ module Shared
       error!({ message: message }, code)
     end
     def decoded_token
-      JsonWebToken.decode(request.headers["Authorization"].split(" ")[1]).to_h
+      JsonWebToken.decode(request.headers["Authorization"])
     end
 
     def current_user
       return unless request.headers["Authorization"]
-      @current_user||= Student.find decoded_token['user_id']
+      @current_user ||= Student.find decoded_token['user_id']
     end
 
     def authenticate_user!
-      return unauthorized! unless current_user
-      return unauthorized! if request.headers["Authorization"].split(" ").length < 2
       return unauthorized! unless JsonWebToken.valid_payload?(decoded_token)
       return unauthorized! unless decoded_token.key?('user_id')
+      return unauthorized! unless current_user
       true
     end
   end

@@ -5,6 +5,7 @@ class CourseAttachments < Grape::API
       requires :file, type: File
     end
     post '/' do
+      authenticate_user!
       attachment = CourseAttachment.new
       attachment.avatar = params[:file]
       attachment.save

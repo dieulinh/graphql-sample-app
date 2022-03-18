@@ -20,7 +20,6 @@ class Articles < Grape::API
 
     post '/add_custom' do
       authenticate_user!
-
       post_params = WebScraper.parse_article(params[:article_url])
       post = Article.new(post_params.except(:images))
       post.content = post.content + BulkUploadImages.call(post_params[:images])
