@@ -18,9 +18,9 @@
   </div>
 </template>
 <script>
-import axios from 'axios';
+import server from '../services/Server';
 
-const coursesApiUrl = `${process.env.ROOT_API}/courses`;
+const coursesApiUrl = `/api/courses`;
 export default {
   data() {
     return {
@@ -29,7 +29,7 @@ export default {
   },
   created() {
 
-    axios.get(coursesApiUrl
+    server.get(coursesApiUrl
       )
       .then((result) => {
         this.courses = result.data.data.coursesConnection.edges

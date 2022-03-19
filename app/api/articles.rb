@@ -15,7 +15,6 @@ class Articles < Grape::API
 
     params do
       requires :article_url, type: String
-
     end
 
     post '/add_custom' do
@@ -36,6 +35,14 @@ class Articles < Grape::API
     get '/:post_id' do
       article = Article.find(params[:post_id])
       present article
+    end
+    delete '/:post_id' do
+      article = Article.find(params[:post_id])
+      if article.destroy
+        return { deleted: params[:post_id]}, status: :ok!
+      else
+        return unprocessable_entity!
+      end
     end
   end
 end

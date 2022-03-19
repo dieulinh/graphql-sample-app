@@ -7,7 +7,7 @@ import App from './components/App'
 
 import store from './store'
 import router from './routes';
-
+import moment from 'moment';
 
 Vue.use(Vuex);
 Vue.prototype.$http = Axios;
@@ -20,6 +20,12 @@ if(authToken && !expiry) {
   localStorage.removeItem('auth_token');
 }
 Vue.use(VueRouter);
+Vue.filter('formatDateTime', function(value) {
+  if (value) {
+    return moment(String(value)).format('YY.MM.DD HH:mm')
+    // return moment(String(value)).format('MM/DD/YYYY hh:mm A')
+  }
+});
 document.addEventListener('DOMContentLoaded', () => {
   const app = new Vue({
     el: '#app',

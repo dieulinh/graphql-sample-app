@@ -49,6 +49,7 @@ module Shared
     def render_api_error!(message, code)
       error!({ message: message }, code)
     end
+
     def decoded_token
       JsonWebToken.decode(request.headers["Authorization"])
     end
