@@ -11,7 +11,7 @@
           <span class="marginlr"></span>
             »
           <span class="marginlr"></span>
-          <a href="javascript:void(0)" @click="showContactForm">Contact</a>
+          <a href="javascript:void(0)" @click="handleShowContactForm">Contact</a>
           <span class="marginlr"></span>
             »
         </nav>
@@ -34,6 +34,9 @@
     <div class="main">
       <router-view :key="$route.fullPath" />
     </div>
+    <div v-if="showContactForm">
+      <contact-form @sendMessage="sendContactMessage"></contact-form>
+    </div>
     <footer>
       <section class="copy-right">
         Copyright © 2020 Linh Nguyen. All rights reserved.
@@ -44,12 +47,15 @@
 
 <script>
 import FlashMessage from './FlashMessage';
+import axios from 'axios';
+import ContactForm from './ContactForm.vue';
+
 import { mapState } from 'vuex';
 export default {
-  components: {FlashMessage},
+  components: {FlashMessage, ContactForm},
   data() {
     return {
-
+      showContactForm: false
     };
   },
   computed: {
@@ -59,8 +65,21 @@ export default {
     }
   },
   methods: {
-    showContactForm() {
-      console.log('Contact us')
+    sendContactMessage(message) {
+      console.log(message)
+      let {email, content} = message;
+      axios.post(`/api/inquiries`, {email, content})
+      .then((rs) => {
+        console.log(rs.data);
+        this.showContactForm = false;
+      }).catch((err) => {
+        console.log(err);
+      })
+      
+    },
+    handleShowContactForm() {
+      console.log('Contact us');
+      this.showContactForm = true;
     },
     login() {
       if (this.$router.currentRoute.name != 'Login') {

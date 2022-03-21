@@ -22,6 +22,7 @@ gem 'coffee-rails', '~> 4.2'
 gem 'turbolinks', '~> 5'
 gem 'carrierwave'
 gem 'aws-sdk-s3'
+gem "aws-ses", "~> 0.7.0", :require => 'aws/ses'
 gem 'fog-aws'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'

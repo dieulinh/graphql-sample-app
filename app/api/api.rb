@@ -13,6 +13,7 @@ class API < Grape::API
   mount Articles
   mount CourseAttachments
   mount Photos
+  mount Inquiries
 
   rescue_from Grape::Exceptions::ValidationErrors  do |e|
     rack_response({

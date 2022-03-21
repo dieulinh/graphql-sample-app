@@ -15,6 +15,13 @@
   border-bottom: 1px solid rgb(222, 223, 224);
   padding: 20px 10px 20px 10px;
 }
+.contact-container {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  background-color: #222;
+}
 .fsQCvb {
   display: flex;
   -webkit-box-align: center;
