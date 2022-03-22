@@ -15,19 +15,12 @@ import { VueEditor } from 'vue2-editor';
 
 const postApiUrl = `/api/articles/add_custom`;
 const rootUrl = `${process.env.ROOT_API}/articles`;
-const imageUploadUrl = `${process.env.ROOT_API}/photos`;
+const imageUploadUrl = `/api/photos`;
 export default {
    components: {
     VueEditor
   },
-  watch: {
-    authenticated(newValue, oldValue) {
-      console.log(`Updating from ${oldValue} to ${newValue}`);
-      if (newValue === false) {
-        this.$router.push('/user/login')
-      }
-    }
-  },
+ 
   props: ['CourseId'],
   data() {
     return {
@@ -42,17 +35,7 @@ export default {
     if (!this.authenticated) {
       this.$router.push('/user/login')
     }
-    if (this.CourseId) {
-      Server.get(`${rootUrl}/${this.CourseId}`)
-      .then((result) => {
-        let course = result.data;
-        this.course_name = course.course_name;
-        this.description = course.description;
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-    }
+    
   },
   computed: {
     authenticated() {
