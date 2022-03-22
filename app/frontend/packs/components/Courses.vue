@@ -11,14 +11,18 @@
           <img :src="course.node&&course.node.courseCoverUrl" class="course-cover"/>
           <div v-html="course.node&&course.node.description">
           </div>
-
+          <div class="rating">
+            <star-rating :star-size="20"/>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </template>
+
 <script>
 import server from '../services/Server';
+import StarRating from 'vue-star-rating';
 
 const coursesApiUrl = `/api/courses`;
 export default {
@@ -27,6 +31,7 @@ export default {
       courses: []
     }
   },
+  components: {StarRating},
   created() {
 
     server.get(coursesApiUrl

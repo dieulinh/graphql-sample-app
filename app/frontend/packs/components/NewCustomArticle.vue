@@ -13,7 +13,7 @@ import Vue from 'vue';
 import Server from '../services/Server';
 import { VueEditor } from 'vue2-editor';
 
-const postApiUrl = `${process.env.ROOT_API}/articles/add_custom`;
+const postApiUrl = `/api/articles/add_custom`;
 const rootUrl = `${process.env.ROOT_API}/articles`;
 const imageUploadUrl = `${process.env.ROOT_API}/photos`;
 export default {
