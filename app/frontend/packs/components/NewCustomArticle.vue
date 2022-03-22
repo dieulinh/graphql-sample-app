@@ -14,13 +14,12 @@ import Server from '../services/Server';
 import { VueEditor } from 'vue2-editor';
 
 const postApiUrl = `/api/articles/add_custom`;
-const rootUrl = `${process.env.ROOT_API}/articles`;
-const imageUploadUrl = `/api/photos`;
+
 export default {
    components: {
     VueEditor
   },
- 
+
   props: ['CourseId'],
   data() {
     return {
@@ -35,7 +34,7 @@ export default {
     if (!this.authenticated) {
       this.$router.push('/user/login')
     }
-    
+
   },
   computed: {
     authenticated() {

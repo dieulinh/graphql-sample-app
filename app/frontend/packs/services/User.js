@@ -1,8 +1,7 @@
 import axios from 'axios';
-const ROOT_API_URL = process.env.API_SERVER_URL;
 
 const signIn = async (email, password) => {
-  const res = await axios.post(`${ROOT_API_URL}/api/login`, {email, password});
+  const res = await axios.post(`/api/login`, {email, password});
   if (res.data.token) {
     localStorage.setItem('user', JSON.stringify(res.data));
   }

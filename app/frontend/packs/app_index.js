@@ -11,13 +11,13 @@ import moment from 'moment';
 
 Vue.use(Vuex);
 Vue.prototype.$http = Axios;
-let authToken = localStorage.getItem('auth_token');
-let expiry = (new Date(localStorage.getItem('auth_token_expiry')*1000)) < (new Date());
+let authToken = localStorage.getItem('user');
+// let expiry = (new Date(localStorage.getItem('auth_token_expiry')*1000)) < (new Date());
 
-if(authToken && !expiry) {
-  Vue.prototype.$http.defaults.headers.common['Authorization'] = `Bearer ${authToken}`;
+if(authToken) {
+  Vue.prototype.$http.defaults.headers.common['Authorization'] = `${authToken}`;
 } else {
-  localStorage.removeItem('auth_token');
+  localStorage.removeItem('user');
 }
 Vue.use(VueRouter);
 Vue.filter('formatDateTime', function(value) {
