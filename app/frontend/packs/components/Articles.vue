@@ -5,10 +5,10 @@
         <router-link class="course-link"
                     :to='{name: "Article", params: {post_id: course.id}}'
                   >
-
+          <h3 class="course-title">{{course.title}} </h3>
         </router-link>
         <div>
-          <h3 class="course-title">{{course.title}} </h3>  <span class="text-right">{{ course.created_at | formatDateTime }}</span>
+          <span class="text-right">{{ course.created_at | formatDateTime }}</span>
           <button @click="detelePost(course)" v-if="authenticated"> delete</button>
           <br/>
 
