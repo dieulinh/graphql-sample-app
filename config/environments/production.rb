@@ -64,7 +64,8 @@ Rails.application.configure do
   # config.active_job.queue_name_prefix = "rails-web-template_#{Rails.env}"
 
   config.action_mailer.perform_caching = false
-  config.action_mailer.delivery_method = :smtp
+  # config.action_mailer.delivery_method = :smtp
+  config.action_mailer.delivery_method = :aws_sdk
   config.mailer_sender = ENV['SENDGRID_SENDER']
   config.action_mailer.default_url_options = { host: 'heroku.com'}
   config.action_mailer.perform_deliveries = true

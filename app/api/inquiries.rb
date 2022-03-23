@@ -7,6 +7,7 @@ class Inquiries < Grape::API
     post '/' do
       inquiry = Inquiry.new(params)
       inquiry.save
+      UserMailer.send_contact_form(inquiry).deliver
       present inquiry
     end
   end

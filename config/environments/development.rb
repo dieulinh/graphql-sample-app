@@ -9,6 +9,7 @@ Rails.application.configure do
   # Do not eager load code on boot.
   config.eager_load = false
 
+
   # Show full error reports.
   config.consider_all_requests_local = true
 
@@ -32,9 +33,12 @@ Rails.application.configure do
   config.active_storage.service = :amazon
 
   # Don't care if the mailer can't send.
-  config.action_mailer.delivery_method = :smtp
-  config.mailer_sender = ENV['SENDGRID_SENDER']
-  config.action_mailer.default_url_options = { host: 'heroku.com'}
+  # config.action_mailer.delivery_method = :smtp
+  # config.mailer_sender = ENV['SENDGRID_SENDER']
+  config.mailer_sender = ENV['ADMIN_EMAIL_SENDER']
+  # config.action_mailer.default_url_options = { host: 'heroku.com'}
+  config.action_mailer.delivery_method = :aws_sdk
+  config.action_mailer.perform_deliveries = true
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
 

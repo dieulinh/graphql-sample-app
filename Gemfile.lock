@@ -49,6 +49,8 @@ GEM
     arel (9.0.0)
     aws-eventstream (1.2.0)
     aws-partitions (1.562.0)
+    aws-record (2.7.0)
+      aws-sdk-dynamodb (~> 1.18)
     aws-sdk (3.1.0)
       aws-sdk-resources (~> 3)
     aws-sdk-accessanalyzer (1.29.0)
@@ -743,6 +745,13 @@ GEM
     aws-sdk-quicksight (1.63.0)
       aws-sdk-core (~> 3, >= 3.127.0)
       aws-sigv4 (~> 1.1)
+    aws-sdk-rails (3.6.1)
+      aws-record (~> 2)
+      aws-sdk-ses (~> 1)
+      aws-sdk-sqs (~> 1)
+      aws-sessionstore-dynamodb (~> 2)
+      concurrent-ruby (~> 1)
+      railties (>= 5.2.0)
     aws-sdk-ram (1.38.0)
       aws-sdk-core (~> 3, >= 3.127.0)
       aws-sigv4 (~> 1.1)
@@ -1263,6 +1272,9 @@ GEM
       mail (> 2.2.5)
       mime-types
       xml-simple
+    aws-sessionstore-dynamodb (2.0.1)
+      aws-sdk-dynamodb (~> 1)
+      rack (~> 2)
     aws-sigv2 (1.1.0)
     aws-sigv4 (1.4.0)
       aws-eventstream (~> 1, >= 1.0.2)
@@ -1544,8 +1556,9 @@ PLATFORMS
 
 DEPENDENCIES
   aws-sdk (~> 3)
+  aws-sdk-rails
   aws-sdk-s3
-  aws-ses (~> 0.7.0)
+  aws-ses
   bcrypt (~> 3.1.7)
   bootsnap (>= 1.1.0)
   byebug

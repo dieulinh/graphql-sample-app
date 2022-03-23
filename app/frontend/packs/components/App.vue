@@ -75,11 +75,11 @@ export default {
       }).catch((err) => {
         console.log(err);
       })
-      
+
     },
     handleShowContactForm() {
       console.log('Contact us');
-      this.showContactForm = true;
+      this.showContactForm = !this.showContactForm;
     },
     login() {
       if (this.$router.currentRoute.name != 'Login') {
