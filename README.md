@@ -1,6 +1,6 @@
 # README
 Sample demo
-http://www.i-class.info
+https://www.i-class.info
 
 API
 ======
@@ -9,20 +9,22 @@ API
 - Postgresql
 - Sidekiq
 - Amazon-S3
-- Sendgrid API (sendgrid-ruby gem)
+- Amazon-SES
+- Sendgrid API (sendgrid-ruby gem) (no longer used)
 
-#### Set up these environment keys properly 
+#### Set up these environment keys properly
 
-AWS_ACCESS_KEY_ID
-AWS_REGION
-AWS_S3_BUCKET
-AWS_SECRET_KEY
-APP_JWT_AUD
-APP_JWT_ISSUER
-ROOT_API
-SENDGRID_API_KEY
-SENDGRID_SENDER
-RESET_PASSWORD_TEMPLATE_ID
+`AWS_ACCESS_KEY_ID`
+`AWS_REGION`
+`AWS_S3_BUCKET`
+`AWS_SECRET_KEY`
+`APP_JWT_AUD`
+`APP_JWT_ISSUER`
+`ROOT_API`
+`SENDGRID_API_KEY`
+`SENDGRID_SENDER`
+`RESET_PASSWORD_TEMPLATE_ID`
+`...`
 
 Frontend
 ======
