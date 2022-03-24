@@ -55,6 +55,12 @@ const routes = [
     name: 'NewPost'
   },
   {
+    path: '/edit_blog/:post_id',
+    component: NewArticlePage,
+    name: 'EditArticle',
+    props: true
+  },
+  {
     path: '/',
     component: CoursesPage,
     name: 'Home'

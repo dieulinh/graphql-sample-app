@@ -36,6 +36,18 @@ class Articles < Grape::API
       article = Article.find(params[:post_id])
       present article
     end
+    params do
+      requires :title, type: String
+      requires :content, type: String
+    end
+    put '/:id' do
+      article = Article.find(params[:id])
+      if article.update(params)
+        return { updated: params[:post_id]}, status: :ok!
+      else
+        return unprocessable_entity!
+      end
+    end
     delete '/:post_id' do
       article = Article.find(params[:post_id])
       if article.destroy

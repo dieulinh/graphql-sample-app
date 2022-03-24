@@ -1,10 +1,10 @@
 <template>
   <div class="new-lesson">
     <input v-model="title" placeholder="Title"/>
-    <div><input name="files" ref="files" @change="onFilesChange" type="file" data-direct-upload-url="/rails/active_storage/direct_uploads" direct_upload="true" /><label>Choose an image as cover image for the post </label></div>
+
     <vue-editor class="wht-bg" v-model="content" useCustomImageHandler @image-added="handleUploadImage" aria-placeholder="Input overview of the course" />
     <div class="flex-row half content-center pt-10">
-      <button @click="save" type="button" class="half btn btn-primary"> {{this.CourseId ? 'Update course' : 'Create post' }}</button></div>
+      <button @click="save" type="button" class="half btn btn-primary"> {{this.post_id ? 'Update course' : 'Create post' }}</button></div>
   </div>
 </template>
 
@@ -29,12 +29,10 @@ export default {
       }
     }
   },
-  props: ['CourseId'],
+  props: ['post_id'],
   data() {
     return {
-      title: null,
-      course_name: null,
-      course_cover: null,
+      title: '',
       content: '',
       form: new FormData()
     }
@@ -43,34 +41,58 @@ export default {
     if (!this.authenticated) {
       this.$router.push('/user/login')
     }
-    if (this.CourseId) {
-      server.get(`${rootUrl}/${this.CourseId}`)
-      .then((result) => {
-        let course = result.data;
-        this.course_name = course.course_name;
-        this.description = course.description;
-      })
-      .catch((err) => {
-        console.log(err);
-      })
+    console.log(this.current_user&&this.current_user.roles.indexOf('author'))
+    if (this.current_user&&this.current_user.roles.indexOf('author')<0) {
+      this.$router.push(`/blog/${this.post_id}`)
+    } else {
+      if (this.post_id) {
+        server.get(`/api/articles/${this.post_id}`)
+        .then((result) => {
+          let course = result.data;
+          this.title = course.title;
+          this.content = course.content;
+        })
+        .catch((err) => {
+          console.log(err);
+        })
+      }
     }
+
   },
   computed: {
     authenticated() {
       return this.$store.state.authenticated
+    },
+    current_user() {
+      return this.$store.state.user
     }
   },
   methods: {
-    onFilesChange: function() {
-      console.log(this.$refs.files.files);
-      let files = this.$refs.files.files;
-      this.form.append('course_cover', files[0])
-    },
     save: function() {
+      if(this.post_id) {
+        this.handleUpdate();
+      } else {
+        this.handleCreate();
+      }
 
-      this.handleCreate();
+
     },
-
+     handleUpdate() {
+      this.form.append("title", this.title)
+      this.form.append("content", this.content)
+      server.put(`/api/articles/${this.post_id}`, this.form, {
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          }
+      })
+      .then((result) => {
+        this.$store.dispatch('setFlashMessage', {text: 'Updating successfully', type: 'success'})
+        this.$router.push('/blog')
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+    },
     handleCreate() {
       this.form.append("title", this.title)
       this.form.append("content", this.content)
@@ -104,13 +126,6 @@ export default {
       .catch((err) => {
         console.log(err);
       })
-    },
-    handlePost() {
-      server.post(postApiUrl, { title: this.title, content: this.content }).then((response) => {
-        this.$router.push(`/`);
-      }).catch((err) => {
-        console.log(`Error: ${err}`);
-      });
     }
   }
 }
