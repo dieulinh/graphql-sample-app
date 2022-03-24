@@ -148,7 +148,7 @@ const state = {
   auth_token_expiry: 0,
   searchTerm: null,
   course: null,
-  user: null,
+  user: User.getCurrentUser(),
   flashMessage: {},
   errors: null,
   auth_token: null,

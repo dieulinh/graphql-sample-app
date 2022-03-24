@@ -14,12 +14,17 @@ const getUserToken = () => {
   const user = getCurrentUser();
   return user&&user.token;
 }
+const getUserRoles = () => {
+  const user = getCurrentUser();
+  return user&&user.roles
+}
 const logOut = () => {
   localStorage.removeItem("user");
 }
 const User = {
   signIn,
   getCurrentUser,
+  getUserRoles,
   getUserToken,
   logOut
 }

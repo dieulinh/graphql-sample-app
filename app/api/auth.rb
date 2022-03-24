@@ -10,7 +10,7 @@ class Auth < Grape::API
       return unauthorized! unless user && user.authenticate(params[:password])
       encoded_user = ::JsonWebToken.encode(user_id: user.id, email: user.email) if user
       encoded_expiry = ::JsonWebToken.meta[:exp]
-      { token: encoded_user, auth_token_expiry: encoded_expiry, user_id: user.id, email: user.email }
+      { token: encoded_user, auth_token_expiry: encoded_expiry, user_id: user.id, email: user.email, roles: user.roles }
     end
 
     desc 'Register endpoint'

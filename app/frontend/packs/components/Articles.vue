@@ -9,7 +9,7 @@
         </router-link>
         <div>
           <span class="text-right">{{ course.created_at | formatDateTime }}</span>
-          <button @click="detelePost(course)" v-if="authenticated"> delete</button>
+          <button @click="detelePost(course)" v-if="authenticated&&current_user&&current_user.roles.indexOf('author')>=0"> delete</button>
           <br/>
 
           <div class="course-desc" v-html="course.content">
@@ -30,7 +30,10 @@ export default {
     }
   },
   computed: {
-    authenticated() {return this.$store.state.authenticated }
+    authenticated() {return this.$store.state.authenticated },
+    current_user() {
+      return this.$store.state.user
+    }
   },
   methods: {
     detelePost(article) {
