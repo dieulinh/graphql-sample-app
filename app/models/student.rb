@@ -1,4 +1,6 @@
 class Student < ApplicationRecord
+  ROLE_LIST = %w(admin author instructor).freeze
+
   has_secure_password
   validates :email, presence: true, uniqueness: true
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }
@@ -11,7 +13,15 @@ class Student < ApplicationRecord
    self.reset_password_sent_at = Time.now.utc
    save!
   end
-
+  def author?
+    roles.include?('author')
+  end
+  def admin?
+    roles.include?('admin')
+  end
+  def instructor?
+    roles.include?('instructor')
+  end
   def password_token_valid?
    (self.reset_password_sent_at + 4.hours) > Time.now.utc
   end
@@ -21,7 +31,6 @@ class Student < ApplicationRecord
    self.password = password
    save!
   end
-
 
   private
 

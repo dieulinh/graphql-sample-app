@@ -24,6 +24,7 @@ input {
   line-height: $base_line_height;
   font-size: $base_font_size;
   border-radius: 4px;
+  cursor: pointer;
 }
 .btn-primary {
   background-color: $background_primary;

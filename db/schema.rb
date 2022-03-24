@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_21_092752) do
+ActiveRecord::Schema.define(version: 2022_03_24_121400) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -93,6 +93,8 @@ ActiveRecord::Schema.define(version: 2022_03_21_092752) do
     t.datetime "last_login"
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
+    t.string "roles", default: [], array: true
+    t.index ["roles"], name: "index_students_on_roles", using: :gin
   end
 
   create_table "teachers", force: :cascade do |t|
