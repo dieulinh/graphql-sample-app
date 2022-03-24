@@ -1,5 +1,6 @@
 class Course < ApplicationRecord
-  default_scope { where(status: 'published').order('updated_at desc')}
+  default_scope { where(status: 'published').order('updated_at desc') }
+  validates :course_name, :description, presence: true
   enum status: {
     pending: 0,
     published: 1,

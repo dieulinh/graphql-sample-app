@@ -4,7 +4,7 @@
     <div><input name="files" ref="files" @change="onFilesChange" type="file" data-direct-upload-url="/rails/active_storage/direct_uploads" direct_upload="true" /><label>Choose an image as cover image for the course </label></div>
     <vue-editor class="wht-bg" v-model="description" useCustomImageHandler @image-added="handleUploadImage" aria-placeholder="Input overview of the course" />
     <div class="flex-row half content-center pt-10">
-      <button @click="save" type="button" class="half btn btn-primary"> {{this.CourseId ? 'Update course' : 'Create course' }}</button></div>
+      <button @click="save" type="button" class="half btn btn-primary" :class="{'disabled-form-control': course_name==''||description==''}" :disabled="course_name==''||description==''"> {{this.CourseId ? 'Update course' : 'Create course' }}</button></div>
   </div>
 </template>
 
@@ -31,8 +31,7 @@ export default {
   props: ['CourseId'],
   data() {
     return {
-      title: null,
-      course_name: null,
+      course_name: '',
       course_cover: null,
       description: '',
       form: new FormData()
@@ -99,8 +98,9 @@ export default {
           }
       })
       .then((result) => {
+        console.log(result.data)
         this.$store.dispatch('setFlashMessage', {text: 'Course added successfully', type: 'success'})
-        this.$router.push('/courses')
+        this.$router.push('/courses');
       })
       .catch((err) => {
         console.log(err);
@@ -123,13 +123,6 @@ export default {
       .catch((err) => {
         console.log(err);
       })
-    },
-    handlePost() {
-      Server.post(`/api/courses`, { title: this.title, content: this.content }).then((response) => {
-        this.$router.push(`/`);
-      }).catch((err) => {
-        console.log(`Error: ${err}`);
-      });
     }
   }
 }
