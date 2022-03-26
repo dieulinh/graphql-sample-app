@@ -74,8 +74,6 @@ export default {
       } else {
         this.handleCreate();
       }
-
-
     },
      handleUpdate() {
       this.form.append("title", this.title)

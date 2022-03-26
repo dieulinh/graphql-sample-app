@@ -25,6 +25,7 @@ gem 'aws-sdk-s3'
 gem 'aws-sdk-rails'
 gem "aws-ses", :require => 'aws/ses'
 gem 'fog-aws'
+gem 'rack-cors'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
 gem 'font-awesome-rails'
