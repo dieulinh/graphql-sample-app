@@ -40,6 +40,7 @@ class Articles < Grape::API
       requires :title, type: String
       requires :content, type: String
     end
+
     put '/:id' do
       article = Article.find(params[:id])
       if article.update(params)

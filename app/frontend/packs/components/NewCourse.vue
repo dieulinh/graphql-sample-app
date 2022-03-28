@@ -116,7 +116,7 @@ export default {
       })
       .then((result) => {
         console.log(result)
-        let url = result.data.avatar.web.url // Get url from response
+        let url = result.data.avatar.opt_web.url // Get url from response
         Editor.insertEmbed(cursorLocation, 'image', url);
         resetUploader();
       })

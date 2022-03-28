@@ -111,7 +111,6 @@ const actions = {
     try {
       let userData = User.signIn(email, password);
       commit('login', userData.token)
-      commit('auth_token', userData.token);
     } catch(err) {
       commit('getErrors', err.response.data);
       commit('setFlashMessage', {text: err.response.data, type: 'error'});
@@ -152,8 +151,7 @@ const state = {
   flashMessage: {},
   errors: null,
   auth_token: null,
-  authenticated: !!localStorage.getItem('user'),
-  postsApiUrl: `${process.env.ROOT_API}/api/v1/posts`
+  authenticated: !!localStorage.getItem('user')
 };
 
 export default new Vuex.Store({
