@@ -21,7 +21,9 @@
 </template>
 
 <script>
+import axios from 'axios';
 import server from '../services/Server';
+
 import StarRating from 'vue-star-rating';
 
 const coursesApiUrl = `/api/courses`;
@@ -34,7 +36,7 @@ export default {
   components: {StarRating},
   created() {
 
-    server.get(coursesApiUrl
+    axios.get(coursesApiUrl
       )
       .then((result) => {
         this.courses = result.data.data.coursesConnection.edges

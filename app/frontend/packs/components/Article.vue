@@ -8,7 +8,7 @@
 </template>
 <script>
 import axios from 'axios';
-const coursesApiUrl = `${process.env.ROOT_API}/articles`;
+const coursesApiUrl = `/api/articles`;
 export default {
   props: ['post_id'],
   data() {

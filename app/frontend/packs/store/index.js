@@ -84,7 +84,7 @@ const actions = {
   async register({commit}, user) {
     commit('getErrors', null)
     try {
-      let response = await axios.post(`${process.env.ROOT_API}/login/register`, user );
+      let response = await axios.post(`/api/login/register`, user );
       if (response.status === 201)
       {
         commit('registerUser', response.data)

@@ -27,7 +27,7 @@
 </template>
 <script>
 import axios from 'axios';
-const coursesApiUrl = `${process.env.ROOT_API}/courses`;
+
 export default {
   props: ['courseId'],
   data() {
@@ -53,7 +53,7 @@ export default {
     }
   },
   mounted() {
-    axios.get(`${coursesApiUrl}/${this.courseId}`)
+    axios.get(`/api/courses/${this.courseId}`)
       .then((result) => {
         this.course = result.data;
         this.sections = this.getSections(result.data.sections);
