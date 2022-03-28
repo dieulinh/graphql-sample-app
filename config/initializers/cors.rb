@@ -9,7 +9,9 @@ Rails.application.config.middleware.insert_before 0, Rack::Cors do
         methods: [:get,
           :post,
           :put,
-          :delete
-        ], if: proc { |env| env['HTTP_HOST'] == 'https://iclass-fe.herokuapp.com' }
+          :delete,
+          :options,
+          :head
+        ]
   end
 end
