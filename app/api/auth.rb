@@ -7,8 +7,9 @@ class Auth < Grape::API
     end
     post '/' do
       user = Student.find_by(email: params[:email].downcase)
-      return unauthorized! unless user && user.authenticate(params[:password])
-      encoded_user = ::JsonWebToken.encode(user_id: user.id, email: user.email) if user
+      return unauthorized! unless user
+      return unauthorized! unless user.authenticate(params[:password])
+      encoded_user = ::JsonWebToken.encode(user_id: user.id)
       encoded_expiry = ::JsonWebToken.meta[:exp]
       { token: encoded_user, auth_token_expiry: encoded_expiry, user_id: user.id, email: user.email, roles: user.roles }
     end
@@ -25,7 +26,7 @@ class Auth < Grape::API
       user = Student.find_by(email: email)
       return render_api_error!('User existed', 422) if user
       user = Student.create(email: email, password: params[:password], password_confirmation: params[:password_confirmation])
-      present user, status: 201
+      present user
     end
 
     desc 'Reset password'

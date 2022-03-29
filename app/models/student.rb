@@ -13,6 +13,7 @@ class Student < ApplicationRecord
    self.reset_password_sent_at = Time.now.utc
    save!
   end
+
   def author?
     roles.include?('author')
   end

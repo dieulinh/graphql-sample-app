@@ -15,7 +15,6 @@ import server from '../services/Server';
 import { VueEditor } from 'vue2-editor';
 
 const postApiUrl = `/api/articles`;
-const rootUrl = `/api/articles`;
 const imageUploadUrl = `/api/photos`;
 export default {
    components: {
@@ -40,22 +39,23 @@ export default {
   created() {
     if (!this.authenticated) {
       this.$router.push('/user/login')
+      return;
     }
-    console.log(this.current_user&&this.current_user.roles.indexOf('author'))
-    if (this.current_user&&this.current_user.roles.indexOf('author')<0) {
-      this.$router.push(`/blog/${this.post_id}`)
-    } else {
-      if (this.post_id) {
-        server.get(`/api/articles/${this.post_id}`)
-        .then((result) => {
-          let course = result.data;
-          this.title = course.title;
-          this.content = course.content;
-        })
-        .catch((err) => {
-          console.log(err);
-        })
-      }
+    console.log(this.current_user)
+    console.log(this.current_user.roles&&this.current_user.roles.indexOf('author'))
+    if (this.current_user.roles.indexOf('author')<0) {
+      this.$router.push(`/blog/`)
+    }
+    if (this.post_id) {
+      server.get(`/api/articles/${this.post_id}`)
+      .then((result) => {
+        let course = result.data;
+        this.title = course.title;
+        this.content = course.content;
+      })
+      .catch((err) => {
+        console.log(err);
+      })
     }
 
   },

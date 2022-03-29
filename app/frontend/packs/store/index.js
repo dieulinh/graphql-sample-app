@@ -85,11 +85,7 @@ const actions = {
     commit('getErrors', null)
     try {
       let response = await axios.post(`/api/login/register`, user );
-      if (response.status === 201)
-      {
-        commit('registerUser', response.data)
-      }
-      commit('getErrors', response.status === 201 || response.status === 200 ? null : response.data);
+      commit('registerUser', response.data)
     } catch(err) {
       console.log(err);
       commit('getErrors', err);
@@ -110,7 +106,7 @@ const actions = {
   async login({commit}, {email, password}) {
     try {
       let userData = User.signIn(email, password);
-      commit('login', userData.token)
+      commit('login', userData)
     } catch(err) {
       commit('getErrors', err.response.data);
       commit('setFlashMessage', {text: err.response.data, type: 'error'});
