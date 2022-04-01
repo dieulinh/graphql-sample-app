@@ -33,7 +33,7 @@ class Articles < Grape::API
     end
 
     get '/:post_id' do
-      article = Article.find(params[:post_id])
+      article = Article.friendly.find(params[:post_id])
       present article
     end
     params do
