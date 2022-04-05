@@ -48,7 +48,7 @@ class Courses < Grape::API
 
     get '/:course_id' do
       course = Course.find(params[:course_id])
-      present course.attributes.merge("course_cover" => course.course_cover_url, "sections" => course.posts)
+      present course.attributes.merge("course_cover" => course.course_cover_url, "sections" => course.posts.order('created_at asc'))
     end
 
     params do

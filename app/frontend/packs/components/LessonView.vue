@@ -22,7 +22,7 @@
 </template>
 <script>
 import axios from 'axios';
-const coursesApiUrl = `${process.env.ROOT_API}/courses`;
+const coursesApiUrl = `/api/courses`;
 export default {
   props: ['course_id', 'lesson_id', 'lessons'],
   data() {
