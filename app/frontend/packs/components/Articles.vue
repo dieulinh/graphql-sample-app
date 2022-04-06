@@ -1,6 +1,6 @@
 <template>
   <div class="article-wrapper">
-    <div v-for="course in articles" :key="course.id" :class="'article-card '+ course.id">
+    <div v-for="(course, index) in articles" :key="course.id" :class="'article-card '+ course.id">
       <div v-if="course">
         <router-link class="course-link"
                     :to='{name: "Article", params: {post_id: course.id}}'
@@ -9,7 +9,7 @@
         </router-link>
         <div>
           <span class="text-right">{{ course.created_at | formatDateTime }}</span>
-          <button @click="detelePost(course)" v-if="authenticated&&current_user&&current_user.roles&&current_user.roles.indexOf('author')>=0"> delete</button>
+          <button @click="detelePost(course, index)" v-if="authenticated&&current_user&&current_user.roles&&current_user.roles.indexOf('author')>=0"> delete</button>
           <br/>
 
           <div class="course-desc" v-html="course.content">
@@ -36,9 +36,10 @@ export default {
     }
   },
   methods: {
-    detelePost(article) {
+    detelePost(article, index) {
+      console.log(index);
       server.delete(`/api/articles/${article.id}`).then(() => {
-        this.articles = this.articles.filter((a_article) => {return (a_article.id != article.id) })
+        this.articles.splice(index, 1)
         this.$store.dispatch('setFlashMessage', {text: 'deleting successfully', type: 'success' });
       }).catch((err) => {
         console.log(err);
