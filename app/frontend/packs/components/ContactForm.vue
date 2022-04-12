@@ -13,6 +13,7 @@
   </div>
 </template>
 <script>
+import axios from 'axios';
 
 export default {
   data(){
@@ -22,6 +23,13 @@ export default {
         content: ''
       }
     }
+  },
+  mounted() {
+    // axios.get(`/api/inquiries/client_ip`)
+    // .then(x => x.json())
+    // .then(({ ip }) => {
+    //     this.term = ip;
+    // });
   },
 
   methods: {

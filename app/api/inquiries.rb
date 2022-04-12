@@ -5,11 +5,21 @@ class Inquiries < Grape::API
       requires :content, type: String
     end
     post '/' do
-      inquiry = Inquiry.new(params)
+      return bad_request!('ip_address') unless env['REMOTE_ADDR']
+      prev_in = Inquiry.where(ip_address: env['REMOTE_ADDR']).order('created_at desc').first
+      if prev_in
+        if (DateTime.now.utc - prev_in.created_at)/1.minutes < 1
+          return bad_request!('ip address')
+        end
+      end
+      inquiry = Inquiry.new(params.merge(ip_address: env['REMOTE_ADDR']))
       inquiry.save
+
       UserMailer.send_contact_form(inquiry).deliver
       present inquiry
     end
+
+
   end
 end
 

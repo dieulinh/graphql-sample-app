@@ -76,15 +76,15 @@ export default {
       let {email, content} = message;
       axios.post(`/api/inquiries`, {email, content})
       .then((rs) => {
-        console.log(rs.data);
         this.showContactForm = false;
+        this.$store.dispatch('setFlashMessage', {text: 'Your messages has been sent', type: 'success'});
       }).catch((err) => {
+        this.$store.dispatch('setFlashMessage', {text: 'Failed to send your message', type: 'error'});
         console.log(err);
       })
 
     },
     handleShowContactForm() {
-      console.log('Contact us');
       this.showContactForm = !this.showContactForm;
     },
     login() {

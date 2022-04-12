@@ -41,7 +41,7 @@ export default {
       this.$router.push('/user/login')
       return;
     }
-    console.log(this.current_user)
+
     console.log(this.current_user.roles&&this.current_user.roles.indexOf('author'))
     if (this.current_user.roles.indexOf('author')<0) {
       this.$router.push(`/blog/`)
