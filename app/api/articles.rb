@@ -36,15 +36,16 @@ class Articles < Grape::API
       article = Article.friendly.find(params[:post_id])
       present article
     end
+
     params do
       requires :title, type: String
       requires :content, type: String
     end
 
     put '/:id' do
-      article = Article.find(params[:id])
+      article = Article.friendly.find(params[:id])
       if article.update(params)
-        return { updated: params[:post_id]}, status: :ok!
+        return { updated: params[:id]}, status: :ok!
       else
         return unprocessable_entity!
       end
