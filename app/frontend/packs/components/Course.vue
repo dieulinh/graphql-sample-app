@@ -43,12 +43,10 @@ export default {
   },
   methods: {
     getSections(sectionData) {
-      console.log(sectionData)
       let sections = sectionData.reduce((rs, section) => {
         rs.push({id: section.id, title: section.title});
         return rs;
       }, []);
-      console.log(sections);
       return sections;
     }
   },
