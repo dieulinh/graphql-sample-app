@@ -48,7 +48,11 @@ class Courses < Grape::API
 
     get '/:course_id' do
       course = Course.find(params[:course_id])
-      present course.attributes.merge("course_cover" => course.course_cover_url, "sections" => course.posts.order('created_at asc'))
+      sections = []
+      if current_user.present?
+        sections = course.posts.order('created_at asc') if current_user.roles.include?('subscriber')||current_user.roles.include?('admin')
+      end
+      present course.attributes.merge("course_cover" => course.course_cover_url, "sections" => sections)
     end
 
     params do

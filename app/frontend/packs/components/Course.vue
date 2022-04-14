@@ -27,6 +27,7 @@
 </template>
 <script>
 import axios from 'axios';
+import server from '../services/Server';
 
 export default {
   props: ['courseId'],
@@ -51,7 +52,8 @@ export default {
     }
   },
   mounted() {
-    axios.get(`/api/courses/${this.courseId}`)
+    if (this.authenticated) {
+      server.get(`/api/courses/${this.courseId}`)
       .then((result) => {
         this.course = result.data;
         this.sections = this.getSections(result.data.sections);
@@ -59,6 +61,17 @@ export default {
       .catch((err) => {
         console.log(err);
       })
+    } else {
+      axios.get(`/api/courses/${this.courseId}`)
+      .then((result) => {
+        this.course = result.data;
+        this.sections = this.getSections(result.data.sections);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+    }
+
   },
 }
 </script>

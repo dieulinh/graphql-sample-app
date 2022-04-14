@@ -1,5 +1,5 @@
 class Student < ApplicationRecord
-  ROLE_LIST = %w(admin author instructor).freeze
+  ROLE_LIST = %w(admin author instructor subscriber).freeze
 
   has_secure_password
   validates :email, presence: true, uniqueness: true

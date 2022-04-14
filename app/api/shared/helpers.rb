@@ -56,6 +56,7 @@ module Shared
 
     def current_user
       return unless request.headers["Authorization"]
+      return unless JsonWebToken.valid_payload?(decoded_token)
       @current_user ||= Student.find decoded_token['user_id']
     end
 
