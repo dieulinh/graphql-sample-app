@@ -342,7 +342,11 @@ input:checked + .slider:before {
     overflow: hidden;
   }
 }
-@media (max-width: 390px) {
+.btn-group-menu {
+  display: flex;
+  min-width: 280px;
+}
+@media (max-width: 400px) {
   .top-menu {
     display: flex;
     flex-direction: row;
@@ -360,6 +364,12 @@ input:checked + .slider:before {
   }
   .btn-group-menu {
     display: flex;
-    justify-content: end;
+    justify-content: flex-start;
+    flex-direction: column;
+    flex-wrap: wrap;
+    min-width: 200px;
+    margin-right: 5px;
+    padding-right: 5px;
+    align-items: flex-start;
   }
 }
