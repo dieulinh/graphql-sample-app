@@ -22,17 +22,10 @@
   top: 0;
   background-color: #222;
 }
-.fsQCvb {
-  display: flex;
-  -webkit-box-align: center;
-  align-items: center;
-  box-sizing: border-box;
-  padding-right: 24px;
-}
 .brand {
   color: #f1693f;
   font-weight: 900;
-  font-size: 2rem;
+  font-size: 1.7rem;
   padding-left: 10px;
 }
 .sidebar {
@@ -371,5 +364,28 @@ input:checked + .slider:before {
     margin-right: 5px;
     padding-right: 5px;
     align-items: flex-start;
+  }
+}
+@media (max-width: 414px) {
+  .menu-right {
+    display: flex;
+    align-content: flex-end;
+
+  }
+  .btn-group-menu {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: flex-end;
+  }
+  .btn-small {
+    max-width: 90px;
+    padding: 0;
+    background: white;
+    margin: 5px;
+    padding: 3px;
+    color: #37baf7;
+    font-weight: 900;
+    text-align: center;
   }
 }
