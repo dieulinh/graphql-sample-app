@@ -21,16 +21,16 @@
       <div class="menu-right mg-5">
         <div class="btn-group-menu">
           <template v-if="!authenticated">
-            <a href="javascript:void(0)" @click="register()" class="btn btn-secondary">
+            <a href="javascript:void(0)" @click="register()" class="btn btn-secondary btn-small">
           Register</a>
-            <a href="javascript:void(0)" @click="login()" class="btn btn-primary">
+            <a href="javascript:void(0)" @click="login()" class="btn btn-primary btn-small">
           Login</a>
           </template>
 
           <template v-if="authenticated">
-            <a href="javascript:void(0)" @click="addCourse()" class="btn btn-primary">
+            <a href="javascript:void(0)" @click="addCourse()" class="btn btn-primary btn-small">
             +Course</a>
-            <a href="javascript:void(0)" @click="logout()" class="btn btn-secondary">
+            <a href="javascript:void(0)" @click="logout()" class="btn btn-secondary btn-small">
           Logout</a>
           </template>
 
@@ -139,4 +139,26 @@ p {
   text-transform: uppercase;
   font-weight: 600;
 }
+@media (max-width: 414px) {
+  .menu-right {
+    display: flex;
+    align-content: flex-end;
+
+  }
+  .btn-group-menu {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: flex-end;
+  }
+  .btn-small {
+    max-width: 100px;
+    padding: 0;
+    background: white;
+    margin: 5px;
+    color: #37baf7;
+    font-weight: 900;
+  }
+}
+
 </style>
