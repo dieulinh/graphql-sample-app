@@ -69,7 +69,6 @@ export default {
   },
   methods: {
     sendContactMessage(message) {
-      console.log(message)
       let {email, content} = message;
       axios.post(`/api/inquiries`, {email, content})
       .then((rs) => {
@@ -79,31 +78,37 @@ export default {
         this.$store.dispatch('setFlashMessage', {text: 'Failed to send your message', type: 'error'});
         console.log(err);
       })
-
     },
     handleShowContactForm() {
       this.showContactForm = !this.showContactForm;
     },
     login() {
+      this.hideContactForm();
       if (this.$router.currentRoute.name != 'Login') {
         this.$router.push('/user/login')
       }
     },
     register() {
+      this.hideContactForm();
       if (this.$router.currentRoute.name != 'RegisterUser') {
         this.$router.push('/user/register')
       }
-
     },
     logout() {
+      this.hideContactForm();
       this.$store.dispatch('logout')
     },
     goHome() {
+      this.hideContactForm();
       if (this.$router.currentRoute.name != 'Home') {
         this.$router.push('/');
       }
     },
+    hideContactForm() {
+      this.showContactForm = false;
+    },
     addCourse() {
+      this.hideContactForm();
 
       if (this.$router.currentRoute.name != 'NewCourse') {
         this.$router.push('/courses/new');

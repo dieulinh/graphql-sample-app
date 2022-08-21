@@ -9,7 +9,13 @@
         </router-link>
         <div>
           <span class="text-right">{{ course.created_at | formatDateTime }}</span>
-          <button @click="detelePost(course, index)" v-if="authenticated&&current_user&&current_user.roles&&current_user.roles.indexOf('author')>=0"> delete</button>
+          <router-link class="course-link"
+                    :to='{name: "EditArticle", params: {post_id: course.id}}'
+                  >
+            Edit
+          </router-link>
+          <button @click="detelePost(course, index)" v-if="authenticated&&current_user&&current_user.roles&&current_user.roles.indexOf('author')>=0"> Delete</button>
+
           <br/>
 
           <div class="course-desc" v-html="course.content">

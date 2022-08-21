@@ -3,6 +3,8 @@ import VueRouter from 'vue-router';
 
 import NewLessonPage from './components/NewLesson.vue';
 import NewArticlePage from './components/NewArticle.vue';
+import ArticleEditPage from './components/NewArticle.vue';
+
 import Article from './components/Article.vue';
 import NewCustomArticle from './components/NewCustomArticle.vue';
 import ArticlesPage from './components/Articles.vue';
@@ -56,7 +58,7 @@ const routes = [
   },
   {
     path: '/edit_blog/:post_id',
-    component: NewArticlePage,
+    component: ArticleEditPage,
     name: 'EditArticle',
     props: true
   },
