@@ -20,6 +20,8 @@ import NewCoursePage from './components/NewCourse.vue';
 import EditCoursePage from './components/NewCourse.vue';
 import CoursePage from './components/Course.vue';
 import LessonViewPage from './components/LessonView.vue';
+import UtilsPage from './components/Utils.vue';
+
 
 const routes = [
   {
@@ -27,6 +29,11 @@ const routes = [
     component: NewLessonPage,
     name: 'NewLesson',
     props: true
+  },
+   {
+    path: '/utils',
+    component: UtilsPage,
+    name: 'Utils',
   },
   {
     path: '/:CourseId/lessons/edit/:lesson_id',
