@@ -350,7 +350,18 @@ input:checked + .slider:before {
   grid-row: 1;
   grid-column: 2;
 }
+.v-lazy-image {
+  filter: blur(10px);
+  transition: filter 0.7s;
+}
 
+.v-lazy-image-loaded {
+  filter: blur(0);
+}
+
+.quillWrapper + div {
+  padding-top: 100px;
+}
 @media (max-width: 400px) {
   .top-menu {
     display: flex;

@@ -78,6 +78,7 @@ export default {
       }
     },
     handleUpdate() {
+      console.log('updating')
       Server.put(`/api/courses/${this.CourseId}`, this.form, {
           headers: {
             'Content-Type': 'multipart/form-data'
