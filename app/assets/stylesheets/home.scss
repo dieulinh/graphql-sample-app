@@ -292,6 +292,7 @@ input:checked + .slider:before {
   margin: 0;
   width: 90%;
   display: flex;
+  flex-direction: column;
   flex-wrap: wrap;
   background-color: #fff;
   padding: 20px;
@@ -339,6 +340,17 @@ input:checked + .slider:before {
   display: flex;
   min-width: 280px;
 }
+.main-content {
+  display: grid;
+  grid-template-columns: 7fr 3fr;
+  top:  100px;
+}
+.left-menu {
+  padding-top: 100px;
+  grid-row: 1;
+  grid-column: 2;
+}
+
 @media (max-width: 400px) {
   .top-menu {
     display: flex;

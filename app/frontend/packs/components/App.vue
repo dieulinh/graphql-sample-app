@@ -150,15 +150,5 @@ p {
   text-transform: uppercase;
   font-weight: 600;
 }
-.main-content {
-  display: grid;
-  grid-template-columns: 7fr 3fr;
-  top:  100px;
-}
-.left-menu {
-  padding-top: 100px;
-  grid-row: 1;
-  grid-column: 2;
-}
 
 </style>
