@@ -99,7 +99,6 @@ export default {
           }
       })
       .then((result) => {
-        console.log(result.data)
         this.$store.dispatch('setFlashMessage', {text: 'Course added successfully', type: 'success'})
         this.$router.push('/courses');
       })

@@ -33,7 +33,6 @@ export default {
   },
   methods: {
     detelePost(article, index) {
-      console.log(index);
       server.delete(`/api/articles/${article.id}`).then(() => {
         this.articles.splice(index, 1)
         this.$store.dispatch('setFlashMessage', {text: 'deleting successfully', type: 'success' });

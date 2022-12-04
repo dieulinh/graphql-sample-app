@@ -46,7 +46,6 @@ export default {
     resetPassword() {
       axios.post(`${process.env.ROOT_API}/login/update_password`, {password: this.password, password_confirmation: this.password_confirmation, reset_password_token: this.reset_password_token})
       .then((response) => {
-        console.log(response);
         this.$router.push('/')
       }).catch((err) => {
         this.$store.dispatch('setFlashMessage', {text: 'Failed to reset password', type: 'error'})

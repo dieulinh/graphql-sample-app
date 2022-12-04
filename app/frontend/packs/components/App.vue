@@ -127,28 +127,3 @@ export default {
   }
 };
 </script>
-
-<style scoped>
-p {
-  font-size: 2em;
-  text-align: center;
-}
-.blog-btn {
-  color: #5a3424;
-  text-decoration: underline;
-  padding: 10px;
-}
-.marginlr {
-  margin-left: 5px;
-  margin-right: 5px;
-}
-.submenu {
-  display: flex;
-  justify-items: center;
-  margin: 10px;
-  color: #222;
-  text-transform: uppercase;
-  font-weight: 600;
-}
-
-</style>

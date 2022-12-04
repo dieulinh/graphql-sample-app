@@ -16,9 +16,6 @@
           </lazy-component>
           <div v-html="course.node&&course.node.description">
           </div>
-          <div class="rating">
-            <star-rating :star-size="20"/>
-          </div>
         </div>
       </div>
     </div>
@@ -32,8 +29,6 @@ import server from '../services/Server';
 import LazyComponent from "v-lazy-component";
 Vue.use(LazyComponent)
 
-import StarRating from 'vue-star-rating';
-
 const coursesApiUrl = `/api/courses`;
 export default {
   data() {
@@ -41,7 +36,7 @@ export default {
       courses: []
     }
   },
-  components: {StarRating, LazyComponent},
+  components: {LazyComponent},
   created() {
 
     axios.get(coursesApiUrl

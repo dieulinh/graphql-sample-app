@@ -9,7 +9,6 @@ import Article from './components/Article.vue';
 import NewCustomArticle from './components/NewCustomArticle.vue';
 import ArticlesPage from './components/Articles.vue';
 import EditLessonPage from './components/NewLesson.vue';
-import LessonPage from './components/Lesson.vue';
 import LoginPage from './components/Login.vue';
 import RegisterPage from './components/Register.vue';
 import ResetPasswordPage from './components/ResetPassword.vue';

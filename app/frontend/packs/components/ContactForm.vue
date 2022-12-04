@@ -24,13 +24,6 @@ export default {
       }
     }
   },
-  mounted() {
-    // axios.get(`/api/inquiries/client_ip`)
-    // .then(x => x.json())
-    // .then(({ ip }) => {
-    //     this.term = ip;
-    // });
-  },
 
   methods: {
     validContent() {

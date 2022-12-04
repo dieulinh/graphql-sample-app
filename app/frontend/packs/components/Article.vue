@@ -34,9 +34,3 @@ export default {
   },
 }
 </script>
-<style scoped>
-
-  .article-content {
-    flex-direction: column;
-  }
-</style>
