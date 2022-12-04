@@ -9,7 +9,7 @@
           </router-link>
 
           <lazy-component wrapper-tag="section">
-           <img :src="course.node&&course.node.courseCoverUrl" class="course-cover" height="80px" width="auto" />
+           <img :src="course.node&&course.node.courseCoverUrl" :alt='course["node"]&&course["node"].courseName' class="course-cover" height="80px" width="auto" />
 
             <!-- Optional loading indicator -->
             <span slot="placeholder">Loading..</span>
