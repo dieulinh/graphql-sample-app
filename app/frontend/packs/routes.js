@@ -15,7 +15,6 @@ import RegisterPage from './components/Register.vue';
 import ResetPasswordPage from './components/ResetPassword.vue';
 import ChangePasswordPage from './components/ChangePassword.vue';
 import CoursesPage from './components/Courses.vue';
-import PostsPage from './components/Posts.vue';
 import NewCoursePage from './components/NewCourse.vue';
 import EditCoursePage from './components/NewCourse.vue';
 import CoursePage from './components/Course.vue';
@@ -24,6 +23,11 @@ import UtilsPage from './components/Utils.vue';
 
 
 const routes = [
+  {
+    path: '/',
+    component: CoursesPage,
+    name: 'Home'
+  },
   {
     path: '/:CourseId/newlesson',
     component: NewLessonPage,
@@ -68,11 +72,6 @@ const routes = [
     component: ArticleEditPage,
     name: 'EditArticle',
     props: true
-  },
-  {
-    path: '/',
-    component: CoursesPage,
-    name: 'Home'
   },
   {
     path: '/blog',

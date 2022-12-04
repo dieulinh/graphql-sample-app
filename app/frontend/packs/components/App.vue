@@ -34,9 +34,17 @@
         </template>
       </div>
     </div>
-    <div class="main">
-      <router-view :key="$route.fullPath" />
+    <div class="main-content">
+      <div class="main">
+        <router-view :key="$route.fullPath" />
+
+      </div>
+      <div class="left-sidebar left-menu">
+        <blog-component />
+      </div>
     </div>
+
+
     <div v-if="showContactForm">
       <contact-form @sendMessage="sendContactMessage"></contact-form>
     </div>
@@ -52,10 +60,11 @@
 import FlashMessage from './FlashMessage';
 import axios from 'axios';
 import ContactForm from './ContactForm.vue';
+import BlogComponent from './BlogPosts.vue';
 
 import { mapState } from 'vuex';
 export default {
-  components: {FlashMessage, ContactForm},
+  components: {FlashMessage, ContactForm, BlogComponent},
   data() {
     return {
       showContactForm: false
@@ -140,6 +149,16 @@ p {
   color: #222;
   text-transform: uppercase;
   font-weight: 600;
+}
+.main-content {
+  display: grid;
+  grid-template-columns: 7fr 3fr;
+  top:  100px;
+}
+.left-menu {
+  padding-top: 100px;
+  grid-row: 1;
+  grid-column: 2;
 }
 
 </style>
