@@ -1,6 +1,6 @@
-require 'sidekiq/web'
-Sidekiq::Web.set :session_secret, Rails.application.secrets[:secret_key_base]
-Sidekiq::Web.set :sessions,       Rails.application.config.session_options
+# require 'sidekiq/web'
+# Sidekiq::Web.set :session_secret, Rails.application.secrets[:secret_key_base]
+# Sidekiq::Web.set :sessions,       Rails.application.config.session_options
 Rails.application.routes.draw do
   # mount Sidekiq::Web => '/sidekiq'
   if Rails.env.development?

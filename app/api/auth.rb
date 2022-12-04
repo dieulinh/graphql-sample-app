@@ -38,7 +38,7 @@ class Auth < Grape::API
       user = Student.find_by(email: email)
       if user
         user.generate_password_token!
-        SendmailWorker.perform_async(user.id)
+        # SendmailWorker.perform_async(user.id)
         present status: 200
       else
         present not_found!
