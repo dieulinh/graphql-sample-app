@@ -9,7 +9,6 @@
         </router-link>
         <div>
           <span class="text-right">{{ course.created_at | formatDateTime }}</span>
-          <button @click="detelePost(course, index)" v-if="authenticated&&current_user&&current_user.roles&&current_user.roles.indexOf('author')>=0"> Delete</button>
 
         </div>
       </div>

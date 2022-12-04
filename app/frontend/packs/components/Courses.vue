@@ -8,9 +8,8 @@
             <h3 class="course-title">{{course["node"]&&course["node"].courseName}} </h3>
           </router-link>
 
-
           <lazy-component wrapper-tag="section">
-           <img :src="course.node&&course.node.courseCoverUrl" class="course-cover"/>
+           <img :src="course.node&&course.node.courseCoverUrl" class="course-cover" height="80px" width="auto" />
 
             <!-- Optional loading indicator -->
             <span slot="placeholder">Loading..</span>
