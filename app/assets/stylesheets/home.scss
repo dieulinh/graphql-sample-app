@@ -211,13 +211,26 @@ input:checked + .slider:before {
   height: 260px !important;
   overflow: hidden;
   text-overflow: ellipsis;
-  padding: 5px 10px;
+  padding: 5px 10px 10px;
+}
+.desc-content {
+  height: 202px;
+  position: absolute;
+  overflow-y: hidden;
+  padding: 10px;
 }
 .course-title
 {
   line-height: 1.8;
   border-bottom: 1px solid #c3c3c3;
   padding-bottom: 6px;
+
+  font-size: 1.17em;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  font-weight: bold;
   &:hover {
     color: $background_primary;
   }
@@ -245,6 +258,7 @@ input:checked + .slider:before {
   border-radius: 3px;
 
 }
+
 .course-view-wrapper {
   display: flex;
   flex-flow: column nowrap;

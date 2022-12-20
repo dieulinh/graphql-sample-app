@@ -1,11 +1,11 @@
 <template>
   <div class="course-wrapper">
-    <div v-for="course in courses" :key="course.node&&course.node.id" class="course-card">
-      <div v-if="course.node">
+    <template v-for="course in courses">
+      <div v-if="course.node" :key="course.node&&course.node.id" class="course-card">
         <div class="course-thumbnail summary-content">
-          <router-link class="course-link"
+          <router-link class="course-link course-title"
                     :to='{name: "CoursePage", params: {courseId: course["node"]&&course["node"].id}}'>
-            <h3 class="course-title">{{course["node"]&&course["node"].courseName}} </h3>
+            {{course["node"]&&course["node"].courseName}}
           </router-link>
 
           <lazy-component wrapper-tag="section">
@@ -14,11 +14,11 @@
             <!-- Optional loading indicator -->
             <span slot="placeholder">Loading..</span>
           </lazy-component>
-          <div v-html="course.node&&course.node.description">
+          <div v-html="course.node&&course.node.description" class="desc-content">
           </div>
         </div>
       </div>
-    </div>
+    </template>
   </div>
 </template>
 
