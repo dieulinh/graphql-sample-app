@@ -7,6 +7,7 @@ class BaseImageUploader < CarrierWave::Uploader::Base
   #   storage :file
   # end
   storage :fog
+  process :quality => 50
 
   # Process files as they are uploaded:
 
@@ -18,10 +19,12 @@ class BaseImageUploader < CarrierWave::Uploader::Base
   #   process resize_to_fill: [816, 612]
   # end
   version :web do
-    process resize_to_fill: [800, 600]
+    process resize_to_fill: [600, 500]
+    process :quality => 50
   end
   version :opt_web do
     process resize_to_fill: [300, 225]
+    process :quality => 50
   end
   # version :icon do
   #   process resize_to_fill: [32, 32]

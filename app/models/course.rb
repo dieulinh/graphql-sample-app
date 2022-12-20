@@ -10,6 +10,7 @@ class Course < ApplicationRecord
   has_one_attached :course_cover, dependent: :destroy
   def course_cover_url
     return nil unless course_cover.attached?
-    course_cover.service_url
+    Rails.application.routes.url_helpers.rails_representation_url(course_cover.variant(resize: "500x400").processed, only_path: true)
+    #course_cover.service_url
   end
 end
