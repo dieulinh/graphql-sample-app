@@ -1,5 +1,5 @@
 <template>
-  <div class="course-wrapper">
+  <div class="course-wrapper main-hidden">
     <template v-for="course in courses">
       <div v-if="course.node" :key="course.node&&course.node.id" class="course-card">
         <div class="course-thumbnail summary-content">
