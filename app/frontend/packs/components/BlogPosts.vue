@@ -8,7 +8,7 @@
           <h3 class="course-title">{{course.title}} </h3>
         </router-link>
         <div>
-          <span class="text-right">{{ course.created_at | formatDateTime }}</span>
+          <span class="text-right">{{ course.created_at }}</span>
 
         </div>
       </div>

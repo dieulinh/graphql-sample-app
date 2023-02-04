@@ -27,9 +27,20 @@
 </template>
 <script>
 import server from '../services/Server';
+import moment from 'moment';
+
 
 const coursesApiUrl = `/api/articles`;
 export default {
+
+  filters: {
+    formatDateTime(value) {
+
+      if (value) {
+        return moment(String(value)).format('YY.MM.DD HH:mm')
+      }
+    }
+  },
   data() {
     return {
       articles: []

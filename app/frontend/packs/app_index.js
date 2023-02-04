@@ -7,12 +7,11 @@ import App from './components/App'
 
 import store from './store'
 import router from './routes';
-import moment from 'moment';
+// import moment from 'moment';
 
 Vue.use(Vuex);
 Vue.prototype.$http = Axios;
 let authToken = localStorage.getItem('user');
-// let expiry = (new Date(localStorage.getItem('auth_token_expiry')*1000)) < (new Date());
 
 if(authToken) {
   Vue.prototype.$http.defaults.headers.common['Authorization'] = `${authToken}`;
@@ -20,12 +19,11 @@ if(authToken) {
   localStorage.removeItem('user');
 }
 Vue.use(VueRouter);
-Vue.filter('formatDateTime', function(value) {
-  if (value) {
-    return moment(String(value)).format('YY.MM.DD HH:mm')
-    // return moment(String(value)).format('MM/DD/YYYY hh:mm A')
-  }
-});
+// Vue.filter('formatDateTime', function(value) {
+//   if (value) {
+//     return moment(String(value)).format('YY.MM.DD HH:mm')
+//   }
+// });
 document.addEventListener('DOMContentLoaded', () => {
   const app = new Vue({
     el: '#app',
