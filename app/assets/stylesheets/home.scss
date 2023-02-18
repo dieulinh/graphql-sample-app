@@ -331,6 +331,10 @@ input:checked + .slider:before {
   width: 100vw;
   justify-content: center;
 }
+.ql-syntax {
+  background-color: #23241f;
+  color: #f8f8f2;
+}
 .article-wrapper {
   display: flex;
   flex-direction: column;
