@@ -14,11 +14,11 @@ class Resumes < Grape::API
             max_tokens: 2000
           })
 
-      puts response['choices'][0]['text']
+      # puts response['choices'][0]['text']
       present response['choices'][0]['text']
     end
   end
 end
 
 
-# write me a resumes for a web developer with 5 years working as nodejs backend developer
+# write me a resume for a web developer with 5 years working as nodejs backend developer
