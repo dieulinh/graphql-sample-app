@@ -6,8 +6,12 @@
         <nav class="submenu flex-left">
           <span class="marginlr"></span>
 
-          <span class="marginlr"></span>
+
           <router-link :to="{name: 'Blog'}" class="btn-link">Blog</router-link>
+          <span class="marginlr"></span>
+          »
+          <span class="marginlr"></span>
+          <router-link :to="{name: 'Utils'}" class="btn-link">Utils</router-link>
           <span class="marginlr"></span>
             »
           <span class="marginlr"></span>
@@ -45,8 +49,8 @@
     </div>
 
 
-    <div v-if="showContactForm">
-      <contact-form @sendMessage="sendContactMessage"></contact-form>
+    <div v-if="contact_form_visible">
+      <contact-form @sendMessage="sendContactMessage" @closeForm="hideContactForm"></contact-form>
     </div>
     <footer>
       <section class="copy-right">
@@ -70,7 +74,15 @@ export default {
       showContactForm: false
     };
   },
+  watch: {
+    '$route' (to, from) {
+    // Put your logic here...
+      this.$store.dispatch('contact_form_visible', false)
+    }
+  },
   computed: {
+    contact_form_visible() {
+      return this.$store.state.contact_form_visible;},
     authenticated() { return  this.$store.state.authenticated },
     fMessage() {
       return { text: (this.$store.state.flashMessage &&this.$store.state.flashMessage.text)||'' , type: this.$store.state.flashMessage.type||'success' }
@@ -81,7 +93,7 @@ export default {
       let {email, content} = message;
       axios.post(`/api/inquiries`, {email, content})
       .then((rs) => {
-        this.showContactForm = false;
+        this.$store.dispatch('contact_form_visible', false)
         this.$store.dispatch('setFlashMessage', {text: 'Your messages has been sent', type: 'success'});
       }).catch((err) => {
         this.$store.dispatch('setFlashMessage', {text: 'Failed to send your message', type: 'error'});
@@ -89,7 +101,7 @@ export default {
       })
     },
     handleShowContactForm() {
-      this.showContactForm = !this.showContactForm;
+      this.$store.dispatch('contact_form_visible', !this.contact_form_visible)
     },
     login() {
       this.hideContactForm();
@@ -108,16 +120,16 @@ export default {
       this.$store.dispatch('logout')
     },
     goHome() {
-      this.hideContactForm();
+      this.$store.dispatch('contact_form_visible', false)
       if (this.$router.currentRoute.name != 'Home') {
         this.$router.push('/');
       }
     },
     hideContactForm() {
-      this.showContactForm = false;
+      this.$store.dispatch('contact_form_visible', false)
     },
     addCourse() {
-      this.hideContactForm();
+      this.$store.dispatch('contact_form_visible', false)
 
       if (this.$router.currentRoute.name != 'NewCourse') {
         this.$router.push('/courses/new');

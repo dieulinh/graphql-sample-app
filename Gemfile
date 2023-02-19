@@ -43,6 +43,7 @@ gem "ruby-readability", :require => 'readability'
 # Grape API with swagger
 gem 'grape'
 gem 'grape-swagger'
+gem 'ruby-openai'
 # gem 'rack-cors'
 gem 'aws-sdk', '~> 3'
 # Mailchimp

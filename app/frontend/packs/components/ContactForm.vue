@@ -1,12 +1,17 @@
 <template>
   <div class="contact-container">
     <div class="pd-30 wht-bg round-corner">
+      <p></p>
+      <p></p>
+      <hr/>
+      <hr>
       <div class="panel login-wrapper wht-bg">
         <label class="form-title">We like to hear you</label>
         <input type="text" v-model="message.email" placeholder="Your Email"/>
         <textarea v-model="message.content" placeholder="Your message"/>
-        <div class="flex-row align-end space-between">
+        <div class="flex-row">
           <button @click="validContent()&&sendMessage()" :disabled="!validContent()" class="btn btn-primary" :class="{'disabled-form-control': !validContent()}">Send</button>
+          <button @click="closeForm" class="btn btn-secondary">Close</button>
         </div>
       </div>
     </div>
@@ -31,6 +36,9 @@ export default {
     },
     sendMessage() {
       this.$emit('sendMessage', this.message)
+    },
+    closeForm() {
+      this.$emit('closeForm')
     }
   }
 }

@@ -16,6 +16,7 @@
   </div>
 </template>
 <script>
+import {mapState} from 'vuex';
 import server from '../services/Server';
 
 const coursesApiUrl = `/api/articles`;
@@ -27,9 +28,13 @@ export default {
   },
   computed: {
     authenticated() {return this.$store.state.authenticated },
+    contact_form_visible() {return this.$store.state.contact_form_visible;},
     current_user() {
       return this.$store.state.user
     }
+  },
+  mounted() {
+    this.$store.dispatch('contact_form_visible', false)
   },
   methods: {
     detelePost(article, index) {
@@ -42,6 +47,7 @@ export default {
     }
   },
   created() {
+
     server.get(coursesApiUrl
       )
       .then((result) => {

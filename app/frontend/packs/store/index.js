@@ -9,8 +9,11 @@ const debug = process.env.NODE_ENV !== 'production';
 const API_URL = process.env.ROOT_API;
 
 const mutations = {
+  set_contact_form_visible(state, visible) {
+    state.contact_form_visible = visible;
+  },
   searchTerm(state, term) {
-    this.state.searchTerm = term;
+    state.searchTerm = term;
   },
   setTotalPage(state, payload) {
     state.total_pages = payload.total_pages;
@@ -46,6 +49,9 @@ const mutations = {
 };
 
 const actions = {
+  contact_form_visible({commit},visible) {
+    commit('set_contact_form_visible', visible)
+  },
   searchTerm({commit}, term){
     commit('searchTerm', term);
   },
@@ -136,10 +142,12 @@ const getters = {
   searchTerm: state => state.searchTerm,
   course: state => state.course,
   flashMessage: state => state.flashMessage,
-  auth_token_expiry: state => state.auth_token_expiry
+  auth_token_expiry: state => state.auth_token_expiry,
+  contact_form_visible: state => state.contact_form_visible
 };
 
 const state = {
+  contact_form_visible: false,
   auth_token_expiry: 0,
   searchTerm: null,
   course: null,

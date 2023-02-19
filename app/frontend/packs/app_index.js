@@ -7,7 +7,7 @@ import App from './components/App'
 
 import store from './store'
 import router from './routes';
-// import moment from 'moment';
+
 
 Vue.use(Vuex);
 Vue.prototype.$http = Axios;
@@ -19,11 +19,7 @@ if(authToken) {
   localStorage.removeItem('user');
 }
 Vue.use(VueRouter);
-// Vue.filter('formatDateTime', function(value) {
-//   if (value) {
-//     return moment(String(value)).format('YY.MM.DD HH:mm')
-//   }
-// });
+
 document.addEventListener('DOMContentLoaded', () => {
   const app = new Vue({
     el: '#app',

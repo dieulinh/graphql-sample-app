@@ -46,6 +46,9 @@ export default {
       articles: []
     }
   },
+  mounted(){
+    this.$store.dispatch('contact_form_visible', false)
+  },
   computed: {
     authenticated() {return this.$store.state.authenticated },
     current_user() {
@@ -63,6 +66,7 @@ export default {
     }
   },
   created() {
+
     server.get(coursesApiUrl
       )
       .then((result) => {
