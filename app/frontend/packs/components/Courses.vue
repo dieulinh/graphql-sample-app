@@ -9,7 +9,8 @@
           </router-link>
 
           <lazy-component wrapper-tag="section">
-           <img :src="course.node&&course.node.courseCoverUrl" :alt='course["node"]&&course["node"].courseName' class="course-cover" height="80px" width="auto" />
+           <img :src="course.node&&course.node.courseCoverUrl" v-if="course.node&&course.node.courseCoverUrl" :alt='course["node"]&&course["node"].courseName' class="course-cover" height="80px" width="auto" />
+              <img src="~/images/no-image-icon.png" v-if="course.node&&!course.node.courseCoverUrl"/>
 
             <!-- Optional loading indicator -->
             <span slot="placeholder">Loading..</span>
@@ -25,7 +26,6 @@
 <script>
 import axios from 'axios';
 import Vue from 'vue';
-import server from '../services/Server';
 import LazyComponent from "v-lazy-component";
 Vue.use(LazyComponent)
 
