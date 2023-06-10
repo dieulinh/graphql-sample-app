@@ -50,6 +50,7 @@ export default {
         let course = result.data;
         this.course_name = course.course_name;
         this.description = course.description;
+        this.status = 0
         console.log(this.course)
       })
       .catch((err) => {
@@ -115,7 +116,6 @@ export default {
           }
       })
       .then((result) => {
-        console.log(result)
         let url = result.data.avatar.opt_web.url // Get url from response
         Editor.insertEmbed(cursorLocation, 'image', url);
         resetUploader();

@@ -16,7 +16,7 @@
   </div>
 </template>
 <script>
-import {mapState} from 'vuex';
+
 import server from '../services/Server';
 
 const coursesApiUrl = `/api/articles`;
@@ -44,6 +44,15 @@ export default {
       }).catch((err) => {
         console.log(err);
       })
+    }
+  },
+   watch: {
+    contact_form_visible(newValue, oldValue) {
+    // Put your logic here...
+      console.log(newValue)
+      if (oldValue) {this.$store.dispatch('contact_form_visible', false);}
+
+
     }
   },
   created() {

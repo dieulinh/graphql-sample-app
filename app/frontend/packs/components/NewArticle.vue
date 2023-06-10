@@ -42,9 +42,7 @@ export default {
       return;
     }
 
-    if (this.current_user.roles.indexOf('author')<0) {
-      this.$router.push(`/blog/`)
-    }
+
     if (this.post_id) {
       server.get(`/api/articles/${this.post_id}`)
       .then((result) => {

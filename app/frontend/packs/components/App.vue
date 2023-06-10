@@ -66,7 +66,6 @@ import axios from 'axios';
 import ContactForm from './ContactForm.vue';
 import BlogComponent from './BlogPosts.vue';
 
-import { mapState } from 'vuex';
 export default {
   components: {FlashMessage, ContactForm, BlogComponent},
   data() {
@@ -126,6 +125,7 @@ export default {
       }
     },
     hideContactForm() {
+      console.log('hide')
       this.$store.dispatch('contact_form_visible', false)
     },
     addCourse() {

@@ -19,6 +19,7 @@ class Courses < Grape::API
                 courseName
                 description
                 courseCoverUrl
+                status
               }
               cursor
             }
@@ -56,18 +57,23 @@ class Courses < Grape::API
     end
 
     params do
-      requires :course_name, type: String
+      optional :course_name, type: String
       optional :course_cover, type: File
       optional :description, type: String
+      optional :status_update, type: Boolean
     end
     put '/:id' do
       authenticate_user!
       course = Course.find(params[:id])
       authorize course, :update?
-      course.course_cover.attach(io: File.open(params[:course_cover][:tempfile]), filename: params[:course_cover][:filename], content_type: params[:course_cover][:type]) if params[:course_cover]
-      course_params = params.except(:course_cover)
-      course_params = course_params.merge(description: params[:description].html_safe) if params[:description]
-      course.assign_attributes(course_params)
+      unless params[:status_update]
+        course.course_cover.attach(io: File.open(params[:course_cover][:tempfile]), filename: params[:course_cover][:filename], content_type: params[:course_cover][:type]) if params[:course_cover]
+        course_params = params.except(:course_cover)
+        course_params = course_params.merge(description: params[:description].html_safe) if params[:description]
+      else
+        course_params = {status: (course.pending? ? :published : :pending) }
+      end
+      course.attributes = course_params
       course.save
       present course
     end
