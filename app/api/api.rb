@@ -15,6 +15,7 @@ class API < Grape::API
   mount Photos
   mount Inquiries
   mount Resumes
+  mount Mentors
 
   rescue_from Grape::Exceptions::ValidationErrors  do |e|
     rack_response({
