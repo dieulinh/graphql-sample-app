@@ -11,14 +11,20 @@ class Mentors < Grape::API
     end
 
     post '/' do
+      authenticate_user!
       post = Mentor.create(title: params[:lesson][:title], content: params[:lesson][:content].html_safe, published: params[:lesson][:published])
       present post
     end
+    # index
     params do
       optional :page, type: Integer
     end
     get '/' do
       present Mentor.all
+    end
+
+    get '/:id' do
+      present {mentor: Mentor.find(params[:id])}
     end
   end
 end
