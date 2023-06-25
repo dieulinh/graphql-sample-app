@@ -24,7 +24,7 @@ class Mentors < Grape::API
     end
 
     get '/:id' do
-      present {mentor: Mentor.find(params[:id])}
+      { mentor: Mentor.find(params[:id]) }.as_json
     end
   end
 end
