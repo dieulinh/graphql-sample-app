@@ -18,6 +18,10 @@ class Mentors < Grape::API
     # index
     params do
       optional :page, type: Integer
+      optional :specialization, type: String
+      optional :bio, type: String
+      optional :experience_years, type: Integer
+      optional :address, type: String
     end
     get '/' do
       present Mentor.all
@@ -32,6 +36,8 @@ class Mentors < Grape::API
       optional :email, type: String
       optional :phone, type: String
       optional :specialization, type: String
+      optional :skills, type: String
+      optional :country, type: String
       optional :bio, type: String
       optional :experience_years, type: Integer
       optional :address, type: String
