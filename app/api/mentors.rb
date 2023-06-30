@@ -28,7 +28,10 @@ class Mentors < Grape::API
     end
 
     get '/:id' do
-      { mentor: Mentor.find(params[:id]) }.as_json
+      mentor_att = {}.tap do |rs|
+        Mentor.find(params[:id]).attributes.each { |at, v| rs[at.camelize(:lower)] = v }
+      end
+      { mentor: mentor_att }.as_json
     end
     params do
       optional :first_name, type: String
