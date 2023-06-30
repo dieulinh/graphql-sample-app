@@ -24,7 +24,8 @@ class Mentors < Grape::API
       optional :address, type: String
     end
     get '/' do
-      present Mentor.all
+      page = params[:page] || 1
+      present Mentor.page(page)
     end
 
     get '/:id' do
@@ -33,6 +34,7 @@ class Mentors < Grape::API
       end
       { mentor: mentor_att }.as_json
     end
+
     params do
       optional :first_name, type: String
       optional :last_name, type: String
@@ -47,7 +49,7 @@ class Mentors < Grape::API
     end
     put '/:id' do
       authenticate_user!
-      mentor =  Mentor.find(params[:id])
+      mentor = Mentor.find(params[:id])
       # authorize mentor, :update?
       mentor.update(params)
       { mentor: mentor }.as_json
