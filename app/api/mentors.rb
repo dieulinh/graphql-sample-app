@@ -22,10 +22,14 @@ class Mentors < Grape::API
       optional :bio, type: String
       optional :experience_years, type: Integer
       optional :address, type: String
+      optional :country, type: String
+      optional :q, type: String
     end
     get '/' do
       page = params[:page] || 1
-      present Mentor.page(page)
+      mentors = Mentor.ransack(country: params[:country], specialization_or_bio_cont: params[:q])
+
+      present mentors.result.page(page)
     end
 
     get '/:id' do
@@ -41,7 +45,7 @@ class Mentors < Grape::API
       optional :email, type: String
       optional :phone, type: String
       optional :specialization, type: String
-      optional :skills, type: String
+      # optional :skills, type: String
       optional :country, type: String
       optional :bio, type: String
       optional :experience_years, type: Integer
@@ -49,9 +53,12 @@ class Mentors < Grape::API
     end
     put '/:id' do
       authenticate_user!
+      updating_params = {}.tap do |h|
+        params.each {|k,v| h[k.underscore] = v}
+      end
       mentor = Mentor.find(params[:id])
       # authorize mentor, :update?
-      mentor.update(params)
+      mentor.update(updating_params)
       { mentor: mentor }.as_json
     end
   end

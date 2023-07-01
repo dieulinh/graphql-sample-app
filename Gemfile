@@ -59,7 +59,7 @@ gem 'webpacker', '~> 5.x'
 # gem 'sidekiq', '~> 5.x'
 # Use ActiveStorage variant
 gem 'mini_magick', '~> 4.8'
-
+gem 'ransack'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
