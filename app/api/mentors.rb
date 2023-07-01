@@ -22,10 +22,14 @@ class Mentors < Grape::API
       optional :bio, type: String
       optional :experience_years, type: Integer
       optional :address, type: String
+      optional :country, type: String
+      optional :q, type: String
     end
     get '/' do
       page = params[:page] || 1
-      present Mentor.page(page)
+      mentors = Mentor.ransack(country: params[:country], specialization_or_bio_cont: params[:q])
+
+      present mentors.result.page(page)
     end
 
     get '/:id' do
