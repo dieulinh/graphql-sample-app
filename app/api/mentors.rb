@@ -27,7 +27,9 @@ class Mentors < Grape::API
     end
     get '/' do
       page = params[:page] || 1
-      mentors = Mentor.ransack(country: params[:country], specialization_or_bio_cont: params[:q])
+      search_params = {specialization_or_bio_cont: params[:q]}
+      search_params = search_params.merge(country_eq: params[:country]) if params[:country].present?
+      mentors = Mentor.ransack(search_params)
 
       present mentors.result.page(page)
     end
@@ -50,6 +52,7 @@ class Mentors < Grape::API
       optional :bio, type: String
       optional :experience_years, type: Integer
       optional :address, type: String
+      optional :hourly_rate, type: Integer
     end
     put '/:id' do
       authenticate_user!
