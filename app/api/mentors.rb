@@ -64,5 +64,26 @@ class Mentors < Grape::API
       mentor.update(updating_params)
       { mentor: mentor }.as_json
     end
+    params do
+      requires :company_name, type: String
+      optional :position, type: String
+      optional :start_date, type: Date
+      optional :end_date, type: Date
+      requires :responsibilities, type: String
+    end
+    post '/:id/works' do
+      authenticate_user!
+      mentor = Mentor.find(params[:id])
+      # authorize mentor, :update?
+      work = mentor.work_histories.create(params)
+      { work_history: work }.as_json
+    end
+
+    get '/:id/works' do
+      mentor = Mentor.find(params[:id])
+      # authorize mentor, :update?
+      works = mentor.work_histories
+      { work_histories: works }.as_json
+    end
   end
 end
