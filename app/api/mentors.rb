@@ -73,14 +73,19 @@ class Mentors < Grape::API
     end
     post '/:id/works' do
       authenticate_user!
-      mentor = Mentor.find(params[:id])
+      mentor = Mentor.find(params.delete(:id))
       # authorize mentor, :update?
-      work = mentor.work_histories.create(params)
-      { work_history: work }.as_json
+      work = mentor.work_histories.build(params)
+      if work.save
+        return { work_history: mentor.work_histories }.as_json
+      else
+        return { error: 'not found'}
+      end
     end
 
     get '/:id/works' do
       mentor = Mentor.find(params[:id])
+      byebug
       # authorize mentor, :update?
       works = mentor.work_histories
       { work_histories: works }.as_json
