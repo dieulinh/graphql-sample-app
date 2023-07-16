@@ -35,10 +35,11 @@ class Mentors < Grape::API
     end
 
     get '/:id' do
+      mentor = Mentor.find(params[:id])
       mentor_att = {}.tap do |rs|
-        Mentor.find(params[:id]).attributes.each { |at, v| rs[at.camelize(:lower)] = v }
+        mentor.attributes.each { |at, v| rs[at.camelize(:lower)] = v }
       end
-      { mentor: mentor_att }.as_json
+      { mentor: mentor_att.merge(works: mentor.work_histories) }.as_json
     end
 
     params do
