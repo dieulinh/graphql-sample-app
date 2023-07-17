@@ -27,8 +27,8 @@ class Mentors < Grape::API
     end
     get '/' do
       page = params[:page] || 1
-      search_params = {specialization_or_bio_cont: params[:q]}
-      search_params = search_params.merge(country_eq: params[:country]) if params[:country].present?
+      search_params = { specialization_or_bio_matches: "%#{params[:q]}%" }
+      search_params = search_params.merge(country_eq: params[:country]) if params[:country].present? && params[:country] != 'all'
       mentors = Mentor.ransack(search_params)
 
       present mentors.result.page(page)
