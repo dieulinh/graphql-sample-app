@@ -1,6 +1,6 @@
 # README
 Sample demo
-https://www.i-class.info
+https://www.i-class.dev
 
 API
 ======
@@ -9,8 +9,8 @@ API
 - Postgresql
 - Sidekiq
 - Amazon-S3
-- Amazon-SES
-- Sendgrid API (sendgrid-ruby gem) (no longer used)
+- Amazon-SES (that is a cool one for sending messages)
+- Sendgrid API (sendgrid-ruby gem) (no longer use, n)
 
 #### Set up these environment keys properly
 
