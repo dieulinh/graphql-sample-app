@@ -9,5 +9,7 @@ Rails.application.routes.draw do
   post "/graphql", to: "graphql#execute"
   mount API => '/api'
   root to: 'home#index'
+  get 'about', to: 'home#show'
+  match '*path' => redirect('/'), :via => [:get, :post]
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

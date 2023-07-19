@@ -4,6 +4,7 @@ import VueRouter from 'vue-router';
 import NewLessonPage from './components/NewLesson.vue';
 import NewArticlePage from './components/NewArticle.vue';
 import ArticleEditPage from './components/NewArticle.vue';
+import AboutPage from './components/About.vue';
 
 import Article from './components/Article.vue';
 import NewCustomArticle from './components/NewCustomArticle.vue';
@@ -37,6 +38,11 @@ const routes = [
     path: '/utils',
     component: UtilsPage,
     name: 'Utils',
+  },
+  {
+    path: '/about',
+    component: AboutPage,
+    name: 'About',
   },
   {
     path: '/:CourseId/lessons/edit/:lesson_id',
