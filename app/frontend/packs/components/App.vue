@@ -11,7 +11,7 @@
           <span class="marginlr"></span>
           »
           <span class="marginlr"></span>
-          <router-link :to="{name: 'Utils'}" class="btn-link">Utils</router-link>
+          <router-link :to="{name: 'About'}" class="btn-link">About</router-link>
           <span class="marginlr"></span>
             »
           <span class="marginlr"></span>

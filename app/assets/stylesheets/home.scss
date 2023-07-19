@@ -15,6 +15,10 @@
   border-bottom: 1px solid rgb(222, 223, 224);
   padding: 20px 10px 20px 10px;
 }
+.top-empty {
+  margin-top: 100px;
+}
+
 .contact-container {
   position: absolute;
   width: 100vw;
@@ -22,6 +26,16 @@
   top: 0;
   background-color: #222;
 }
+.high-skills li {
+  line-height: 23px;
+  padding: 2px;
+}
+.avatar {
+  height: 230px;
+}
+.high-skills li:nth-child(odd) {
+  background: white;
+                 }
 .brand {
   color: #f1693f;
   font-weight: 900;
