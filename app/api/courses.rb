@@ -32,10 +32,21 @@ class Courses < Grape::API
     end
 
     params do
+      requires :term, type: String
+      optional :page, type: Integer
+    end
+    get '/search' do
+      page = params[:page] || 1
+      search_params = { course_name_or_description_matches: "%#{params[:term]}%" }
+      courses = Course.ransack(search_params)
+
+      present courses.result.page(page)
+    end
+
+    params do
       requires :course_name, type: String
       requires :description, type: String
       optional :course_cover, type: File
-
     end
 
     post '/' do
