@@ -1,4 +1,6 @@
 class Course < ApplicationRecord
+  extend FriendlyId
+  friendly_id :course_name, use: :slugged
   default_scope { order('updated_at desc') }
   validates :course_name, :description, presence: true
   enum status: {
@@ -12,5 +14,8 @@ class Course < ApplicationRecord
     return nil unless course_cover.attached?
     Rails.application.routes.url_helpers.rails_representation_url(course_cover.variant(resize: "500x400").processed, only_path: true)
     #course_cover.service_url
+  end
+  def to_param
+    slug
   end
 end

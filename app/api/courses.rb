@@ -36,11 +36,12 @@ class Courses < Grape::API
       optional :page, type: Integer
     end
     get '/search' do
+
       page = params[:page] || 1
       search_params = { course_name_or_description_matches: "%#{params[:term]}%" }
       courses = Course.ransack(search_params)
 
-      present courses.result.page(page)
+      { courses: courses.result.page(page) }.as_json
     end
 
     params do
@@ -59,7 +60,7 @@ class Courses < Grape::API
     end
 
     get '/:course_id' do
-      course = Course.find(params[:course_id])
+      course = Course.friendly.find(params[:course_id])
       sections = []
       if current_user.present?
         sections = course.posts.order('created_at asc') if current_user.roles.include?('subscriber')||current_user.roles.include?('admin')
