@@ -3,14 +3,14 @@
     <div v-for="(course, index) in articles" :key="course.id" :class="'article-card '+ course.id">
       <div v-if="course">
         <router-link class="course-link"
-                    :to='{name: "Article", params: {post_id: course.id}}'
+                    :to='{name: "Article", params: {post_id: (course.id||course.slug)}}'
                   >
           <h3 class="course-title">{{course.title}} </h3>
         </router-link>
         <div>
           <span class="text-right">{{ course.created_at | formatDateTime }}</span>
           <router-link class="course-link"
-                    :to='{name: "EditArticle", params: {post_id: course.id}}'
+                    :to='{name: "EditArticle", params: {post_id: (course.id||course.slug)}}'
                   >
             Edit
           </router-link>

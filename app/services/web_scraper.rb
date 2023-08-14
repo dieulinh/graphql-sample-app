@@ -25,7 +25,7 @@ class WebScraper
         images: images
       }
     rescue
-      Article.new
+      Article.new.attributes
     end
   end
 end

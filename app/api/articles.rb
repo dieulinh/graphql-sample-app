@@ -20,11 +20,13 @@ class Articles < Grape::API
     post '/add_custom' do
       authenticate_user!
       post_params = WebScraper.parse_article(params[:article_url])
+      return nil if post_params.all? {|_,v| v.nil?}
+
       post = Article.new(post_params.except(:images))
       post.content = post.content + BulkUploadImages.call(post_params[:images])
       post.save
 
-      present post
+      present (post.present ? post : nil)
     end
 
     get '/' do
