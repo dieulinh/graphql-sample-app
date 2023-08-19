@@ -4,11 +4,11 @@ class OpenaiService
   def call(promp)
     make_post_request('https://api.openai.com/v1/chat/completions', request_promp(promp))
   end
-  def request_promp(promp)
+  def request_promp(prompt)
     {
       model: "gpt-3.5-turbo",
       messages: [{ role: "system", content: "You are a helpful assistant."},
-                 { role: "user", content: promp}]
+                 { role: "user", content: prompt}]
     }
   end
   private
@@ -28,7 +28,7 @@ class OpenaiService
       http.request(request)
     end
 
-    puts response.body
+    JSON.parse(response.body)
   end
 end
 

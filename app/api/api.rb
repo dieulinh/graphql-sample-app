@@ -16,6 +16,7 @@ class API < Grape::API
   mount Inquiries
   mount Resumes
   mount Mentors
+  mount OpenAiPrompt
 
   rescue_from Grape::Exceptions::ValidationErrors  do |e|
     rack_response({
