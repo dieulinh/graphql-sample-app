@@ -84,12 +84,27 @@ class Mentors < Grape::API
       end
     end
 
+    desc 'get work information'
     get '/:id/works' do
       mentor = Mentor.find(params[:id])
-      byebug
-      # authorize mentor, :update?
+
       works = mentor.work_histories
       { work_histories: works }.as_json
+    end
+
+    desc 'book mentor'
+    params do
+      requires :slot, type: Integer
+      requires :date, type: Date
+    end
+
+    post '/:id/book' do
+      authenticate_user!
+
+      mentor = Mentor.find(params.delete(:id))
+      # authorize mentor, :update?
+      booking = mentor.bookings.create(student_id: current_user.id, booking_date: params[:date], slot: params[:slot])
+      { booking: booking }
     end
   end
 end
