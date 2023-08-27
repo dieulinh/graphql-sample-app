@@ -58,10 +58,10 @@ class Mentors < Grape::API
     put '/:id' do
       authenticate_user!
       updating_params = {}.tap do |h|
-        params.each {|k,v| h[k.underscore] = v}
+        params.except(:works).each { |k, v| h[k.underscore] = v }
       end
       mentor = Mentor.find(params[:id])
-      # authorize mentor, :update?
+
       mentor.update(updating_params)
       { mentor: mentor }.as_json
     end
