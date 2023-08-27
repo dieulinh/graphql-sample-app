@@ -1,7 +1,7 @@
 class Course < ApplicationRecord
   extend FriendlyId
   friendly_id :course_name, use: :slugged
-  default_scope { order('updated_at desc') }
+  default_scope { published.order('updated_at desc') }
   validates :course_name, :description, presence: true
   enum status: {
     pending: 0,
