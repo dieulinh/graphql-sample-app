@@ -106,5 +106,21 @@ class Mentors < Grape::API
       booking = mentor.bookings.create(student_id: current_user.id, booking_date: params[:date], slot: params[:slot])
       { booking: booking }
     end
+
+    desc 'gallery image for mentor work'
+    params do
+      requires :image, type: File
+      requires :title, type: String
+      optional :description, type: String
+    end
+    post '/:id/gallery' do
+      authenticate_user!
+      mentor = Mentor.find(params.delete(:id))
+      photo = mentor.gallery_images.build(params.except(:image))
+
+      photo.image = params[:image]
+      photo.save
+      { image: photo }.as_json
+    end
   end
 end
