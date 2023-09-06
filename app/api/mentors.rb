@@ -13,8 +13,8 @@ class Mentors < Grape::API
     post '/' do
 
       authenticate_user!
-      post = Mentor.create(params.merge(student_id: current_user.id))
-      present post
+      mentor = Mentor.create(params.merge(student_id: current_user.id))
+      { mentor: mentor }.as_json
     end
     # index
     params do
@@ -40,7 +40,7 @@ class Mentors < Grape::API
       mentor_att = {}.tap do |rs|
         mentor.attributes.each { |at, v| rs[at.camelize(:lower)] = v }
       end
-      { mentor: mentor_att.merge(works: mentor.work_histories, gallery_images: mentor.gallery_images.map(&:image) ) }.as_json
+      { mentor: mentor_att.merge(works: mentor.work_histories, gallery_images: mentor.gallery_images.map(&:image)) }.as_json
     end
 
     params do
