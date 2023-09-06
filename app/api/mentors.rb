@@ -4,15 +4,16 @@ class Mentors < Grape::API
     params do
       requires :first_name, type: String
       requires :last_name, type: String
-      requires :email, type: String
+      optional :email, type: String
       requires :specialization, type: String
       optional :bio, type: String
       optional :experience_years, type: Integer
     end
 
     post '/' do
+
       authenticate_user!
-      post = Mentor.create(title: params[:lesson][:title], content: params[:lesson][:content].html_safe, published: params[:lesson][:published])
+      post = Mentor.create(params.merge(student_id: current_user.id))
       present post
     end
     # index
@@ -39,7 +40,7 @@ class Mentors < Grape::API
       mentor_att = {}.tap do |rs|
         mentor.attributes.each { |at, v| rs[at.camelize(:lower)] = v }
       end
-      { mentor: mentor_att.merge(works: mentor.work_histories) }.as_json
+      { mentor: mentor_att.merge(works: mentor.work_histories, gallery_images: mentor.gallery_images.map(&:image) ) }.as_json
     end
 
     params do
@@ -78,7 +79,7 @@ class Mentors < Grape::API
       # authorize mentor, :update?
       work = mentor.work_histories.build(params)
       if work.save
-        return { work_history: mentor.work_histories }.as_json
+        return { work_history: mentor.work_histories, gallery_images: mentor.gallery_images.map(&:image) }.as_json
       else
         return { error: 'not found'}
       end
@@ -89,7 +90,7 @@ class Mentors < Grape::API
       mentor = Mentor.find(params[:id])
 
       works = mentor.work_histories
-      { work_histories: works }.as_json
+      { work_histories: works, gallery_images: mentor.gallery_images.map(&:image)}.as_json
     end
 
     desc 'book mentor'
@@ -121,6 +122,14 @@ class Mentors < Grape::API
       photo.image = params[:image]
       photo.save
       { image: photo }.as_json
+    end
+
+    get '/:id/galleries' do
+
+      mentor = Mentor.find(params[:id])
+      galleries = mentor.gallery_images
+
+      { galleries: galleries }.as_json
     end
   end
 end
