@@ -5,7 +5,7 @@ class Bookings < Grape::API
       student = Student.find(params[:student_id])
       # authorize mentor, :update?
       bookings = student.bookings
-      { bookings: bookings }
+      { bookings: bookings.as_json(include: [:mentor]) }
     end
 
   end
