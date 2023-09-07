@@ -11,10 +11,15 @@ class Mentors < Grape::API
     end
 
     post '/' do
-
       authenticate_user!
-      mentor = Mentor.create(params.merge(student_id: current_user.id))
-      { mentor: mentor }.as_json
+      mentor = current_user.build_mentor(params)
+      return { mentor: mentor }.as_json if mentor.save
+
+      { error: 'Mentor exist' }
+
+    rescue Exception => e
+      Rails.logger.error(e.backtrace)
+      { error: 'Mentor exist Or Cannot create' }
     end
     # index
     params do
