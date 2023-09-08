@@ -31,6 +31,7 @@ class Mentors < Grape::API
       optional :country, type: String
       optional :q, type: String
     end
+
     get '/' do
       page = params[:page] || 1
       search_params = { specialization_or_bio_matches: "%#{params[:q]}%" }
@@ -46,6 +47,15 @@ class Mentors < Grape::API
         mentor.attributes.each { |at, v| rs[at.camelize(:lower)] = v }
       end
       { mentor: mentor_att.merge(works: mentor.work_histories, gallery_images: mentor.gallery_images.map(&:image)) }.as_json
+    end
+
+    desc 'get mentor of current user'
+    post '/mentor' do
+
+      authenticate_user!
+
+      mentor = current_user.mentor
+      { mentor: mentor }.as_json
     end
 
     params do
