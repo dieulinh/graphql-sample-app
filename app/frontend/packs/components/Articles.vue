@@ -8,12 +8,15 @@
           <h3 class="course-title">{{course.title}} </h3>
         </router-link>
         <div>
+
           <span class="text-right">{{ course.created_at | formatDateTime }}</span>
-          <router-link class="course-link"
-                    :to='{name: "EditArticle", params: {post_id: (course.id||course.slug)}}'
-                  >
-            Edit
-          </router-link>
+          <template v-if="current_user&&current_user.roles.length&&current_user.roles.indexOf('author')>=0">
+            <router-link class="course-link"
+                      :to='{name: "EditArticle", params: {post_id: (course.slug||course.id)}}'
+                    >
+              Edit
+            </router-link>
+          </template>
           <button @click="detelePost(course, index)" v-if="authenticated&&current_user&&current_user.roles&&current_user.roles.indexOf('author')>=0"> Delete</button>
 
           <br/>
