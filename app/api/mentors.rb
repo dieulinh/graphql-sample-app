@@ -21,6 +21,29 @@ class Mentors < Grape::API
       Rails.logger.error(e.backtrace)
       { error: 'Mentor exist Or Cannot create' }
     end
+
+    desc 'update user mentor'
+    params do
+      requires :first_name, type: String
+      requires :last_name, type: String
+      optional :email, type: String
+      requires :specialization, type: String
+      optional :bio, type: String
+      optional :experience_years, type: Integer
+    end
+
+    post '/update_mentor' do
+      authenticate_user!
+      mentor = current_user.mentor
+
+      return { mentor: mentor }.as_json if mentor.update(params)
+
+      { error: 'update failed' }
+
+    rescue Exception => e
+      Rails.logger.error(e.backtrace)
+      { error: 'Mentor exist Or Cannot update' }
+    end
     # index
     params do
       optional :page, type: Integer
