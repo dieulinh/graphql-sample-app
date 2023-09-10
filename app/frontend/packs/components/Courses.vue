@@ -1,5 +1,5 @@
 <template>
-  <div class="course-wrapper main-hidden">
+  <div class="course-wrapper">
     <template v-for="course in courses">
       <div v-if="course.node" :key="course.node&&course.node.id" class="course-card">
         <div class="course-thumbnail summary-content">
@@ -55,6 +55,7 @@ export default {
     }
   },
   created() {
+    this.$store.dispatch('hide_right_panel', false)
     axios.get(coursesApiUrl)
       .then((result) => {
         this.courses = result.data.data.coursesConnection.edges
@@ -62,6 +63,10 @@ export default {
       .catch((err) => {
         console.log(err);
       })
+
+  },
+  mounted() {
+
   },
   methods: {
     publish(course) {
