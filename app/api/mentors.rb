@@ -12,10 +12,12 @@ class Mentors < Grape::API
 
     post '/' do
       authenticate_user!
+      Rails.logger.info(params)
       mentor = current_user.build_mentor(params)
+
       return { mentor: mentor }.as_json if mentor.save
 
-      { error: 'Mentor exist' }
+      { error: 'Mentor exist', errors: mentor.errors }.as_json
 
     rescue Exception => e
       Rails.logger.error(e.backtrace)
