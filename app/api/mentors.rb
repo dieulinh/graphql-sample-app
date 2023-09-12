@@ -37,10 +37,12 @@ class Mentors < Grape::API
     post '/update_mentor' do
       authenticate_user!
       mentor = current_user.mentor
+      mentor = current_user.build_mentor unless mentor
+      mentor.assign_attributes(params)
 
-      return { mentor: mentor }.as_json if mentor.update(params)
+      return { mentor: mentor }.as_json if mentor.save
 
-      { error: 'update failed' }
+      { error: 'update failed', errors: mentor.errors }.as_json
 
     rescue Exception => e
       Rails.logger.error(e.backtrace)
