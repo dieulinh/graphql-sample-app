@@ -28,10 +28,19 @@ class Articles < Grape::API
 
       present (post.present ? post : nil)
     end
+    desc 'articles page'
+    params do
+      optional :title, type: String
+    end
 
     get '/' do
-      articles = Article.order('created_at desc')
-      present articles
+      search_params = {}
+      search_params = { title_cont: params[:title] } if params[:title].present?
+
+      articles = Article.ransack(search_params)
+
+      present articles.result.order('created_at desc')
+
     end
 
     get '/:post_id' do
