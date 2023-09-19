@@ -29,7 +29,7 @@ import Server from '../services/Server';
 import { VueEditor } from 'vue2-editor';
 
 const rootUrl = `${process.env.ROOT_API}`;
-const imageUploadUrl = `${process.env.API_SERVER_URL}/api/photos`;
+const imageUploadUrl = `/api/course_attachments`;
 export default {
    components: {
     VueEditor
