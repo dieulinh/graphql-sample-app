@@ -136,9 +136,10 @@ export default {
           }
       })
       .then((result) => {
-        let url = result.data.photo.web.url // Get url from response
+        let url = result.data.avatar.opt_web.url // Get url from response
         Editor.insertEmbed(cursorLocation, 'image', url);
         resetUploader();
+
       })
       .catch((err) => {
         console.log(err);
