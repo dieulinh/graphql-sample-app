@@ -3,7 +3,7 @@
     <div v-for="(course, index) in articles" :key="course.id" :class="'article-card '+ course.id">
       <div v-if="course">
         <router-link class="course-link"
-                    :to='{name: "Article", params: {post_id: (course.id||course.slug)}}'
+                    :to='{name: "Article", params: {post_id: (course.slug||course.id)}}'
                   >
           <h3 class="course-title">{{course.title}} </h3>
         </router-link>
