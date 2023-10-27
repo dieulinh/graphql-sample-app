@@ -51,6 +51,7 @@
   align-items: center;
 }
 .main {
+  max-width: 1200px;
   display: flex;
   margin: 100px 5vw 0 5vw;
   width: auto;
@@ -101,7 +102,12 @@ a {
   width: 0;
   height: 0;
 }
-
+.about-view-wrapper {
+  display: flex;
+  font-family: system-ui;
+  padding: 20px;
+  max-width: 1200px;
+}
 .slider {
   position: absolute;
   cursor: pointer;
@@ -372,6 +378,10 @@ input:checked + .slider:before {
   display: flex;
   min-width: 280px;
 }
+.repo-links {
+  color: #1cb56a;
+  font-size: 1.1rem;
+}
 .main-content {
   display: grid;
   grid-template-columns: 7fr 3fr;
@@ -394,33 +404,20 @@ input:checked + .slider:before {
 .quillWrapper + div {
   padding-top: 100px;
 }
-@media (max-width: 400px) {
-  .top-menu {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    height: 120px;
+.experience-skills {
+  border: 1px #f1dede solid;
+  text-indent: 50px;
+  background: white;
+  color: #000;
+  line-height: 4;
+  li {
+    padding: 20px;
   }
-  .brand-logo {
-    display: flex;
-    width: 100%;
-  }
-  .menu-right {
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
-  }
-  .btn-group-menu {
-    display: flex;
-    justify-content: flex-start;
-    flex-direction: column;
-    flex-wrap: wrap;
-    min-width: 200px;
-    margin-right: 5px;
-    padding-right: 5px;
-    align-items: flex-start;
+  li:nth-child(even) {
+    background: #f5f7ef;
   }
 }
+
 @media (max-width: 414px) {
   .menu-right {
     display: flex;
@@ -456,3 +453,34 @@ input:checked + .slider:before {
     width: 100%;
   }
 }
+@media (max-width: 400px) {
+  .top-menu {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    height: 120px;
+  }
+  .brand-logo {
+    display: flex;
+    width: 100%;
+  }
+  .menu-right {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+  }
+  .btn-group-menu {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    flex-wrap: wrap;
+    min-width: 200px;
+    margin-right: 5px;
+    padding-right: 5px;
+    align-items: flex-start;
+  }
+  .about-view-wrapper {
+    flex-direction: column;
+  }
+}
+

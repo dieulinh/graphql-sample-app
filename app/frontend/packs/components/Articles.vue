@@ -10,13 +10,13 @@
         <div>
 
           <span class="text-right">{{ course.created_at | formatDateTime }}</span>
-          <template v-if="current_user&&current_user.roles.length&&current_user.roles.indexOf('author')>=0">
+          <div v-if="authenticated&&current_user&&current_user.roles&&current_user.roles.indexOf('author')>=0">
             <router-link class="course-link"
                       :to='{name: "EditArticle", params: {post_id: (course.slug||course.id)}}'
                     >
               Edit
             </router-link>
-          </template>
+          </div>
           <button @click="detelePost(course, index)" v-if="authenticated&&current_user&&current_user.roles&&current_user.roles.indexOf('author')>=0"> Delete</button>
 
           <br/>
