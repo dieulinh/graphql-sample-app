@@ -43,13 +43,12 @@
         <router-view :key="$route.fullPath" />
 
       </div>
-      <div class="left-sidebar left-menu">
+      <div class="left-sidebar left-menu" v-if="hide_right_panel==false">
         <blog-component />
       </div>
     </div>
 
-
-    <div v-if="contact_form_visible">
+    <div v-if="contact_form_visible" class="white-bg-container">
       <contact-form @sendMessage="sendContactMessage" @closeForm="hideContactForm"></contact-form>
     </div>
     <footer>
@@ -76,10 +75,19 @@ export default {
   watch: {
     '$route' (to, from) {
     // Put your logic here...
+      console.log('from', from);
+      console.log('to', to)
+      if (to.name === 'Home') {
+        console.log('right')
+        this.$store.dispatch('hide_right_panel', false)
+      }
       this.$store.dispatch('contact_form_visible', false)
     }
   },
   computed: {
+    hide_right_panel() {
+      return this.$store.state.hide_right_panel;
+    },
     contact_form_visible() {
       return this.$store.state.contact_form_visible;},
     authenticated() { return  this.$store.state.authenticated },

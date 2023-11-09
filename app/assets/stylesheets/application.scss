@@ -25,16 +25,18 @@ body {
   color: rgba(0, 0, 0, 0.7);
   font-size: 14px;
 }
+.white-bg-container {
+  min-width: 399px;
+  min-height: 100px;
+
+  background: white;
+}
 #video1 {
   position: absolute;
   width: 500px;
   height: 500px;
 }
-.about-view-wrapper {
-  display: flex;
-  font-family: system-ui;
-  padding: 20px;
-}
+
 @media (max-width: 400px) {
   .about-view-wrapper {
     display: flex;

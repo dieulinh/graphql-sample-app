@@ -1,6 +1,6 @@
 <template>
 <div class="main">
-  <div style="width: 100vw;">
+  <div class="full">
     <div class="about-view-wrapper">
       <div class="flex-between">
         <img class="avatar" src="https://freeway-devland.s3.amazonaws.com/uploads/attached_photo/photo/517/opt_web_7c81c506-5461-4ab0-beab-a68a25bab2d3.png">
@@ -93,7 +93,7 @@ export default {
 
 
   data() {
-
+    return {}
   },
   mounted(){
     this.$store.dispatch('hide_right_panel', true)
