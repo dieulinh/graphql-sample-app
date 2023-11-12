@@ -4,6 +4,7 @@ class Articles < Grape::API
     params do
       requires :title, type: String
       requires :content, type: String
+      requires :short_description, type: String
       optional :file, type: File
     end
 

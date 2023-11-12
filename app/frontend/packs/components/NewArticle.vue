@@ -1,6 +1,7 @@
 <template>
   <div class="new-lesson">
     <input v-model="title" placeholder="Title"/>
+    <input v-model="short_description" placeholder="short description"/>
 
     <vue-editor class="wht-bg" v-model="content" useCustomImageHandler @image-added="handleUploadImage" aria-placeholder="Input overview of the course" />
     <div class="flex-row half content-center pt-10">
@@ -33,6 +34,7 @@ export default {
     return {
       title: '',
       content: '',
+      short_description: '',
       form: new FormData()
     }
   },
@@ -49,6 +51,7 @@ export default {
         let course = result.data;
         this.title = course.title;
         this.content = course.content;
+        this.short_description = course.short_description;
       })
       .catch((err) => {
         console.log(err);
@@ -75,6 +78,7 @@ export default {
      handleUpdate() {
       this.form.append("title", this.title)
       this.form.append("content", this.content)
+       this.form.append("short_description", this.short_description)
       server.put(`/api/articles/${this.post_id}`, this.form, {
           headers: {
             'Content-Type': 'multipart/form-data'
@@ -91,6 +95,7 @@ export default {
     handleCreate() {
       this.form.append("title", this.title)
       this.form.append("content", this.content)
+      this.form.append("short_description", this.short_description)
       server.post(postApiUrl, this.form, {
           headers: {
             'Content-Type': 'multipart/form-data'

@@ -346,6 +346,7 @@ input:checked + .slider:before {
 }
 
 .copy-right {
+  padding-top: 10px;
   display: flex;
   width: 100vw;
   justify-content: center;
@@ -353,6 +354,9 @@ input:checked + .slider:before {
 .ql-syntax {
   background-color: #23241f;
   color: #f8f8f2;
+}
+footer {
+
 }
 .article-wrapper {
   display: flex;

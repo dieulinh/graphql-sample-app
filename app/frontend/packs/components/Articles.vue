@@ -21,7 +21,7 @@
 
           <br/>
 
-          <div class="course-desc" v-html="course.content">
+          <div class="course-desc" v-html="course.short_description">
           </div>
         </div>
       </div>
