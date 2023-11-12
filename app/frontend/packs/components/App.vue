@@ -6,12 +6,11 @@
         <nav class="submenu flex-left">
           <span class="marginlr"></span>
 
-
           <router-link :to="{name: 'Blog'}" class="btn-link">Blog</router-link>
           <span class="marginlr"></span>
           »
           <span class="marginlr"></span>
-          <router-link :to="{name: 'About'}" class="btn-link">About</router-link>
+          <router-link :to="{name: 'Courses'}" class="btn-link">Courses</router-link>
           <span class="marginlr"></span>
             »
           <span class="marginlr"></span>
@@ -78,7 +77,6 @@ export default {
       console.log('from', from);
       console.log('to', to)
       if (to.name === 'Home') {
-        console.log('right')
         this.$store.dispatch('hide_right_panel', false)
       }
       this.$store.dispatch('contact_form_visible', false)

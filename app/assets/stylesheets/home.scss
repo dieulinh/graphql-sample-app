@@ -358,6 +358,16 @@ input:checked + .slider:before {
 footer {
 
 }
+.my-profile {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.head-intro {
+  font-size: 1.2rem;
+  background: white;
+  padding: 20px;
+}
 .article-wrapper {
   display: flex;
   flex-direction: column;

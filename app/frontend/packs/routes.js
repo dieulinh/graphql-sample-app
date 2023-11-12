@@ -1,4 +1,3 @@
-import Vue from 'vue';
 import VueRouter from 'vue-router';
 
 import NewLessonPage from './components/NewLesson.vue';
@@ -25,8 +24,8 @@ import UtilsPage from './components/Utils.vue';
 const routes = [
   {
     path: '/',
-    component: CoursesPage,
-    name: 'Home'
+    component: AboutPage,
+    name: 'About'
   },
   {
     path: '/:CourseId/newlesson',
@@ -40,9 +39,9 @@ const routes = [
     name: 'Utils',
   },
   {
-    path: '/about',
-    component: AboutPage,
-    name: 'About',
+    path: '/courses',
+    component: CoursesPage,
+    name: 'Courses',
   },
   {
     path: '/:CourseId/lessons/edit/:lesson_id',

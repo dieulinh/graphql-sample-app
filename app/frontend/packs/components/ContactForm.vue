@@ -6,7 +6,7 @@
       <hr/>
       <hr>
       <div class="panel login-wrapper wht-bg">
-        <label class="form-title">We like to hear you</label>
+        <label class="form-title">Send me a message</label>
         <input type="text" v-model="message.email" placeholder="Your Email"/>
         <textarea v-model="message.content" placeholder="Your message" rows="6"/>
         <div class="flex-row">
