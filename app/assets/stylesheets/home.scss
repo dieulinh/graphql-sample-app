@@ -102,10 +102,16 @@ a {
   height: 0;
 }
 .about-view-wrapper {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-column: 1 / 10;
   font-family: system-ui;
   padding: 20px;
   max-width: 1200px;
+  .experience-summary {
+    display: grid;
+    grid-column: 2 / 9;
+  }
 }
 .slider {
   position: absolute;
@@ -368,9 +374,18 @@ footer {
   background: white;
   padding: 20px;
 }
+.socialmedia-link {
+  color: #2150c1;
+  &:hover {
+    color: #1cb56a;
+    font-weight: 700;
+  }
+}
+
 .article-wrapper {
   display: flex;
   flex-direction: column;
+  width: 100%;
   .article-card {
     display: flex;
     flex-flow: column nowrap;
@@ -430,7 +445,22 @@ footer {
     background: #f5f7ef;
   }
 }
-
+@media (max-width: 768px) {
+  .main-content {
+    display: flex;
+    width: 100%;
+    padding-top: 130px;
+  }
+  .about-view-wrapper {
+    display: flex;
+    flex-direction: column;
+    top: 100px;
+  }
+  .experience-summary {
+    width: 100%;
+    grid-column: 2 / 4;
+  }
+}
 @media (max-width: 414px) {
   .menu-right {
     display: flex;
@@ -459,9 +489,7 @@ footer {
     display: none;
   }
   .left-menu {
-    display: flex;
-    width: 100%;
-    grid-column: 1;
+    display: none;
   }
   .main-content {
     display: flex;
@@ -473,7 +501,13 @@ footer {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    height: 120px;
+    height: 140px;
+  }
+  .article-wrapper {
+    width: 100%;
+  }
+  .hide-sm {
+    display: none;
   }
   .brand-logo {
     display: flex;
@@ -494,9 +528,6 @@ footer {
     padding-right: 42px;
     align-items: flex-end;
     max-width: 383px;
-  }
-  .about-view-wrapper {
-    flex-direction: column;
   }
 }
 

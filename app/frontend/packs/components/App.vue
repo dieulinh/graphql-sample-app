@@ -38,11 +38,9 @@
       </div>
     </div>
     <div class="main-content">
-      <div class="main">
-        <router-view :key="$route.fullPath" />
+      <router-view :key="$route.fullPath" />
 
-      </div>
-      <div class="left-sidebar left-menu" v-if="hide_right_panel==false">
+      <div class="left-sidebar left-menu hide-sm" v-if="hide_right_panel==false">
         <blog-component />
       </div>
     </div>
