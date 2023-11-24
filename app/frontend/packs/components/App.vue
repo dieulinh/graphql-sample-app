@@ -40,7 +40,7 @@
     <div class="main-content">
       <router-view :key="$route.fullPath" />
 
-      <div class="left-sidebar left-menu hide-sm" v-if="hide_right_panel==false">
+      <div class="left-sidebar left-menu hide-sm" :class="{'hide-me': hide_right_panel==true}">
         <blog-component />
       </div>
     </div>
@@ -72,13 +72,14 @@ export default {
   watch: {
     '$route' (to, from) {
     // Put your logic here...
-      console.log('from', from);
-      console.log('to', to)
-      if (to.name === 'Home') {
-        this.$store.dispatch('hide_right_panel', false)
+
+      if (['Home', 'Blog', 'Courses'].indexOf(to.name)>-1) {
+        this.$store.dispatch('hide_right_panel', true)
       }
       this.$store.dispatch('contact_form_visible', false)
+      window.scrollTo(10,10);
     }
+
   },
   computed: {
     hide_right_panel() {
@@ -129,7 +130,6 @@ export default {
       }
     },
     hideContactForm() {
-      console.log('hide')
       this.$store.dispatch('contact_form_visible', false)
     },
     addCourse() {
@@ -138,7 +138,6 @@ export default {
       if (this.$router.currentRoute.name != 'NewCourse') {
         this.$router.push('/courses/new');
       }
-
     }
   }
 };

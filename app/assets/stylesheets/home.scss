@@ -413,8 +413,9 @@ footer {
 .main-content {
   display: grid;
   grid-template-columns: 7fr 3fr;
-  top:  100px;
+  padding-top:  130px;
 }
+
 .left-menu {
   padding-top: 100px;
   grid-row: 1;
@@ -431,6 +432,9 @@ footer {
 
 .quillWrapper + div {
   padding-top: 100px;
+}
+.hide-me {
+  display: none;
 }
 .experience-skills {
   border: 1px #f1dede solid;

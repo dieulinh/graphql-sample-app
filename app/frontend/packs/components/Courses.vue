@@ -55,7 +55,6 @@ export default {
     }
   },
   created() {
-    this.$store.dispatch('hide_right_panel', false)
     axios.get(coursesApiUrl)
       .then((result) => {
         this.courses = result.data.data.coursesConnection.edges
@@ -63,10 +62,6 @@ export default {
       .catch((err) => {
         console.log(err);
       })
-
-  },
-  mounted() {
-
   },
   methods: {
     publish(course) {
