@@ -105,6 +105,8 @@ a {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-column: 1 / 10;
+  grid-row: 1;
+  grid-column: 1;
   font-family: system-ui;
   padding: 20px;
   max-width: 1200px;
