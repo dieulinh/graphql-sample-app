@@ -1,5 +1,5 @@
 <template>
-  <div class="panel center-container">
+  <div class="panel">
     <div class="login-container">
       <div></div>
       <div class="pd-30 wht-bg round-corner">

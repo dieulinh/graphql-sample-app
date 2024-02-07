@@ -50,9 +50,7 @@ export default {
   created() {
     axios.get(coursesApiUrl)
       .then((result) => {
-        var rs = result.data.data.coursesConnection.edges;
-        console.log(rs)
-        this.courses = rs
+        this.courses = result.data.data.coursesConnection.edges;
       })
       .catch((err) => {
         console.log(err);
