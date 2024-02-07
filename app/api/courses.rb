@@ -18,7 +18,6 @@ class Courses < Grape::API
                 id
                 courseName
                 description
-                courseCoverUrl
                 status
               }
               cursor
@@ -27,7 +26,6 @@ class Courses < Grape::API
         }
       )
       result = RailsWebTemplateSchema.execute(query, variables: {}, context: {}, operation_name: nil)
-
       result
     end
 
@@ -36,13 +34,13 @@ class Courses < Grape::API
       optional :page, type: Integer
     end
     get '/search' do
+      byebug
       page = params[:page] || 1
       search_params = { course_name_or_description_matches: "%#{params[:term]}%" }
       courses = Course.ransack(search_params)
 
       { courses: courses.result.page(page) }.as_json
     end
-
 
     params do
       requires :course_name, type: String
@@ -66,7 +64,7 @@ class Courses < Grape::API
       if current_user.present?
         sections = course.posts.order('created_at asc') if current_user.roles.include?('subscriber')||current_user.roles.include?('admin')
       end
-      present course.attributes.merge("course_cover" => course.course_cover_url, "sections" => sections)
+      present course.attributes.merge("sections" => sections)
     end
 
     params do
@@ -100,6 +98,7 @@ class Courses < Grape::API
     end
 
     post '/:course_id/lessons' do
+      byebug
       authenticate_user!
       course = Course.find(params[:course_id])
       authorize course, :update?

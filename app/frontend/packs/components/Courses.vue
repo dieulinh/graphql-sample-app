@@ -17,13 +17,6 @@
             </label>
           </div>
 
-          <lazy-component wrapper-tag="section">
-           <img :src="course.node&&course.node.courseCoverUrl" v-if="course.node&&course.node.courseCoverUrl" :alt='course["node"]&&course["node"].courseName' class="course-cover" height="80px" width="auto" />
-              <img src="~/images/no-image-icon.png" v-if="course.node&&!course.node.courseCoverUrl"/>
-
-            <!-- Optional loading indicator -->
-            <span slot="placeholder">Loading..</span>
-          </lazy-component>
           <div v-html="course.node&&course.node.description" class="desc-content">
           </div>
         </div>
@@ -57,7 +50,9 @@ export default {
   created() {
     axios.get(coursesApiUrl)
       .then((result) => {
-        this.courses = result.data.data.coursesConnection.edges
+        var rs = result.data.data.coursesConnection.edges;
+        console.log(rs)
+        this.courses = rs
       })
       .catch((err) => {
         console.log(err);
