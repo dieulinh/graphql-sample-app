@@ -34,7 +34,6 @@ class Courses < Grape::API
       optional :page, type: Integer
     end
     get '/search' do
-      byebug
       page = params[:page] || 1
       search_params = { course_name_or_description_matches: "%#{params[:term]}%" }
       courses = Course.ransack(search_params)
