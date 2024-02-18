@@ -1,6 +1,19 @@
 module Shared
   module Helpers
     extend Grape::API::Helpers
+    def export(mentor)
+      path = "/pdfs/pdf_files"
+      # path = "#{Rails.public_path}#{path}"
+
+      filename = "profile_#{mentor.id}.pdf"
+      renderer = ActionController::Base.new
+
+      header_html = renderer.render_to_string(template: 'pdfs/header', locals: { document_title: 'xResume', other_content: "copyright@iwork"  })
+      body_html = renderer.render_to_string(template: 'mentors/profile', locals: { mentor: mentor })
+      save_path = PdfCreator.new(body_html: body_html, pdf_path: path, filename: filename, header: header_html).call
+      { path: save_path }
+    end
+
     def no_content!
       ok!(204)
     end

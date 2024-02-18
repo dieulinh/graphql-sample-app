@@ -23,9 +23,15 @@ gem 'turbolinks', '~> 5'
 gem 'carrierwave'
 gem 'aws-sdk-s3'
 gem 'aws-sdk-rails'
-gem "aws-ses", :require => 'aws/ses'
+gem 'aws-ses', :require => 'aws/ses'
 gem 'fog-aws'
 gem 'rack-cors'
+gem 'net-http'
+
+# WickPdf tools
+gem 'wicked_pdf'
+gem 'wkhtmltopdf-binary'
+
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
 gem 'font-awesome-rails'
@@ -39,7 +45,7 @@ gem 'jwt'
 gem 'bcrypt', '~> 3.1.7'
 
 gem 'fastimage'
-gem "ruby-readability", :require => 'readability'
+gem 'ruby-readability', :require => 'readability'
 
 # Grape API with swagger
 gem 'grape'
@@ -66,7 +72,7 @@ gem 'ransack'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'pundit'
-gem "letter_opener", group: :development
+gem 'letter_opener', group: :development
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

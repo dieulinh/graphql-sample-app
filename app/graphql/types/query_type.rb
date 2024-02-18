@@ -15,7 +15,7 @@ module Types
 
     field :courses_connection, Types::CourseType.connection_type, null: false
     def courses_connection(**_args)
-      Course.includes(course_cover_attachment: :blob).limit(20)
+      Course.includes(course_cover_attachment: :blob)
     end
   end
 end
