@@ -57,7 +57,6 @@ class Courses < Grape::API
     end
 
     get '/:course_id' do
-
       course = Course.friendly.find(params[:course_id])
       sections = []
       if current_user.present?
@@ -91,13 +90,13 @@ class Courses < Grape::API
       requires :lesson, type: Hash do
         requires :title, type: String
         requires :content, type: String
+        requires :price, type: Integer
         optional :file, type: File
         optional :published, type: Boolean
       end
     end
 
     post '/:course_id/lessons' do
-      byebug
       authenticate_user!
       course = Course.find(params[:course_id])
       authorize course, :update?

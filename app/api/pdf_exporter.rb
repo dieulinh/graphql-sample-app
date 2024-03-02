@@ -9,7 +9,6 @@ class PdfExporter < Grape::API
         authenticate_user!
 
         Rails.logger.info(params)
-        mentor = Mentor.find(params[:mentor_id])
         mentor = current_user.mentor
         export(mentor)
       end

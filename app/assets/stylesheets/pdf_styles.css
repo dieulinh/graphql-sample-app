@@ -1,6 +1,12 @@
 p {
     font-family: 'Consolas', 'Inconsolata', 'Droid Sans Mono', 'Monaco', monospace;
     font-size: 14px;
-    color: #5a3424;
     padding: 5px;
+}
+.mentor-intro {
+    line-height: 20px;
+    font-weight: 400;
+    font-size: 15px;
+    font-family: Raleway, sans-serif;
+    color: #3d3d3d;
 }
