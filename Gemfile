@@ -43,6 +43,7 @@ gem 'font-awesome-rails'
 gem 'jwt'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
+gem 'bullet', group: :development
 
 gem 'fastimage'
 gem 'ruby-readability', :require => 'readability'
@@ -73,6 +74,7 @@ gem 'ransack'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'pundit'
 gem 'letter_opener', group: :development
+gem 'stripe'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

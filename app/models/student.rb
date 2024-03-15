@@ -3,6 +3,8 @@ class Student < ApplicationRecord
 
   has_secure_password
   has_many :bookings
+  has_many :checkouts
+  has_many :courses
   has_one :mentor
   validates :email, presence: true, uniqueness: true
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }

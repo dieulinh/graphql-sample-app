@@ -79,5 +79,10 @@ module Shared
       return unauthorized! unless current_user
       true
     end
+
+    def create_course_user(student:, course_id:)
+      Rails.logger.info('test')
+      course_user = CourseUser.find_or_create_by(course_id: course_id, student_id: student.id)
+    end
   end
 end

@@ -9,9 +9,14 @@ class Auth < Grape::API
       user = Student.find_by(email: params[:email].downcase)
       return unauthorized! unless user
       return unauthorized! unless user.authenticate(params[:password])
-      encoded_user = ::JsonWebToken.encode(user_id: user.id)
+
+      user_token  = {}
+      if user.mentor
+        user_token[:mentor_id] = user.mentor.id
+      end
+      encoded_user = ::JsonWebToken.encode(user_token.merge(user_id: user.id))
       encoded_expiry = ::JsonWebToken.meta[:exp]
-      { token: encoded_user, auth_token_expiry: encoded_expiry, user_id: user.id, email: user.email, roles: user.roles }
+      { mentor_id: user_token[:mentor_id], token: encoded_user, auth_token_expiry: encoded_expiry, user_id: user.id, email: user.email, roles: user.roles }
     end
 
     desc 'Register endpoint'

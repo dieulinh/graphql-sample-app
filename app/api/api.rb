@@ -19,6 +19,7 @@ class API < Grape::API
   mount OpenAiPrompt
   mount Bookings
   mount PdfExporter
+  mount Payments
 
   rescue_from Grape::Exceptions::ValidationErrors  do |e|
     rack_response({
