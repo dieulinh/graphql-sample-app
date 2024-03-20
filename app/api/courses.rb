@@ -32,12 +32,17 @@ class Courses < Grape::API
     params do
       requires :term, type: String
       optional :page, type: Integer
+      optional :user_id, type: String
     end
     get '/search' do
       page = params[:page] || 1
       search_params = { course_name_or_description_matches: "%#{params[:term]}%" }
-      courses = Course.ransack(search_params)
+      if params[:user_id]
+        user_courses = CourseUser.where(student_id: params[:user_id].to_i).pluck(:course_id).uniq
+        search_params = search_params.merge(id_in: user_courses)
+      end
 
+      courses = Course.ransack(search_params)
       { courses: courses.result.page(page) }.as_json
     end
 
