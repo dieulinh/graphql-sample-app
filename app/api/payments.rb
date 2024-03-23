@@ -7,9 +7,14 @@ class Payments < Grape::API
     post '/createpayment_intent' do
       authenticate_user!
       course_info = params[:items].first
-      course_price = course_info['price']
       course_id = course_info['course_id']
       student_id = course_info['user_id']
+      checkout = Checkout.find_by(checkout_id: "course_#{course_id}", student_id: student_id.to_i)
+      # rack_response({"status"=>409, "message"=>"Duplicated."}) if checkout
+      render_api_error!('409 Precondition Failed', 409) if checkout
+
+      course_price = course_info['price']
+
       payment_intent = Stripe::PaymentIntent.create(
         amount: course_price*100,
         currency: 'usd',
@@ -36,13 +41,8 @@ class Payments < Grape::API
       checkout.update redirect_status: params[:redirect_status]
       if params[:redirect_status] == 'succeeded'
         student = current_user
-
         create_course_user(course_id: params[:course_id], student: student)
       end
     end
-    params do
-      requires :amount, type: Integer
-    end
-
   end
 end
