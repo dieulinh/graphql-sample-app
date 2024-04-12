@@ -1,7 +1,7 @@
 <template>
   <div class="about-view-wrapper">
     <div class="flex-between my-profile">
-      <img class="avatar" src="https://freeway-devland.s3.amazonaws.com/uploads/attached_photo/photo/517/opt_web_7c81c506-5461-4ab0-beab-a68a25bab2d3.png">
+      <img class="avatar" src="https://freeway-devland.s3.amazonaws.com/uploads/attached_photo/photo/517/opt_web_7c81c506-5461-4ab0-beab-a68a25bab2d3.png" width="300">
       <div class="intro">
         <h1>Linh Nguyen (me)</h1>
         <div class="contact-info">

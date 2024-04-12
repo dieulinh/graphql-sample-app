@@ -70,6 +70,21 @@ class Courses < Grape::API
       present course.attributes.merge("sections" => sections)
     end
 
+    get '/learn/:course_id' do
+      authenticate_user!
+
+      course = Course.friendly.find(params[:course_id])
+      course_user = CourseUser.find_by(student_id: current_user.id, course_id: course.id)
+      if course_user.blank?
+        render_api_error!('Course not found', 404)
+      end
+      sections = []
+      if current_user.present?
+        sections = course.posts.order('created_at asc') if current_user.roles.include?('subscriber')||current_user.roles.include?('admin')
+      end
+      present course.attributes.merge("sections" => sections)
+    end
+
     params do
       optional :course_name, type: String
       optional :course_cover, type: File
@@ -91,6 +106,7 @@ class Courses < Grape::API
       course.save
       present course
     end
+
     params do
       requires :lesson, type: Hash do
         requires :title, type: String
