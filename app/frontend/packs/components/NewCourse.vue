@@ -1,6 +1,7 @@
 <template>
   <div class="new-lesson">
     <input v-model="course_name" placeholder="Course name"/>
+    <input v-model="price" type="number" placeholder="Course price"/>
     <div><input name="files" ref="files" @change="onFilesChange" type="file" data-direct-upload-url="/rails/active_storage/direct_uploads" direct_upload="true" /><label>Choose an image as cover image for the course </label></div>
     <vue-editor class="wht-bg" v-model="description" useCustomImageHandler @image-added="handleUploadImage" aria-placeholder="Input overview of the course" />
     <div class="flex-row half content-center pt-10">
@@ -32,6 +33,7 @@ export default {
   data() {
     return {
       course_name: '',
+      price: 10,
       course_cover: null,
       description: '',
       form: new FormData()
@@ -50,6 +52,7 @@ export default {
         let course = result.data;
         this.course_name = course.course_name;
         this.description = course.description;
+        this.price = course.price;
         this.status = 0
         console.log(this.course)
       })
@@ -65,13 +68,13 @@ export default {
   },
   methods: {
     onFilesChange: function() {
-      console.log(this.$refs.files.files);
       let files = this.$refs.files.files;
       this.form.append('course_cover', files[0])
     },
     save: function() {
       this.form.append("course_name", this.course_name)
       this.form.append("description", this.description)
+      this.form.append("price", this.price)
       if (this.CourseId) {
         this.handleUpdate();
       } else {
