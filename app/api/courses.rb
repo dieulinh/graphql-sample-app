@@ -41,7 +41,6 @@ class Courses < Grape::API
         user_courses = CourseUser.where(student_id: params[:user_id].to_i).pluck(:course_id).uniq
         search_params = search_params.merge(id_in: user_courses)
       end
-
       courses = Course.ransack(search_params)
       { courses: courses.result.page(page) }.as_json
     end
@@ -49,6 +48,7 @@ class Courses < Grape::API
     params do
       requires :course_name, type: String
       requires :description, type: String
+      requires :price, type: Integer
       optional :course_cover, type: File
     end
 
@@ -111,7 +111,6 @@ class Courses < Grape::API
       requires :lesson, type: Hash do
         requires :title, type: String
         requires :content, type: String
-        requires :price, type: Integer
         optional :file, type: File
         optional :published, type: Boolean
       end
