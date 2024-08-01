@@ -21,6 +21,8 @@ class API < Grape::API
   mount PdfExporter
   mount Payments
   mount LearningProgresses
+  mount Learns
+  mount Recipes
 
   rescue_from Grape::Exceptions::ValidationErrors  do |e|
     rack_response({
