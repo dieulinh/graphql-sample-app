@@ -25,7 +25,7 @@
         <p>In the past 8 years I have been working on building API for web apps, using Cloud Infrastructure like AWS and Google Cloud</p>
         I love travel, scuba diving, hiking and some other sports
       </div>
-      <p>Shoot me a message at <a href="/#/contact"> <strong>contact</strong></a> link if you need other information</p>
+      <p>Shoot me a message at <a href="/#/contact"> <strong>contact</strong></a> link if you need other information. <strong> We do read your enquiries</strong></p>
       <p><br></p>
       <div class="experience-skills">
         <ul class="high-skills">

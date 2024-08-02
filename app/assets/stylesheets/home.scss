@@ -101,10 +101,10 @@ a {
   width: 0;
   height: 0;
 }
+
 .about-view-wrapper {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-column: 1 / 10;
   grid-row: 1;
   grid-column: 1;
   font-family: system-ui;
@@ -113,6 +113,7 @@ a {
   .experience-summary {
     display: grid;
     grid-column: 2 / 9;
+    height: 100vh;
   }
 }
 .slider {
