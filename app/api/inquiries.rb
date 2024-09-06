@@ -6,14 +6,15 @@ class Inquiries < Grape::API
     end
     post '/' do
       return bad_request!('ip_address') unless env['REMOTE_ADDR']
-      prev_in = Inquiry.where(ip_address: env['REMOTE_ADDR']).order('created_at desc').first
-      if prev_in
-        if (DateTime.now.utc - prev_in.created_at)/1.minutes < 1
-          return bad_request!('ip address')
-        end
-      end
-      inquiry = Inquiry.new(params.merge(ip_address: env['REMOTE_ADDR']))
-      inquiry.save
+      # prev_in = Inquiry.where(ip_address: env['REMOTE_ADDR']).order('created_at desc').first
+      # if prev_in
+      #   if (DateTime.now.utc - prev_in.created_at)/1.minutes < 1
+      #     return bad_request!('ip address')
+      #   end
+      # end
+      # inquiry = Inquiry.new(params.merge(ip_address: env['REMOTE_ADDR']))
+      # inquiry.save
+      inquiry = OpenStruct.new(params.merge(ip_address: env['REMOTE_ADDR']))
 
       UserMailer.send_contact_form(inquiry).deliver
       present inquiry
