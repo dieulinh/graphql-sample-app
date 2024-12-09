@@ -7,7 +7,7 @@ class Verifications < Grape::API
       email = params[:email]
       code = Verification.generate_code(email).code
 
-      VerificationMailer.send_code(email: email, code: code).deliver_later
+      VerificationMailer.send_code(email: email, code: code).deliver
 
       { status: 201 }
     end
