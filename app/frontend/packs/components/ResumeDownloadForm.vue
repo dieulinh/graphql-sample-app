@@ -43,14 +43,12 @@ export default {
       console.log('verification_code', this.verification_code);
       this.$store.dispatch('downloadResume', {email: this.email, code: this.verification_code})
           .then((rs) => {
-            // console.log('rs', this.download_resume_url.url);
-            window.open(this.download_resume_url.url, '_blank')
-            if (!this.errors) {
-              this.$store.dispatch('setFlashMessage', {text: 'An Email has been sent to you with the download link'});
-              this.validEmail = true;
+            if(this.download_resume_url&&this.download_resume_url.status!=500) {
+              window.open(this.download_resume_url.url, '_blank')
             } else {
-              this.$store.dispatch('setFlashMessage', {text: 'Email or password incorrect', type: 'error'});
+              this.$store.dispatch('setFlashMessage', {text: 'Email or code incorrect', type: 'error'});
             }
+
           }).catch((err) => {
         console.log(err);
       });

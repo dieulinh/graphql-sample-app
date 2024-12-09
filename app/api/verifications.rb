@@ -6,9 +6,7 @@ class Verifications < Grape::API
     post '/send_verification_code' do
       email = params[:email]
       code = Verification.generate_code(email).code
-
       VerificationMailer.send_code(email: email, code: code).deliver
-
       { status: 201 }
     end
     params do
@@ -17,19 +15,12 @@ class Verifications < Grape::API
     end
 
     post '/verify_code' do
-
       email = params[:email]
       code = params[:code]
+      url = SendResume.new(email, code).call
+      return { status: 500 } unless url
+      { status: 200, url: url }
 
-      if Verification.valid_code?(email, code)
-        s3_client = Aws::S3::Client.new(region: ENV['PERSONAL_DOCS_REGION'], access_key_id: ENV['AWS_ACCESS_KEY_ID'], secret_access_key: ENV['AWS_SECRET_KEY'])
-        signer = Aws::S3::Presigner.new(client: s3_client)
-        url = signer.presigned_url(:get_object, bucket: ENV['PERSONAL_BUCKET_NAME'], key: 'resume.pdf', expires_in: 20)
-
-        { status: 200, url: url }
-      else
-        { status: 400 }
-      end
     end
   end
 end
