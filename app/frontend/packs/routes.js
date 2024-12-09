@@ -1,5 +1,5 @@
 import VueRouter from 'vue-router';
-
+import DownloadResume from './components/ResumeDownloadForm.vue';
 import NewLessonPage from './components/NewLesson.vue';
 import NewArticlePage from './components/NewArticle.vue';
 import ArticleEditPage from './components/NewArticle.vue';
@@ -32,6 +32,11 @@ const routes = [
     component: NewLessonPage,
     name: 'NewLesson',
     props: true
+  },
+  {
+    path: '/resume_download',
+    component: DownloadResume,
+    name: 'DownloadResume',
   },
    {
     path: '/utils',

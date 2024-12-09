@@ -9,17 +9,26 @@ const debug = process.env.NODE_ENV !== 'production';
 const API_URL = process.env.ROOT_API;
 
 const mutations = {
+  hide_right_panel(state, status) {
+    state.hide_right_panel = status;
+  },
   set_contact_form_visible(state, visible) {
     state.contact_form_visible = visible;
   },
   searchTerm(state, term) {
     state.searchTerm = term;
   },
+  set_download_url(state,url) {
+    state.download_resume_url = url
+  },
   setTotalPage(state, payload) {
     state.total_pages = payload.total_pages;
   },
   logout(state) {
     state.authenticated = false;
+  },
+  set_sent_email(state, status) {
+    state.email_sent = status;
   },
   login(state, value) {
     state.auth_token = value;
@@ -49,11 +58,29 @@ const mutations = {
 };
 
 const actions = {
+  set_verification_code({commit}, code) {
+    commit('set_verification_code', code);
+  },
+  hide_right_panel({commit}, status) {
+     commit('hide_right_panel', status)
+  },
   contact_form_visible({commit},visible) {
     commit('set_contact_form_visible', visible)
   },
   searchTerm({commit}, term){
     commit('searchTerm', term);
+  },
+  async sendVerificationCode({commit}, email) {
+    try {
+      let response = await axios.post(`${process.env.ROOT_API}/verifications/send_verification_code`, email);
+      if (response.status === 201 || response.status === 200)
+      {
+        commit('set_sent_email', true);
+      }
+    } catch(err) {
+      console.log(err);
+      commit('getErrors', err);
+    }
   },
   async getPosts({commit}, postParams) {
     try {
@@ -86,6 +113,15 @@ const actions = {
     User.logOut();
     commit('logout');
     commit('setFlashMessage', {text: 'you have been logout successfully'})
+  },
+  async downloadResume({commit}, {email,code}) {
+    try {
+      let response = await axios.post(`/api/verifications/verify_code`, {email,code} );
+      commit('set_download_url', response.data)
+    } catch(err) {
+      console.log(err);
+      commit('getErrors', err);
+    }
   },
   async register({commit}, user) {
     commit('getErrors', null)
@@ -135,6 +171,7 @@ const actions = {
 };
 
 const getters = {
+  hide_right_panel: state => state.hide_right_panel,
   user: state => state.user,
   auth_token: state => state.auth_token,
   authenticated: state => state.authenticated,
@@ -143,10 +180,13 @@ const getters = {
   course: state => state.course,
   flashMessage: state => state.flashMessage,
   auth_token_expiry: state => state.auth_token_expiry,
-  contact_form_visible: state => state.contact_form_visible
+  contact_form_visible: state => state.contact_form_visible,
+  vefication_code: state => state.vefication_code,
+  download_resume_url: state => state.download_resume_url
 };
 
 const state = {
+  hide_right_panel: false,
   contact_form_visible: false,
   auth_token_expiry: 0,
   searchTerm: null,
@@ -155,6 +195,10 @@ const state = {
   flashMessage: {},
   errors: null,
   auth_token: null,
+  downloadEmailValid: false,
+  vefication_code: null,
+  email_sent: false,
+  download_resume_url: null,
   authenticated: !!localStorage.getItem('user')
 };
 

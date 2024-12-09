@@ -23,7 +23,7 @@ class API < Grape::API
   mount LearningProgresses
   mount Learns
   mount Recipes
-
+  mount Verifications
   rescue_from Grape::Exceptions::ValidationErrors  do |e|
     rack_response({
       status: e.status,

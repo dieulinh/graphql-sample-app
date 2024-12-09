@@ -1656,7 +1656,7 @@ PLATFORMS
 DEPENDENCIES
   aws-sdk (~> 3)
   aws-sdk-rails
-  aws-sdk-s3
+  aws-sdk-s3 (~> 1)
   aws-ses
   bcrypt (~> 3.1.7)
   bootsnap (>= 1.1.0)
