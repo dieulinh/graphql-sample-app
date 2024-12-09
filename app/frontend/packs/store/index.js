@@ -72,7 +72,7 @@ const actions = {
   },
   async sendVerificationCode({commit}, email) {
     try {
-      let response = await axios.post(`${process.env.ROOT_API}/verifications/send_verification_code`, email);
+      let response = await axios.post(`/api/verifications/send_verification_code`, email);
       if (response.status === 201 || response.status === 200)
       {
         commit('set_sent_email', true);
@@ -126,7 +126,8 @@ const actions = {
   async register({commit}, user) {
     commit('getErrors', null)
     try {
-      let response = await axios.post(`/api/login/register`, user );
+      let response = await axios.post(`/ app/views/verification_mailer/send_code.html.erb
+`, user );
       commit('registerUser', response.data)
     } catch(err) {
       console.log(err);
