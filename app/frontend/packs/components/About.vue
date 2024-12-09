@@ -15,7 +15,7 @@
               <a class="socialmedia-link" href="https://www.credly.com/users/dieu-linh-nguyen.82c92b0f" rel="noopener noreferrer" target="_blank">Credly  (link)</a>
             </li>
             <li>
-              <router-link :to="{name: 'DownloadResume'}" class="btn-link">Download Resume</router-link>
+              <router-link :to="{name: 'DownloadResume'}" class="btn-link highlighted-btn">Download Resume</router-link>
 
             </li>
           </ul>
