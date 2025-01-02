@@ -311,6 +311,9 @@ input:checked + .slider:before {
   max-width: 800px;
   & p {
     font-size: 18px;
+    color: black;
+    line-height: 2.0;
+    padding: 20px;
   }
   & img {
     max-width: 100%;
