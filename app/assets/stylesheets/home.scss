@@ -307,9 +307,13 @@ input:checked + .slider:before {
   flex-flow: column nowrap;
   padding: 20px;
   background: #fff;
-  justify-content: baseline;
+  justify-content: left;
+  max-width: 800px;
   & p {
     font-size: 18px;
+  }
+  & img {
+    max-width: 100%;
   }
 }
 .center-container {
