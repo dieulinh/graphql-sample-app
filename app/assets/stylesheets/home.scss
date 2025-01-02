@@ -15,6 +15,16 @@
   border-bottom: 1px solid rgb(222, 223, 224);
   padding: 20px 10px 20px 10px;
 }
+.hero {
+    display: grid;
+
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #f9ffff;
+    grid-column: 2 / 4;
+
+}
 .top-empty {
   margin-top: 100px;
 }
@@ -299,7 +309,7 @@ input:checked + .slider:before {
   background: #fff;
   justify-content: baseline;
   & p {
-    font-size: 16px;
+    font-size: 18px;
   }
 }
 .center-container {
