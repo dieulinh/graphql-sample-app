@@ -346,6 +346,7 @@ input:checked + .slider:before {
   display: flex;
   width: calc(100vw - 20px);
   padding: 10px 20px 10px;
+  font-size: 1.1rem;
 }
 .text-right {
   display: flex;
@@ -440,6 +441,12 @@ footer {
   grid-template-columns: 7fr 3fr;
   padding-top:  130px;
 }
+.main-content {
+  & p {
+    font-size: 1.1rem;
+  }
+}
+
 
 .left-menu {
   padding-top: 100px;
